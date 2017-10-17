@@ -6,7 +6,6 @@
 
 use yii\helpers\Html;
 
-yiister\adminlte\assets\Asset::register($this);
 
 ?>
 <?php $this->beginPage() ?>
@@ -244,80 +243,6 @@ desired effect
             </form>
             <!-- /.search form -->
 
-            <!-- Sidebar Menu -->
-            <?=
-            \yiister\adminlte\widgets\Menu::widget(
-                [
-                    "items" => [
-                        ["label" => "Home", "url" => "/", "icon" => "home"],
-                        ["label" => "Layout", "url" => ["site/layout"], "icon" => "files-o"],
-                        ["label" => "Error page", "url" => ["site/error-page"], "icon" => "close"],
-                        [
-                            "label" => "Widgets",
-                            "icon" => "th",
-                            "url" => "#",
-                            "items" => [
-                                ["label" => "Menu", "url" => ["site/menu"]],
-                                ["label" => "Boxes", "url" => ["site/boxes"]],
-                                ["label" => "FlashAlert", "url" => ["site/flash-alert"]],
-                                ["label" => "Callouts", "url" => ["site/callouts"]],
-                            ],
-                        ],
-                        [
-                            "label" => "Badges",
-                            "url" => "#",
-                            "icon" => "table",
-                            "items" => [
-                                [
-                                    "label" => "Default",
-                                    "url" => "#",
-                                    "icon" => "table",
-                                    "badge" => "123",
-                                ],
-                                [
-                                    "label" => "Blue",
-                                    "url" => "#",
-                                    "icon" => "table",
-                                    "badge" => "123",
-                                    "badgeOptions" => [
-                                        "class" => \yiister\adminlte\components\AdminLTE::BG_BLUE,
-                                    ],
-                                ],
-                            ],
-                        ],
-                        [
-                            "label" => "Multilevel",
-                            "url" => "#",
-                            "icon" => "table",
-                            "items" => [
-                                [
-                                    "label" => "Second level",
-                                    "url" => "#",
-                                ],
-                                [
-                                    "label" => "Second level",
-                                    "url" => "#",
-                                    "icon" => "table",
-                                    "items" => [
-                                        [
-                                            "label" => "Default",
-                                            "url" => "#",
-                                        ],
-                                        [
-                                            "label" => "Red",
-                                            "url" => "#",
-                                            "icon" => "table",
-                                        ],
-                                    ],
-                                ],
-                            ],
-                        ],
-                    ],
-                ]
-            )
-            ?>
-        </section>
-        <!-- /.sidebar -->
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
@@ -327,20 +252,6 @@ desired effect
             <h1>
                 <?= Html::encode(isset($this->params['h1']) ? $this->params['h1'] : $this->title) ?>
             </h1>
-            <?php if (isset($this->params['breadcrumbs'])): ?>
-                <?=
-                \yii\widgets\Breadcrumbs::widget(
-                    [
-                        'encodeLabels' => false,
-                        'homeLink' => [
-                            'label' => new \rmrevin\yii\fontawesome\component\Icon('home') . ' Home',
-                            'url' => '/',
-                        ],
-                        'links' => $this->params['breadcrumbs'],
-                    ]
-                )
-                ?>
-            <?php endif; ?>
         </section>
 
         <!-- Main content -->
