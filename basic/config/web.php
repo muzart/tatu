@@ -53,6 +53,9 @@ $config = [
         'student' => [
             'class' => 'app\modules\student\StudentModule',
         ],
+        'dekanat' => [
+            'class' => 'app\modules\dekanat\DekanatModule',
+        ],
     ],
     'params' => $params,
 ];
