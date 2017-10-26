@@ -49,6 +49,11 @@ $config = [
             ],
         ],
     ],
+    'modules' => [
+        'student' => [
+            'class' => 'app\modules\student\StudentModule',
+        ],
+    ],
     'params' => $params,
 ];
 
