@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m171102_070119_create_table_direction extends Migration
+class m171102_105231_create_table_term extends Migration
 {
     public function safeUp()
     {
@@ -11,15 +11,15 @@ class m171102_070119_create_table_direction extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('{{%direction}}', [
+        $this->createTable('{{%term}}', [
             'id' => $this->integer(11)->notNull()->append('AUTO_INCREMENT PRIMARY KEY'),
-            'code' => $this->string(10)->notNull()->comment('Йўналиш коди'),
-            'name' => $this->string(100)->notNull()->comment('Йўналиш номи'),
+            'name' => $this->integer(11)->notNull()->comment('Номи'),
+            'semester' => $this->string()->notNull()->comment('Семестр'),
         ], $tableOptions);
     }
 
     public function safeDown()
     {
-        $this->dropTable('{{%direction}}');
+        $this->dropTable('{{%term}}');
     }
 }

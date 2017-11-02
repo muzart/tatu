@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m171102_070118_create_table_building extends Migration
+class m171102_105231_create_table_migration extends Migration
 {
     public function safeUp()
     {
@@ -11,14 +11,14 @@ class m171102_070118_create_table_building extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('{{%building}}', [
-            'id' => $this->integer(11)->notNull()->append('AUTO_INCREMENT PRIMARY KEY'),
-            'name' => $this->string(64)->notNull(),
+        $this->createTable('{{%migration}}', [
+            'version' => $this->string(180)->notNull()->append('PRIMARY KEY'),
+            'apply_time' => $this->integer(11),
         ], $tableOptions);
     }
 
     public function safeDown()
     {
-        $this->dropTable('{{%building}}');
+        $this->dropTable('{{%migration}}');
     }
 }
