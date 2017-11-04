@@ -7,6 +7,7 @@ namespace app\modules\university;
  */
 class UniversityModule extends \yii\base\Module
 {
+    public $layout = 'main';
     /**
      * @inheritdoc
      */

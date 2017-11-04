@@ -6,6 +6,7 @@ $db = require(__DIR__ . '/db.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
+    'language'=>'uz',
     'bootstrap' => ['log'],
     'components' => [
         'request' => [
@@ -59,6 +60,9 @@ $config = [
         'university' => [
             'class' => 'app\modules\university\UniversityModule',
         ],
+    ],
+    'aliases' => [
+        '@university' => '@app/modules/university',
     ],
     'params' => $params,
 ];
