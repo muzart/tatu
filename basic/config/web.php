@@ -56,6 +56,9 @@ $config = [
         'dekanat' => [
             'class' => 'app\modules\dekanat\DekanatModule',
         ],
+        'university' => [
+            'class' => 'app\modules\university\UniversityModule',
+        ],
     ],
     'params' => $params,
 ];
