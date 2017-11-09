@@ -1,12 +1,19 @@
 <div class="university-default-index">
-    <h1><?= $this->context->action->uniqueId ?></h1>
-    <p>
-        This is the view content for action "<?= $this->context->action->id ?>".
-        The action belongs to the controller "<?= get_class($this->context) ?>"
-        in the "<?= $this->context->module->id ?>" module.
-    </p>
-    <p>
-        You may customize this page by editing the following file:<br>
-        <code><?= __FILE__ ?></code>
-    </p>
+    <h3>Universitet moduli orqali quyidagi ma'lumotlarni sozlashingiz mumkin!</h3>
+
+    <div class="row">
+        <div class="col-md-3">
+            <?=\yii\helpers\Html::a('Fakultet',['faculty/index']);?>
+        </div>
+        <div class="col-md-3">
+            <?=\yii\helpers\Html::a('Kafedra',['department/index']);?>
+        </div>
+        <div class="col-md-3">
+            <?=\yii\helpers\Html::a('O\'quv binolari',['building/index']);?>
+        </div>
+        <div class="col-md-3">
+            <?=\yii\helpers\Html::a('Xonalar',['room/index']);?>
+        </div>
+    </div>
+
 </div>

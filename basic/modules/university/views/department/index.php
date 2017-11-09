@@ -26,9 +26,24 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'faculty_id',
-            'building_id',
-            'room_id',
+            [
+                'attribute' => 'faculty_id',
+                'value' => function($model){
+                      return  $model->faculty->name;
+                    }
+            ],
+            [
+                'attribute' => 'building_id',
+                'value' => function($model){
+                        return $model->building->name;
+                    }
+            ],
+            [
+                'attribute' => 'room_id',
+                'value' => function($model){
+                        return $model->room->name;
+                    }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

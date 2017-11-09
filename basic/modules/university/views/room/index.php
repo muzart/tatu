@@ -26,7 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'building_id',
+            [
+                'attribute' => 'building_id',
+                'value' => function($model){
+                        return $model->building->name;
+                    }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
