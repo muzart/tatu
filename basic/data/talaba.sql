@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Окт 27 2017 г., 08:58
+-- Время создания: Ноя 13 2017 г., 09:21
 -- Версия сервера: 10.1.19-MariaDB
 -- Версия PHP: 5.6.28
 
@@ -31,6 +31,13 @@ CREATE TABLE `building` (
   `name` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `building`
+--
+
+INSERT INTO `building` (`id`, `name`) VALUES
+(1, 'Asosiy bino');
+
 -- --------------------------------------------------------
 
 --
@@ -44,6 +51,13 @@ CREATE TABLE `department` (
   `building_id` int(11) NOT NULL COMMENT 'Бино',
   `room_id` int(11) NOT NULL COMMENT 'Хона'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `department`
+--
+
+INSERT INTO `department` (`id`, `name`, `faculty_id`, `building_id`, `room_id`) VALUES
+(1, 'Dasturiy injiniring', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -69,6 +83,13 @@ CREATE TABLE `faculty` (
   `building_id` int(11) NOT NULL COMMENT 'Бино'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `faculty`
+--
+
+INSERT INTO `faculty` (`id`, `name`, `building_id`) VALUES
+(1, 'Kompyuter injiniring', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -91,6 +112,23 @@ CREATE TABLE `groups` (
 --
 
 CREATE TABLE `lesson` (
+  `id` int(11) NOT NULL,
+  `term_id` int(11) NOT NULL,
+  `lesson_type_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  `teacher_id` int(11) NOT NULL,
+  `day` int(11) NOT NULL,
+  `pair` int(11) NOT NULL,
+  `sana` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `lesson_type`
+--
+
+CREATE TABLE `lesson_type` (
   `id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   `lesson_type` enum('lecture','practice','laboratory','seminar') NOT NULL
@@ -133,6 +171,13 @@ CREATE TABLE `room` (
   `name` varchar(32) NOT NULL COMMENT 'Номи',
   `building_id` int(11) NOT NULL COMMENT 'Бино'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `room`
+--
+
+INSERT INTO `room` (`id`, `name`, `building_id`) VALUES
+(1, '325-xona', 1);
 
 -- --------------------------------------------------------
 
@@ -181,7 +226,8 @@ CREATE TABLE `student` (
   `created` int(11) DEFAULT NULL COMMENT 'Яратилган вакти',
   `updated` int(11) DEFAULT NULL COMMENT 'Тахрирланган вакти',
   `nationality` varchar(16) NOT NULL COMMENT 'Миллати',
-  `photo` varchar(255) DEFAULT NULL
+  `photo` varchar(255) DEFAULT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -329,6 +375,16 @@ ALTER TABLE `groups`
 --
 ALTER TABLE `lesson`
   ADD PRIMARY KEY (`id`),
+  ADD KEY `term_id` (`term_id`),
+  ADD KEY `lesson_type_id` (`lesson_type_id`),
+  ADD KEY `group_id` (`group_id`),
+  ADD KEY `teacher_id` (`teacher_id`);
+
+--
+-- Индексы таблицы `lesson_type`
+--
+ALTER TABLE `lesson_type`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `subject_id` (`subject_id`);
 
 --
@@ -362,7 +418,9 @@ ALTER TABLE `settings`
 --
 ALTER TABLE `student`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `reyting_no` (`reyting_no`);
+  ADD UNIQUE KEY `reyting_no` (`reyting_no`),
+  ADD KEY `direction_id` (`direction_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Индексы таблицы `subject`
@@ -386,6 +444,14 @@ ALTER TABLE `subject_direction`
   ADD KEY `subject_id` (`subject_id`);
 
 --
+-- Индексы таблицы `teacher`
+--
+ALTER TABLE `teacher`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `department_id` (`department_id`);
+
+--
 -- Индексы таблицы `term`
 --
 ALTER TABLE `term`
@@ -405,12 +471,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для таблицы `building`
 --
 ALTER TABLE `building`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `department`
 --
 ALTER TABLE `department`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `direction`
 --
@@ -420,7 +486,7 @@ ALTER TABLE `direction`
 -- AUTO_INCREMENT для таблицы `faculty`
 --
 ALTER TABLE `faculty`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `groups`
 --
@@ -432,6 +498,11 @@ ALTER TABLE `groups`
 ALTER TABLE `lesson`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT для таблицы `lesson_type`
+--
+ALTER TABLE `lesson_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT для таблицы `menu`
 --
 ALTER TABLE `menu`
@@ -440,7 +511,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT для таблицы `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `settings`
 --
@@ -471,10 +542,87 @@ ALTER TABLE `user`
 --
 
 --
+-- Ограничения внешнего ключа таблицы `department`
+--
+ALTER TABLE `department`
+  ADD CONSTRAINT `department_ibfk_1` FOREIGN KEY (`faculty_id`) REFERENCES `faculty` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `department_ibfk_2` FOREIGN KEY (`building_id`) REFERENCES `building` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `department_ibfk_3` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`) ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `faculty`
+--
+ALTER TABLE `faculty`
+  ADD CONSTRAINT `faculty_ibfk_1` FOREIGN KEY (`building_id`) REFERENCES `building` (`id`) ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `groups`
+--
+ALTER TABLE `groups`
+  ADD CONSTRAINT `groups_ibfk_1` FOREIGN KEY (`group_head_id`) REFERENCES `teacher` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `groups_ibfk_2` FOREIGN KEY (`direction_id`) REFERENCES `direction` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `groups_ibfk_3` FOREIGN KEY (`faculty_id`) REFERENCES `faculty` (`id`) ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `lesson`
+--
+ALTER TABLE `lesson`
+  ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`),
+  ADD CONSTRAINT `lesson_ibfk_2` FOREIGN KEY (`lesson_type_id`) REFERENCES `lesson_type` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `lesson_ibfk_3` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `lesson_ibfk_4` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`id`) ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `lesson_type`
+--
+ALTER TABLE `lesson_type`
+  ADD CONSTRAINT `lesson_type_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`) ON UPDATE CASCADE;
+
+--
 -- Ограничения внешнего ключа таблицы `menu`
 --
 ALTER TABLE `menu`
   ADD CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `menu` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `room`
+--
+ALTER TABLE `room`
+  ADD CONSTRAINT `room_ibfk_1` FOREIGN KEY (`building_id`) REFERENCES `building` (`id`) ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `student`
+--
+ALTER TABLE `student`
+  ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`direction_id`) REFERENCES `direction` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `student_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `subject`
+--
+ALTER TABLE `subject`
+  ADD CONSTRAINT `subject_ibfk_1` FOREIGN KEY (`direction_id`) REFERENCES `direction` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `subject_ibfk_2` FOREIGN KEY (`semester_id`) REFERENCES `term` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `subject_ibfk_3` FOREIGN KEY (`lecturer_id`) REFERENCES `teacher` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `subject_ibfk_4` FOREIGN KEY (`practice_id`) REFERENCES `teacher` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `subject_ibfk_5` FOREIGN KEY (`lab1_id`) REFERENCES `teacher` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `subject_ibfk_6` FOREIGN KEY (`lab2_id`) REFERENCES `teacher` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `subject_ibfk_7` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `subject_direction`
+--
+ALTER TABLE `subject_direction`
+  ADD CONSTRAINT `subject_direction_ibfk_1` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `subject_direction_ibfk_2` FOREIGN KEY (`direction_id`) REFERENCES `direction` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `subject_direction_ibfk_3` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`) ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `teacher`
+--
+ALTER TABLE `teacher`
+  ADD CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `teacher_ibfk_2` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -11,7 +11,7 @@ class DekanatModule extends \yii\base\Module
      * @inheritdoc
      */
     public $controllerNamespace = 'app\modules\dekanat\controllers';
-
+    public $layout = 'main';
     /**
      * @inheritdoc
      */
