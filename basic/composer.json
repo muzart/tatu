@@ -19,7 +19,9 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "bizley/migration": "^2.2",
-        "dmstr/yii2-adminlte-asset": "^2.1"
+        "dmstr/yii2-adminlte-asset": "^2.1",
+        "2amigos/yii2-editable-widget": "0.1.*"
+
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

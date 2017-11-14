@@ -60,6 +60,13 @@ $config = [
         'university' => [
             'class' => 'app\modules\university\UniversityModule',
         ],
+        'teacher' => [
+            'class' => 'app\modules\teacher\TeacherModule',
+        ],
+        'subject' => [
+            'class' => 'app\modules\subject\SubjectModule',
+        ],
+
     ],
     'aliases' => [
         '@university' => '@app/modules/university',
