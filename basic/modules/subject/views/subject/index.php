@@ -8,6 +8,7 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Subjects';
+$this->title = Yii::t('app', 'Create Subject');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="subject-index">
@@ -16,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Subject', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app','Create Subject'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -29,14 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'semester_id',
             'name',
             'lecturer_id',
-            // 'practice_id',
-            // 'lab1_id',
-            // 'lab2_id',
-            // 'department_id',
-            // 'lecture_hour',
-            // 'practice_hour',
-            // 'lab_hour',
-            // 'independent_hour',
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
