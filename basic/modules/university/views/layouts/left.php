@@ -30,8 +30,9 @@
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
-                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
+                    ['label' => 'Menu', 'options' => ['class' => 'header']],
                     ['label' => 'Fakultetlar', 'url' => ['faculty/index']],
+                    ['label' => 'Yo\'nalishlar', 'url' => ['direction/index']],
                     ['label' => 'Kafedralar', 'url' => ['department/index']],
                     ['label' => 'Binolar', 'url' => ['building/index']],
                     ['label' => 'Xonalar', 'url' => ['room/index']],
