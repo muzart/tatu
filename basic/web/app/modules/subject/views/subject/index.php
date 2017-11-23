@@ -4,36 +4,39 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\search\FacultySearch */
+/* @var $searchModel app\models\search\SubjectSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Faculties');
-
+$this->title = 'Subjects';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="faculty-index">
+<div class="subject-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Faculty'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Subject', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-<?php Pjax::begin(); ?>
-    <?= GridView::widget([
+<?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
+            'direction_id',
+            'semester_id',
             'name',
-            [
-                'attribute' => 'building_id',
-                'value' => function($model){
-                        return $model->building->name;
-                    }
-            ],
+            'lecturer_id',
+            // 'practice_id',
+            // 'lab1_id',
+            // 'lab2_id',
+            // 'department_id',
+            // 'lecture_hour',
+            // 'practice_hour',
+            // 'lab_hour',
+            // 'independent_hour',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
