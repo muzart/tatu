@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m171118_185409_create_table_materials extends Migration
+class m171123_103519_create_table_materials extends Migration
 {
     public function safeUp()
     {
@@ -18,6 +18,8 @@ class m171118_185409_create_table_materials extends Migration
             'topic' => $this->string(255)->notNull(),
             'planned_hour' => $this->string(10)->notNull(),
         ], $tableOptions);
+
+        $this->addForeignKey('materials_ibfk_1', '{{%materials}}', 'subject_id', '{{%subject}}', 'id');
     }
 
     public function safeDown()

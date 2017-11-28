@@ -1,18 +1,18 @@
 <?php
 
-namespace app\modules\university\controllers;
+namespace app\modules\subject\controllers;
 
 use Yii;
-use app\models\Faculty;
-use app\models\search\FacultySearch;
+use app\models\Materials;
+use app\models\MaterialsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * FacultyController implements the CRUD actions for Faculty model.
+ * MaterialsController implements the CRUD actions for Materials model.
  */
-class FacultyController extends Controller
+class MaterialsController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class FacultyController extends Controller
     }
 
     /**
-     * Lists all Faculty models.
+     * Lists all Materials models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new FacultySearch();
+        $searchModel = new MaterialsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,37 +45,40 @@ class FacultyController extends Controller
     }
 
     /**
-     * Displays a single Faculty model.
+     * Displays a single Materials model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
+        $laboratorys=Materials::find()->where(['subject_id' => $id, 'studies_kind'=>'laboratory'])->all();
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'laboratory'=>$laboratorys,
+
         ]);
     }
 
     /**
-     * Creates a new Faculty model.
+     * Creates a new Materials model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Faculty();
+        $model = new Materials();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }
     }
 
     /**
-     * Updates an existing Faculty model.
+     * Updates an existing Materials model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +97,7 @@ class FacultyController extends Controller
     }
 
     /**
-     * Deletes an existing Faculty model.
+     * Deletes an existing Materials model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,18 +110,18 @@ class FacultyController extends Controller
     }
 
     /**
-     * Finds the Faculty model based on its primary key value.
+     * Finds the Materials model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Faculty the loaded model
+     * @return Materials the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-            if (($model = Faculty::findOne($id)) !== null) {
-                return $model;
-            } else {
-                throw new NotFoundHttpException('The requested page does not exist.');
-            }
+        if (($model = Materials::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 }

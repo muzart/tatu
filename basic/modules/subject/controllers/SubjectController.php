@@ -2,6 +2,8 @@
 
 namespace app\modules\subject\controllers;
 
+use app\models\Direction;
+use app\models\Materials;
 use Yii;
 use app\models\Subject;
 use app\models\search\SubjectSearch;
@@ -51,10 +53,24 @@ class SubjectController extends Controller
      */
     public function actionView($id)
     {
+        $lectures = Materials::find()->where(['subject_id' => $id, 'studies_kind'=>'lecture'])->all();
+        $laboratorys=Materials::find()->where(['subject_id'=>$id,   'studies_kind'=>'laboratory'])->all();
+        $practices=Materials::find()->where(['subject_id'=>$id,   'studies_kind'=>'practice'])->all();
+        $material = new Materials;
+        $material->subject_id = $id;
+
+        if($material->load(Yii::$app->request->post()) && $material->save())
+            return $this->refresh();
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'material' => $material,
+            'lectures' => $lectures,
+            'laboratorys'=>$laboratorys,
+            'practices' => $practices,
         ]);
     }
+
+
 
     /**
      * Creates a new Subject model.
@@ -121,4 +137,5 @@ class SubjectController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }

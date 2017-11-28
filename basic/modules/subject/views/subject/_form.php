@@ -22,16 +22,16 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'lecturer_id')->dropDownList(
-            \yii\helpers\ArrayHelper::map(\app\models\Teacher::find()->all(),'id','name'),['prompt'=>'- O`qituvchini tanlang -']) ?>
+            \yii\helpers\ArrayHelper::map(\app\models\Teacher::find()->all(),'id','fio'),['prompt'=>'- O`qituvchini tanlang -']) ?>
 
     <?= $form->field($model, 'practice_id')->dropDownList(
-        \yii\helpers\ArrayHelper::map(\app\models\Teacher::find()->all(),'id','name'),['prompt'=>'- O`qituvchini tanlang -']) ?>
+        \yii\helpers\ArrayHelper::map(\app\models\Teacher::find()->all(),'id','fio'),['prompt'=>'- O`qituvchini tanlang -']) ?>
 
     <?= $form->field($model, 'lab1_id')->dropDownList(
-        \yii\helpers\ArrayHelper::map(\app\models\Teacher::find()->all(),'id','name'),['prompt'=>'- O`qituvchini tanlang -']) ?>
+        \yii\helpers\ArrayHelper::map(\app\models\Teacher::find()->all(),'id','fio'),['prompt'=>'- O`qituvchini tanlang -']) ?>
 
     <?= $form->field($model, 'lab2_id')->dropDownList(
-        \yii\helpers\ArrayHelper::map(\app\models\Teacher::find()->all(),'id','name'),['prompt'=>'- O`qituvchini tanlang -']) ?>
+        \yii\helpers\ArrayHelper::map(\app\models\Teacher::find()->all(),'id','fio'),['prompt'=>'- O`qituvchini tanlang -']) ?>
 
     <?= $form->field($model, 'department_id')->dropDownList(
         \yii\helpers\ArrayHelper::map(\app\models\Department::find()->all(),'id','name'),['prompt'=>'- Kafedrani tanlang -']) ?>
