@@ -10,6 +10,7 @@ use app\models\search\SubjectSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 
 /**
  * SubjectController implements the CRUD actions for Subject model.
@@ -51,6 +52,11 @@ class SubjectController extends Controller
      * @param integer $id
      * @return mixed
      */
+    public function getIndex()
+    {
+       header('location: ../materials');
+    }
+
     public function actionView($id)
     {
         $lectures = Materials::find()->where(['subject_id' => $id, 'studies_kind'=>'lecture'])->all();
@@ -60,14 +66,17 @@ class SubjectController extends Controller
         $material->subject_id = $id;
 
         if($material->load(Yii::$app->request->post()) && $material->save())
-            return $this->refresh();
+            return $this->refresh() and $this->getIndex();
         return $this->render('view', [
             'model' => $this->findModel($id),
             'material' => $material,
             'lectures' => $lectures,
             'laboratorys'=>$laboratorys,
             'practices' => $practices,
-        ]);
+
+        ]
+
+        );
     }
 
 
