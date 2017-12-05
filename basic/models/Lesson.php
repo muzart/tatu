@@ -95,12 +95,4 @@ class Lesson extends \yii\db\ActiveRecord
         return $this->hasOne(Teacher::className(), ['id' => 'teacher_id']);
     }
 
-    /**
-     * @inheritdoc
-     * @return LessonQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new LessonQuery(get_called_class());
-    }
 }

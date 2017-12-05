@@ -32,6 +32,7 @@
                 'items' => [
                     ['label' => 'Menu', 'options' => ['class' => 'header']],
                     ['label' => 'Guruhlar', 'url' => ['groups/index']],
+                    ['label' => 'Talabalar', 'url' => ['student/index']],
 
                 ],
             ]
