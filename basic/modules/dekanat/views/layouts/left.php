@@ -31,6 +31,7 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
                     ['label' => 'Menu', 'options' => ['class' => 'header']],
+                    ['label' => 'Semestrlar', 'url' => ['term/index']],
                     ['label' => 'Guruhlar', 'url' => ['groups/index']],
                     ['label' => 'Talabalar', 'url' => ['student/index']],
 

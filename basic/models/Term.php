@@ -8,9 +8,10 @@ use Yii;
  * This is the model class for table "term".
  *
  * @property integer $id
- * @property integer $name
+ * @property string $name
  * @property string $semester
  *
+ * @property Lesson[] $lessons
  * @property Subject[] $subjects
  * @property SubjectDirection[] $subjectDirections
  */
@@ -31,8 +32,8 @@ class Term extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'semester'], 'required'],
-            [['name'], 'integer'],
             [['semester'], 'string'],
+            [['name'], 'string', 'max' => 32],
         ];
     }
 
@@ -46,6 +47,14 @@ class Term extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Номи'),
             'semester' => Yii::t('app', 'Семестр'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLessons()
+    {
+        return $this->hasMany(Lesson::className(), ['term_id' => 'id']);
     }
 
     /**

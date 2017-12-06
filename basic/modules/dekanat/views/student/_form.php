@@ -28,7 +28,11 @@ use yii\widgets\ActiveForm;
                     <?= $form->field($model, 'direction_id')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Direction::find()->all(),'id','name'),['prompt'=>' - Yo\'nalishni tanlang - ']); ?>
                 </div>
                 <div class="col-md-4">
-                    <?= $form->field($model, 'photo')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'photo')->widget(\kartik\file\FileInput::classname(), [
+                        'options' => ['accept' => 'image/*'],
+                        'language' => 'ru',
+//                        'pluginOptions' => ['previewFileType' => 'any', 'uploadUrl' => \yii\helpers\Url::to(['/site/file-upload']),]
+                    ]); ?>
                 </div>
             </div>
             <div class="row">
@@ -103,9 +107,9 @@ use yii\widgets\ActiveForm;
             <br/>
             <?= $form->field($model, 'workplace')->textInput(['maxlength' => true]) ?>
 
-            <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
-
             <?= $form->field($model, 'living_type')->dropDownList([ 'Uy' => 'Uy', 'TTJ' => 'TTJ', 'Ijara' => 'Ijara', ], ['prompt' => '']) ?>
+
+            <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
 
