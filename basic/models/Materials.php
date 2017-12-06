@@ -46,11 +46,11 @@ class Materials extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'subject_id' => 'Subject ID',
-            'studies_kind' => 'Studies Kind',
-            'topic' => 'Topic',
-            'planned_hour' => 'Planned Hour',
+            'id' => Yii::t('app', 'ID'),
+            'subject_id' =>Yii::t('app','Fan Id') ,
+            'studies_kind' =>Yii::t('app','Fan turi'),
+            'topic' => Yii::t('app','Mavzu'),
+            'planned_hour' =>  Yii::t('app','Ajratilgan soat'),
         ];
     }
 

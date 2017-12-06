@@ -35,5 +35,4 @@ $this->params['breadcrumbs'][] = $this->title;
             'planned_hour',
         ],
     ]) ?>
-
 </div>

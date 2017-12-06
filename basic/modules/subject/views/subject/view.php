@@ -15,199 +15,211 @@ use yii\bootstrap\Modal;
 /* @var $model app\models\Subject */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Subjects', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Subjects'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="subject-view">
+    <div class="subject-view">
 
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'w3-btn w3-teal']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'w3-btn w3-red',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+        <p>
+            <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'w3-btn w3-teal']) ?>
+            <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                'class' => 'w3-btn w3-red',
+                'data' => [
+                    'confirm' => Yii::t('app', 'Shu fanni o\'chirishga aminmisiz ?'),
+                    'method' => 'post',
+                ],
+            ]) ?>
+        </p>
 
 
-    <div class="w3-container">
-        <table class="w3-table-all w3-hoverable">
+        <div class="w3-container">
+            <table class="w3-table-all w3-hoverable">
 
-            <tr>
-                <th>ID</th>
-                <td><?= $model->id ?></td>
-                <th>1-Laboratoriyachi</th>
-                <td><?= $model->lab1->fio ?></td>
-            </tr>
-            <tr>
-                <th>Yo`nalish Nomi</th>
-                <td><?= $model->direction->name ?></td>
-                <th>2-Laboratoriyachi</th>
-                <td><?= $model->lab2->fio ?></td>
-            </tr>
-            <tr>
-                <th>Nomi</th>
-                <td><?= $model->semester->name ?></td>
-                <th>Maruza soati</th>
-                <td><?= $model->lecture_hour ?></td>
-            </tr>
-            <tr>
-                <th>Maruzachi</th>
-                <td><?= $model->lecturer->fio ?></td>
-                <th>Amaliyot soati</th>
-                <td><?= $model->practice_hour ?></td>
-            </tr>
-            <tr>
-                <th>Amaliyotchi</th>
-                <td><?= $model->practice->fio ?></td>
-                <th>Tajriba soati</th>
-                <td><?= $model->lab_hour ?></td>
-            </tr>
-            <tr>
-                <th>Kafedra</th>
-                <td><?= $model->department->name ?></td>
-                <th>Mustaqil soat</th>
-                <td><?= $model->independent_hour ?></td>
-            </tr>
+                <tr>
+                    <th>ID</th>
+                    <td><?= $model->id ?></td>
+                    <th>1-Laboratoriyachi</th>
+                    <td><?= $model->lab1->fio ?></td>
+                </tr>
+                <tr>
+                    <th>Yo`nalish Nomi</th>
+                    <td><?= $model->direction->name ?></td>
+                    <th>2-Laboratoriyachi</th>
+                    <td><?= $model->lab2->fio ?></td>
 
-        </table>
+                </tr>
+                <tr>
+                    <th>Nomi</th>
+                    <td><?= $model->semester->name ?></td>
+                    <th>Maruza soati</th>
+                    <td><?= $model->lecture_hour ?></td>
+                </tr>
+                <tr>
+                    <th>Maruzachi</th>
+                    <td><?= $model->lecturer->fio ?></td>
+                    <th>Amaliyot soati</th>
+                    <td><?= $model->practice_hour ?></td>
+                </tr>
+                <tr>
+                    <th>Amaliyotchi</th>
+                    <td><?= $model->practice->fio ?></td>
+                    <th>Tajriba soati</th>
+                    <td><?= $model->lab_hour ?></td>
+                </tr>
+                <tr>
+                    <th>Kafedra</th>
+                    <td><?= $model->department->name ?></td>
+                    <th>Mustaqil soat</th>
+                    <td><?= $model->independent_hour ?></td>
+                </tr>
 
+            </table>
+
+
+        </div>
 
     </div>
-
-</div>
-<br>
+    <br>
 <?= Html::button('Material yaratish', ['value' => Url::to('materials/create'), 'class' => 'w3-btn w3-green', 'id' => 'modalButton']) ?>
-<br><br>
-<div class="container">
-    <ul class="nav nav-tabs">
-        <li><a data-toggle="tab" href="#menu1">Maruza</a></li>
-        <li><a data-toggle="tab" href="#menu2">Amaliyot</a></li>
-        <li><a data-toggle="tab" href="#menu3">Laboratoriya</a></li>
-    </ul>
-    <div class="tab-content">
-        <div id="home" class="tab-pane fade in active">
-            <?php
+    <br><br>
 
-            Modal::begin([
-                'header' => "<h4>Yangi material qo'shish</h4>",
-                'id' => 'modal',
-                'size' => 'modal-lg',
-            ]); ?>
-
-            <div class="materials-form">
-
-                <?php $form = ActiveForm::begin(); ?>
-
-                <?= $form->field($material, 'subject_id')->textInput() ?>
-
-                <?= $form->field($material, 'studies_kind')->dropDownList(['lecture' => 'Leksiya', 'laboratory' => 'Laboratoriya', 'practice' => 'Amaliyot',], ['prompt' => '']) ?>
-
-                <?= $form->field($material, 'topic')->textInput(['maxlength' => true]) ?>
-
-                <?= $form->field($material, 'planned_hour')->textInput(['maxlength' => true]) ?>
-
-                <div class="form-group">
-                    <?= Html::submitButton($material->isNewRecord ? 'Yaratish' : 'Update', ['class' => $material->isNewRecord ? 'w3-btn w3-green' : 'btn btn-primary']) ?>
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#menu1">Maruza</a></li>
+            <li><a data-toggle="tab" href="#menu2">Amaliyot</a></li>
+            <li><a data-toggle="tab" href="#menu3">Laboratoriya</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="menu1" class="tab-pane fade active in">
+                <div class="w3-container">
+                    <table class="w3-table-all w3-hoverable">
+                        <tr>
+                            <th>#</th>
+                            <th>Mashg'ulot turi</th>
+                            <th>Mavzu</th>
+                            <th>Ajratilgan soat</th>
+                            <th>Amallar</th>
+                        </tr>
+                        <?php $i = 0;
+                        foreach ($lectures as $lecture):?>
+                            <tr>
+                                <td><?= ++$i ?></td>
+                                <td><?='Maruza'?></td>
+                                <td><?= $lecture->topic; ?></td>
+                                <td><?=$lecture->planned_hour?></td>
+                                <td>
+                                    <?= Html::a('Tahrirlash', ['materials/update', 'id' => $lecture->id], ['class' => 'w3-btn w3-teal']) ?>
+                                    <?= Html::a('O\'chirish', ['materials/delete', 'id' => $lecture->id], ['class' => 'w3-btn w3-red',
+                                        'data' => [
+                                            'confirm' => Yii::t('app', 'Shu fanni o\'chirishga aminmisiz ?'),
+                                            'method' => 'post',
+                                        ],
+                                    ]) ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
                 </div>
 
-                <?php ActiveForm::end(); ?>
-
             </div>
-            <?php
-            Modal::end();
-            ?>
-        </div>
-        <br>
-
-        <div id="menu1" class="tab-pane fade">
-            <div class="w3-container">
-                <table class="w3-table-all w3-hoverable">
-                    <tr>
-                        <th>#</th>
-                        <th>Mavzu</th>
-                        <th>Amallar</th>
-                    </tr>
-                    <?php $i = 0;
-                    foreach ($lectures as $lecture):?>
+            <div id="menu2" class="tab-pane fade">
+                <div class="w3-container">
+                    <table class="w3-table-all w3-hoverable">
                         <tr>
-                            <td><?= ++$i ?></td>
-                            <td><?= $lecture->topic; ?></td>
-                            <td>
-                                <?= Html::a('Tahrirlash', ['materials/update', 'id' => $lecture->id], ['class' => 'btn btn-info']) ?>
-                                <?= Html::a('O\'chirish', ['materials/delete', 'id' => $lecture->id], ['class' => 'btn btn-danger',
-                                    'data' => [
-                                        'confirm' => 'Are you sure you want to delete this item?',
-                                        'method' => 'post',
-                                    ],
-                                ]) ?>
-                            </td>
+                            <th>#</th>
+                            <th>Mashg'ulot turi</th>
+                            <th>Mavzu</th>
+                            <th>Ajratilgan soat</th>
+                            <th>Amallar</th>
                         </tr>
-                    <?php endforeach; ?>
-                </table>
-            </div>
+                        <?php $j = 0;
+                        foreach ($laboratorys as $laboratory):?>
+                            <tr>
+                                <td><?= ++$j ?></td>
+                                <td><?='Labarotorya'?></td>
+                                <td><?= $laboratory->topic; ?></td>
+                                <td><?= $laboratory->planned_hour; ?></td>
 
-        </div>
-        <div id="menu2" class="tab-pane fade">
-            <div class="w3-container">
-                <table class="w3-table-all w3-hoverable">
-                    <tr>
-                        <th>#</th>
-                        <th>Mavzu</th>
-                        <th>Amallar</th>
-                    </tr>
-                    <?php $j = 0;
-                    foreach ($laboratorys as $laboratory):?>
+                                <td>
+                                    <?= Html::a('Tahrirlash', ['materials/update', 'id' => $laboratory->id], ['class' => 'w3-btn w3-teal']) ?>
+                                    <?= Html::a('O\'chirish', ['materials/delete', 'id' => $laboratory->id], ['class' => 'w3-btn w3-red',
+                                        'data' => [
+                                            'confirm' => 'Are you sure you want to delete this item?',
+                                            'method' => 'post',
+                                        ],
+                                    ]) ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+
+            </div>
+            <div id="menu3" class="tab-pane fade">
+                <div class="w3-container">
+                    <table class="w3-table-all w3-hoverable">
                         <tr>
-                            <td><?= ++$j ?></td>
-                            <td><?= $laboratory->topic; ?></td>
-                            <td>
-                                <?= Html::a('Tahrirlash', ['materials/update', 'id' => $laboratory->id], ['class' => 'btn btn-info']) ?>
-                                <?= Html::a('O\'chirish', ['materials/delete', 'id' => $laboratory->id], ['class' => 'btn btn-danger',
-                                    'data' => [
-                                        'confirm' => 'Are you sure you want to delete this item?',
-                                        'method' => 'post',
-                                    ],
-                                ]) ?>
-                            </td>
+                            <th>#</th>
+                            <th>Mashg'ulot turi</th>
+                            <th>Mavzu</th>
+                            <th>Ajratilgan soat</th>
+                            <th>Amallar</th>
                         </tr>
-                    <?php endforeach; ?>
-                </table>
-            </div>
+                        <?php $j = 0;
+                        foreach ($practices as $practice):?>
+                            <tr>
+                                <td><?= ++$j ?></td>
+                                <td><?='Amaliyot'?></td>
+                                <td><?= $practice->topic; ?></td>
+                                <td><?=$practice->planned_hour?></td>
 
-        </div>
-        <div id="menu3" class="tab-pane fade">
-            <div class="w3-container">
-                <table class="w3-table-all w3-hoverable">
-                    <tr>
-                        <th>#</th>
-                        <th>Mavzu</th>
-                        <th>Amallar</th>
-                    </tr>
-                    <?php $j = 0;
-                    foreach ($practices as $practice):?>
-                        <tr>
-                            <td><?= ++$j ?></td>
-                            <td><?= $practice->topic; ?></td>
-                            <td>
-                                <?= Html::a('Tahrirlash', ['materials/update', 'id' => $practice->id], ['class' => 'btn btn-info']) ?>
-                                <?= Html::a('O\'chirish', ['materials/delete', 'id' => $practice->id], ['class' => 'btn btn-danger',
-                                    'data' => [
-                                        'confirm' => 'Are you sure you want to delete this item?',
-                                        'method' => 'post',
-                                    ],
-                                ]) ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </table>
-            </div>
+                                <td>
+                                    <?= Html::a('Tahrirlash', ['materials/update', 'id' => $practice->id], ['class' => 'w3-btn w3-teal']) ?>
+                                    <?= Html::a('O\'chirish', ['materials/delete', 'id' => $practice->id], ['class' => 'w3-btn w3-red',
+                                        'data' => [
+                                            'confirm' => 'Are you sure you want to delete this item?',
+                                            'method' => 'post',
+                                        ],
+                                    ]) ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
 
+            </div>
         </div>
     </div>
-</div>
 
+<?php
+
+Modal::begin([
+    'header' => "<h4>Yangi material qo'shish</h4>",
+    'id' => 'modal',
+    'size' => 'modal-lg',
+]); ?>
+
+    <div class="materials-form">
+
+        <?php $form = ActiveForm::begin(); ?>
+
+        <?= $form->field($material, 'subject_id')->textInput() ?>
+
+        <?= $form->field($material, 'studies_kind')->dropDownList(['lecture' => 'Leksiya', 'laboratory' => 'Laboratoriya', 'practice' => 'Amaliyot',], ['prompt' => '']) ?>
+
+        <?= $form->field($material, 'topic')->textInput(['maxlength' => true]) ?>
+
+        <?= $form->field($material, 'planned_hour')->textInput(['maxlength' => true]) ?>
+
+        <div class="form-group">
+            <?= Html::submitButton($material->isNewRecord ? 'Yaratish' : 'Update', ['class' => $material->isNewRecord ? 'w3-btn w3-green' : 'btn btn-primary']) ?>
+        </div>
+
+        <?php ActiveForm::end(); ?>
+
+    </div>
+<?php
+Modal::end();
+?>

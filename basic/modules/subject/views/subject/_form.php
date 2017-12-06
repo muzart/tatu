@@ -51,7 +51,3 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
-//
-id, sub id, mash turi,tema,ajratilgan soat
-
-

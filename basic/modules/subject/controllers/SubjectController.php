@@ -40,10 +40,14 @@ class SubjectController extends Controller
     {
         $searchModel = new SubjectSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $model1=new Subject();
+        $model=Subject::find()->all();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+
+            'models'=>$model,
+            'model'=>$model1,
         ]);
     }
 
@@ -78,9 +82,6 @@ class SubjectController extends Controller
 
         );
     }
-
-
-
     /**
      * Creates a new Subject model.
      * If creation is successful, the browser will be redirected to the 'view' page.
