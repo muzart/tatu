@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m171102_105231_create_table_student extends Migration
+class m171206_114301_create_table_student extends Migration
 {
     public function safeUp()
     {
@@ -40,12 +40,14 @@ class m171102_105231_create_table_student extends Migration
             'nationality' => $this->string(16)->notNull()->comment('Миллати'),
             'photo' => $this->string(255),
             'user_id' => $this->integer(11)->notNull(),
+            'group_id' => $this->integer(11)->notNull(),
         ], $tableOptions);
 
         $this->createIndex('reyting_no', '{{%student}}', 'reyting_no', true);
 
         $this->addForeignKey('student_ibfk_1', '{{%student}}', 'direction_id', '{{%direction}}', 'id');
         $this->addForeignKey('student_ibfk_2', '{{%student}}', 'user_id', '{{%user}}', 'id');
+        $this->addForeignKey('student_ibfk_3', '{{%student}}', 'group_id', '{{%groups}}', 'id');
     }
 
     public function safeDown()

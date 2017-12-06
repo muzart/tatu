@@ -11,7 +11,7 @@ class DepartmentModule extends \yii\base\Module
      * @inheritdoc
      */
     public $controllerNamespace = 'app\modules\department\controllers';
-
+    public $layout = 'main';
     /**
      * @inheritdoc
      */

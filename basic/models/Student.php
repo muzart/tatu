@@ -36,9 +36,11 @@ use yii\web\UploadedFile;
  * @property string $nationality
  * @property string $photo
  * @property integer $user_id
+ * @property integer $group_id
  *
  * @property Direction $direction
  * @property User $user
+ * @property Groups $group
  */
 class Student extends \yii\db\ActiveRecord
 {
@@ -56,8 +58,8 @@ class Student extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['reyting_no', 'direction_id', 'surname', 'name', 'living_type', 'nationality', 'user_id'], 'required'],
-            [['direction_id', 'created', 'updated', 'user_id'], 'integer'],
+            [['reyting_no', 'direction_id', 'surname', 'name', 'living_type', 'nationality'], 'required'],
+            [['direction_id', 'created', 'updated', 'user_id', 'group_id'], 'integer'],
             [['living_type'], 'string'],
             [['reyting_no'], 'string', 'max' => 10],
             [['surname', 'name', 'patronymic'], 'string', 'max' => 24],
@@ -69,10 +71,11 @@ class Student extends \yii\db\ActiveRecord
             [['passport_number'], 'string', 'max' => 8],
             [['parents_address', 'address'], 'string', 'max' => 128],
             [['nationality'], 'string', 'max' => 16],
-            [['photo'], 'string', 'max' => 255],
+//            [['photo'], 'string', 'max' => 255],
             [['reyting_no'], 'unique'],
             [['direction_id'], 'exist', 'skipOnError' => true, 'targetClass' => Direction::className(), 'targetAttribute' => ['direction_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Groups::className(), 'targetAttribute' => ['group_id' => 'id']],
         ];
     }
 
@@ -83,33 +86,34 @@ class Student extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'reyting_no' => Yii::t('app', 'Reyting daftarchasi nomeri'),
-            'direction_id' => Yii::t('app', 'Mutaxassislik'),
-            'surname' => Yii::t('app', 'Familiyasi'),
-            'name' => Yii::t('app', 'Ismi'),
-            'patronymic' => Yii::t('app', 'Sharifi'),
-            'birthday' => Yii::t('app', 'Tug\'ilgan sanasi'),
-            'birthplace' => Yii::t('app', 'Tug\'ilgan joyi'),
-            'education' => Yii::t('app', 'Ma\'lumoti'),
-            'workplace' => Yii::t('app', 'O\'qishga kirgunga qadar ish joyi'),
-            'father_name' => Yii::t('app', 'Otasi FIO'),
-            'father_workplace' => Yii::t('app', 'Otasi ish-joyi'),
-            'father_phone' => Yii::t('app', 'Otasi tel. no.'),
-            'mother_name' => Yii::t('app', 'Onasi FIO'),
-            'mother_workplace' => Yii::t('app', 'Onasi ish joyi'),
-            'mother_phone' => Yii::t('app', 'Onasi tel. no.'),
-            'family_status' => Yii::t('app', 'Oilaviy ahvoli'),
-            'passport_serie' => Yii::t('app', 'Pasport seriyasi'),
-            'passport_number' => Yii::t('app', 'Pasport raqami'),
-            'passport_given' => Yii::t('app', 'Kim tomonidan va qachon berilgan'),
-            'parents_address' => Yii::t('app', 'Ota-onasining manzili, telefoni'),
-            'address' => Yii::t('app', 'Uy manzili, shu jumladan, ijara uy, TTJ, telefon'),
-            'living_type' => Yii::t('app', 'Yashash turi'),
-            'created' => Yii::t('app', 'Yaratilgan vaqti'),
-            'updated' => Yii::t('app', 'Tahrirlangan vaqti'),
-            'nationality' => Yii::t('app', 'Millati'),
-            'photo' => Yii::t('app', 'Rasmi'),
-            'user_id' => Yii::t('app', 'Foydalanuvchi ID'),
+            'reyting_no' => Yii::t('app', 'Рейтинг дафтарчаси номери'),
+            'direction_id' => Yii::t('app', 'Мутахассислик'),
+            'surname' => Yii::t('app', 'Фамилия'),
+            'name' => Yii::t('app', 'Исм'),
+            'patronymic' => Yii::t('app', 'Шариф'),
+            'birthday' => Yii::t('app', 'Туғилган санаси'),
+            'birthplace' => Yii::t('app', 'Туғилган жойи'),
+            'education' => Yii::t('app', 'Маълумоти'),
+            'workplace' => Yii::t('app', 'Ўқишга  киргунга қадар иш жойи '),
+            'father_name' => Yii::t('app', 'Otasining F.I.Sh.'),
+            'father_workplace' => Yii::t('app', 'Father Workplace'),
+            'father_phone' => Yii::t('app', 'Father Phone'),
+            'mother_name' => Yii::t('app', 'Onasining F.I.Sh.'),
+            'mother_workplace' => Yii::t('app', 'Mother Workplace'),
+            'mother_phone' => Yii::t('app', 'Mother Phone'),
+            'family_status' => Yii::t('app', 'Оилавий аҳволи'),
+            'passport_serie' => Yii::t('app', 'Паспорт серияси'),
+            'passport_number' => Yii::t('app', 'Паспорт рақами'),
+            'passport_given' => Yii::t('app', 'ким томонидан ва қачон берилган'),
+            'parents_address' => Yii::t('app', 'Ота-онасининг манзили, телефони'),
+            'address' => Yii::t('app', 'Уй манзили, шу жумладан ижара уй, талабалар турар жойи, телефон'),
+            'living_type' => Yii::t('app', 'Яшаш тури'),
+            'created' => Yii::t('app', 'Яратилган вакти'),
+            'updated' => Yii::t('app', 'Тахрирланган вакти'),
+            'nationality' => Yii::t('app', 'Миллати'),
+            'photo' => Yii::t('app', 'Photo'),
+            'user_id' => Yii::t('app', 'User ID'),
+            'group_id' => Yii::t('app', 'Group ID'),
         ];
     }
 
@@ -129,7 +133,27 @@ class Student extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGroup()
+    {
+        return $this->hasOne(Groups::className(), ['id' => 'group_id']);
+    }
+
     public function beforeSave($insert){
         $image = UploadedFile::getInstance($this,'photo');
+        if($image){
+            $path =  'uploads/' . $this->group->name;
+            if(!file_exists($path)){
+                mkdir($path);
+            }
+            $file_name = strtolower($this->name . "_" . $this->surname . "." ) . $image->extension;
+            $file_path = 'uploads/' . $this->group->name . '/' . $file_name;
+                $image->saveAs($file_path);
+            $this->photo = $file_name;
+//        var_dump($this); exit;
+        }
+        return parent::beforeSave($insert);
     }
 }

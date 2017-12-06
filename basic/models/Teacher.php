@@ -27,11 +27,6 @@ use Yii;
  * @property string $gov_awards
  * @property string $deputy
  *
- * @property Groups[] $groups
- * @property Subject[] $subjects
- * @property Subject[] $subjects0
- * @property Subject[] $subjects1
- * @property Subject[] $subjects2
  * @property User $user
  * @property Department $department
  */
@@ -51,13 +46,13 @@ class Teacher extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'fio', 'user_id', 'department_id', 'post', 'type'], 'required'],
-            [['id', 'user_id', 'department_id'], 'integer'],
+            [['fio', 'user_id', 'department_id', 'post', 'type'], 'required'],
             [['fio', 'type', 'gov_awards'], 'string'],
+            [['user_id', 'department_id'], 'integer'],
             [['img'], 'string', 'max' => 255],
             [['post', 'partiya', 'specialization', 'science_degree', 'science_title', 'foreign_langs'], 'string', 'max' => 32],
             [['birthday', 'degree'], 'string', 'max' => 16],
-            [['birthplace', 'ended', 'deputy'], 'string', 'max' => 64],
+            [['fio','birthplace', 'ended', 'deputy'], 'string', 'max' => 64],
             [['nationality'], 'string', 'max' => 20],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'id']],
@@ -90,46 +85,6 @@ class Teacher extends \yii\db\ActiveRecord
             'gov_awards' => Yii::t('app', 'Давлат мукофотлари билан тақдирланганми (қанақа)'),
             'deputy' => Yii::t('app', 'Халқ депутатлари, республика, вилоят, шаҳар ва туман Кенгаши депутатими ёки бошқа  сайланадиган органларнинг аъзосими (тўлиқ кўрсатилиши лозим)'),
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getGroups()
-    {
-        return $this->hasMany(Groups::className(), ['group_head_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSubjects()
-    {
-        return $this->hasMany(Subject::className(), ['lecturer_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSubjects0()
-    {
-        return $this->hasMany(Subject::className(), ['practice_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSubjects1()
-    {
-        return $this->hasMany(Subject::className(), ['lab1_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSubjects2()
-    {
-        return $this->hasMany(Subject::className(), ['lab2_id' => 'id']);
     }
 
     /**

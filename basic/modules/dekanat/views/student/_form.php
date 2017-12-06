@@ -21,13 +21,16 @@ use yii\widgets\ActiveForm;
         <div id="main" class="tab-pane fade in active">
             <br>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    <?= $form->field($model, 'group_id')->textInput() ?>
+                </div>
+                <div class="col-md-3">
                     <?= $form->field($model, 'reyting_no')->textInput(['maxlength' => true]) ?>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <?= $form->field($model, 'direction_id')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Direction::find()->all(),'id','name'),['prompt'=>' - Yo\'nalishni tanlang - ']); ?>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <?= $form->field($model, 'photo')->widget(\kartik\file\FileInput::classname(), [
                         'options' => ['accept' => 'image/*'],
                         'language' => 'ru',
