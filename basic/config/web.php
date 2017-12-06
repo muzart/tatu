@@ -66,6 +66,9 @@ $config = [
         'subject' => [
             'class' => 'app\modules\subject\SubjectModule',
         ],
+        'department' => [
+            'class' => 'app\modules\department\DepartmentModule',
+        ],
 
     ],
     'aliases' => [
