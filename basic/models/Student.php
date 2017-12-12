@@ -80,6 +80,8 @@ class Student extends \yii\db\ActiveRecord
     }
 
     /**
+     *     [2] => Cannot add or update a child row: a foreign key constraint fails (`talaba`.`student`, CONSTRAINT `student_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE)
+
      * @inheritdoc
      */
     public function attributeLabels()

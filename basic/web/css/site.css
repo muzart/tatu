@@ -113,3 +113,7 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+.st-img{
+	width: 150px;
+	height: 200px;
+}
