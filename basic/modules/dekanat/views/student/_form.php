@@ -22,7 +22,8 @@ use yii\widgets\ActiveForm;
             <br>
             <div class="row">
                 <div class="col-md-3">
-                    <?= $form->field($model, 'group_id')->textInput() ?>
+                    <?= $form->field($model, 'group_id')->dropDownList(
+                        \yii\helpers\ArrayHelper::map(\app\models\Groups::find()->all(),'id','name')) ?>
                 </div>
                 <div class="col-md-3">
                     <?= $form->field($model, 'reyting_no')->textInput(['maxlength' => true]) ?>
@@ -31,6 +32,7 @@ use yii\widgets\ActiveForm;
                     <?= $form->field($model, 'direction_id')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Direction::find()->all(),'id','name'),['prompt'=>' - Yo\'nalishni tanlang - ']); ?>
                 </div>
                 <div class="col-md-3">
+                    <?=(!$model->isNewRecord) ? Html::img('/uploads/'.$model->group->name.'/'.$model->photo,['style'=>'max-width:200px;']) : ''; ?>
                     <?= $form->field($model, 'photo')->widget(\kartik\file\FileInput::classname(), [
                         'options' => ['accept' => 'image/*'],
                         'language' => 'ru',

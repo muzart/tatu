@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\subject\controllers;
+namespace app\modules\department\controllers;
 
 use Yii;
 use app\models\Materials;

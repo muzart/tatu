@@ -59,7 +59,7 @@ class Student extends \yii\db\ActiveRecord
     {
         return [
             [['reyting_no', 'direction_id', 'surname', 'name', 'living_type', 'nationality'], 'required'],
-            [['direction_id', 'created', 'updated', 'user_id', 'group_id'], 'integer'],
+            [['direction_id', 'created', 'updated', 'group_id'], 'integer'],
             [['living_type'], 'string'],
             [['reyting_no'], 'string', 'max' => 10],
             [['surname', 'name', 'patronymic'], 'string', 'max' => 24],
@@ -74,7 +74,7 @@ class Student extends \yii\db\ActiveRecord
 //            [['photo'], 'string', 'max' => 255],
             [['reyting_no'], 'unique'],
             [['direction_id'], 'exist', 'skipOnError' => true, 'targetClass' => Direction::className(), 'targetAttribute' => ['direction_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+//            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Groups::className(), 'targetAttribute' => ['group_id' => 'id']],
         ];
     }
@@ -141,7 +141,7 @@ class Student extends \yii\db\ActiveRecord
         return $this->hasOne(Groups::className(), ['id' => 'group_id']);
     }
 
-    public function beforeSave($insert){
+    protected function imgUpload(){
         $image = UploadedFile::getInstance($this,'photo');
         if($image){
             $path =  'uploads/' . $this->group->name;
@@ -150,10 +150,18 @@ class Student extends \yii\db\ActiveRecord
             }
             $file_name = strtolower($this->name . "_" . $this->surname . "." ) . $image->extension;
             $file_path = 'uploads/' . $this->group->name . '/' . $file_name;
-                $image->saveAs($file_path);
+            $image->saveAs($file_path);
             $this->photo = $file_name;
-//        var_dump($this); exit;
         }
+    }
+
+    public function beforeValidate(){
+        $this->imgUpload();
+        return true;
+    }
+
+
+    public function beforeSave($insert){
         return parent::beforeSave($insert);
     }
 }
