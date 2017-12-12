@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </tr>
                 <tr>
                     <th>Nomi</th>
-                    <td><?= $model->semester->name ?></td>
+                    <td><?= $model->semester->name?></td>
                     <th>Maruza soati</th>
                     <td><?= $model->lecture_hour ?></td>
                 </tr>
@@ -106,9 +106,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         foreach ($lectures as $lecture):?>
                             <tr>
                                 <td><?= ++$i ?></td>
-                                <td><?='Maruza'?></td>
+                                <td><?= 'Maruza' ?></td>
                                 <td><?= $lecture->topic; ?></td>
-                                <td><?=$lecture->planned_hour?></td>
+                                <td><?= $lecture->planned_hour ?></td>
                                 <td>
                                     <?= Html::a('Tahrirlash', ['materials/update', 'id' => $lecture->id], ['class' => 'w3-btn w3-teal']) ?>
                                     <?= Html::a('O\'chirish', ['materials/delete', 'id' => $lecture->id], ['class' => 'w3-btn w3-red',
@@ -138,7 +138,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         foreach ($laboratorys as $laboratory):?>
                             <tr>
                                 <td><?= ++$j ?></td>
-                                <td><?='Labarotorya'?></td>
+                                <td><?= 'Labarotorya' ?></td>
                                 <td><?= $laboratory->topic; ?></td>
                                 <td><?= $laboratory->planned_hour; ?></td>
 
@@ -171,9 +171,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         foreach ($practices as $practice):?>
                             <tr>
                                 <td><?= ++$j ?></td>
-                                <td><?='Amaliyot'?></td>
+                                <td><?= 'Amaliyot' ?></td>
                                 <td><?= $practice->topic; ?></td>
-                                <td><?=$practice->planned_hour?></td>
+                                <td><?= $practice->planned_hour ?></td>
 
                                 <td>
                                     <?= Html::a('Tahrirlash', ['materials/update', 'id' => $practice->id], ['class' => 'w3-btn w3-teal']) ?>
