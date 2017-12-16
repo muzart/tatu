@@ -53,7 +53,33 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'photo',
             // 'user_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'buttons'=>[
+                    'view' => function ($url, $model) {
+                            return Html::a('<span class="w3-btn w3-green">Ko\'rish</span>', $url, [
+                                'title' => Yii::t('yii', 'Create'),
+                            ]);
+                        },
+                    'update' => function ($url, $model) {
+                            return Html::a('<span class="w3-btn w3-teal">Yangilash</span>', $url, [
+                                'title' => Yii::t('yii', 'Update'),
+                            ]);
+                        },
+                    'delete' => function ($url, $model) {
+                            return Html::a('<span class="w3-btn w3-red"><i class="glyphicon glyphicon-trash"></i></span>', $url, [
+                                'title' => Yii::t('yii', 'Delete'),
+                                'data' => [
+                                    'confirm' => 'Are you sure you want to delete this item?',
+                                    'method' => 'post',
+                                ],
+                            ]);
+                        },
+                ],
+                'options' => [
+                    'style' => 'width: 250px',
+                ]
+            ],
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

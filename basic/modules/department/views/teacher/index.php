@@ -25,10 +25,24 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
+            [
+                'attribute' => 'img',
+                'value' => function($model){
+                        /* @var $model \app\models\Teacher */
+                        return Html::img($model->getImageUrl(),['alt'=>$model->fio]);
+                    },
+                'format' => 'raw'
+            ],
             'fio:ntext',
-            'user_id',
-            'department_id',
-            'img',
+//            'user_id',
+            [
+                'attribute' => 'department_id',
+                'value' => function($model){
+                        /* @var $model \app\models\Teacher */
+                        return $model->department->name;
+                    },
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Department::find()->asArray()->all(), 'id', 'name'),
+            ],
             // 'post',
             // 'type',
             // 'birthday',
@@ -44,7 +58,33 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'gov_awards:ntext',
             // 'deputy',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'buttons'=>[
+                    'view' => function ($url, $model) {
+                            return Html::a('<span class="w3-btn w3-green">Ko\'rish</span>', $url, [
+                                'title' => Yii::t('yii', 'Create'),
+                            ]);
+                        },
+                    'update' => function ($url, $model) {
+                            return Html::a('<span class="w3-btn w3-teal">Yangilash</span>', $url, [
+                                'title' => Yii::t('yii', 'Update'),
+                            ]);
+                        },
+                    'delete' => function ($url, $model) {
+                            return Html::a('<span class="w3-btn w3-red"><i class="glyphicon glyphicon-trash"></i></span>', $url, [
+                                'title' => Yii::t('yii', 'Delete'),
+                                'data' => [
+                                    'confirm' => 'Are you sure you want to delete this item?',
+                                    'method' => 'post',
+                                ],
+                            ]);
+                        },
+                ],
+                'options' => [
+                    'style' => 'width: 250px',
+                ]
+            ],
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>
