@@ -64,12 +64,15 @@ class StudentController extends Controller
     public function actionCreate()
     {
         $model = new Student();
+        $user = new \app\models\User();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $user->load(Yii::$app->request->post() && $user->save());
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'user' => $user,
             ]);
         }
     }
@@ -83,12 +86,13 @@ class StudentController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $user = $model->user;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'user' => $user,
             ]);
         }
     }

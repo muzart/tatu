@@ -81,6 +81,7 @@ class Student extends \yii\db\ActiveRecord
 
     /**
      *     [2] => Cannot add or update a child row: a foreign key constraint fails (`talaba`.`student`, CONSTRAINT `student_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE)
+
      * @inheritdoc
      */
     public function attributeLabels()
@@ -142,30 +143,27 @@ class Student extends \yii\db\ActiveRecord
         return $this->hasOne(Groups::className(), ['id' => 'group_id']);
     }
 
-    protected function imgUpload()
-    {
-        $image = UploadedFile::getInstance($this, 'photo');
-        if ($image) {
-            $path = 'uploads/groups/' . $this->group->name;
-            if (!file_exists($path)) {
+    protected function imgUpload(){
+        $image = UploadedFile::getInstance($this,'photo');
+        if($image){
+            $path =  'uploads/' . $this->group->name;
+            if(!file_exists($path)){
                 mkdir($path);
             }
-            $file_name = strtolower($this->name . "_" . $this->surname . ".") . $image->extension;
-            $file_path = 'uploads/groups/' . $this->group->name . '/' . $file_name;
+            $file_name = strtolower($this->name . "_" . $this->surname . "." ) . $image->extension;
+            $file_path = 'uploads/' . $this->group->name . '/' . $file_name;
             $image->saveAs($file_path);
             $this->photo = $file_name;
         }
     }
 
-    public function beforeValidate()
-    {
+    public function beforeValidate(){
         $this->imgUpload();
         return true;
     }
 
 
-    public function beforeSave($insert)
-    {
+    public function beforeSave($insert){
         return parent::beforeSave($insert);
     }
 }

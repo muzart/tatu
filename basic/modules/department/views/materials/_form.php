@@ -12,7 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'subject_id')->textInput() ?>
+    <?= $form->field($model, 'subject_id')->dropDownList(\yii\helpers\ArrayHelper::map(
+        \app\models\Subject::find()->all(),
+        'id',
+        'name'
+    ),['prompt' => ' - Fanni tanlang - ','disabled'=>'disabled']) ?>
 
     <?= $form->field($model, 'studies_kind')->dropDownList([ 'lecture' => 'Lecture', 'laboratory' => 'Laboratory', 'practice' => 'Practice', ], ['prompt' => '']) ?>
 

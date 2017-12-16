@@ -15,6 +15,7 @@ use yii\widgets\ActiveForm;
         <li class="active"><a data-toggle="tab" href="#main">Asosiy ma'lumotlar</a></li>
         <li><a data-toggle="tab" href="#parents">Ota-onasi ma'lumotlari</a></li>
         <li><a data-toggle="tab" href="#misc">Qo'shimcha ma'lumotlar</a></li>
+        <li><a data-toggle="tab" href="#user">Foydalanuvchi ma'lumotlari</a></li>
     </ul>
 
     <div class="tab-content">
@@ -115,6 +116,18 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'living_type')->dropDownList(['Uy' => 'Uy', 'TTJ' => 'TTJ', 'Ijara' => 'Ijara',], ['prompt' => '']) ?>
 
             <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'tel')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div id="user" class="tab-pane fade">
+            <br/>
+            <?= $form->field($user, 'email')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($user, 'username')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($user, 'password_hash')->passwordInput() ?>
+
+            <?= $form->field($user, 'status')->dropDownList([0=>'Nofaol',1=>'Faol']) ?>
         </div>
     </div>
 

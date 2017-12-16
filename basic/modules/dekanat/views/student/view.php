@@ -25,26 +25,24 @@ $baseUrl = Yii::$app->request->baseUrl;
 </div>
 <div class="container">
     <table class="table table-bordered">
-        <tr>
-            <td colspan="3">
-                <h3 style="text-transform: uppercase; text-align: center">muhammad al-xorazmiy nomidagi <br>toshkent
-                    axborot
-                    texnologiyalari <br>universiteti urganch filiali
-                    <br><br>talaba shaxsiy varaqasi</h3>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="vertical-align: middle;">
-                <h4>Yig`ma jild va reyting daftarchasi № <?= $model->reyting_no ?></h4>
-                <h4>Mutahasislik____________________________(___)</h4>
-                <h4> Ismi sharifi <?= $model->surname . " " . $model->name . " " . $model->patronymic; ?></h4>
-            </td>
-            <td style="vertical-align: middle">
-                <img src="<?= $baseUrl ?>/uploads/groups/<?= $model->group->name . "/" . $model->photo; ?>"
-                     class="img-thumbnail st-img" width="150" height="200">
-            </td>
-        </tr>
-        </tr>
+	<tr>
+        <td colspan="3">
+		<h3 style="text-transform: uppercase; text-align: center">muhammad al-xorazmiy nomidagi <br>toshkent axborot
+            texnologiyalari <br>universiteti urganch filiali
+            <br><br>talaba shaxsiy varaqasi</h3>
+        </td>
+	</tr>
+	<tr>
+		<td colspan="2" style="vertical-align: middle;">
+			<h4>Yig`ma jild va reyting daftarchasi № <?=$model->reyting_no?></h4>
+			<h4>Mutahasislik____________________________(___)</h4>
+			<h4> Ismi sharifi <?=$model->surname." ".$model->name." ".$model->patronymic;?></h4>
+		</td>
+		<td style="vertical-align: middle">
+			<img src="<?= $baseUrl ?>/uploads/<?= $model->group->name."/".$model->photo; ?>" class="img-thumbnail st-img" width="150" height="200" >
+		</td>
+	</tr>
+    </tr>
         <tr>
             <td style="width:5%">1</td>
             <td style="width:50%">Tug`ilgan sanasi</td>
