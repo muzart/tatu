@@ -23,16 +23,16 @@ use yii\widgets\ActiveForm;
             <div class="row">
                 <div class="col-md-3">
                     <?= $form->field($model, 'group_id')->dropDownList(
-                        \yii\helpers\ArrayHelper::map(\app\models\Groups::find()->all(),'id','name')) ?>
+                        \yii\helpers\ArrayHelper::map(\app\models\Groups::find()->all(), 'id', 'name')) ?>
                 </div>
                 <div class="col-md-3">
                     <?= $form->field($model, 'reyting_no')->textInput(['maxlength' => true]) ?>
                 </div>
                 <div class="col-md-3">
-                    <?= $form->field($model, 'direction_id')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Direction::find()->all(),'id','name'),['prompt'=>' - Yo\'nalishni tanlang - ']); ?>
+                    <?= $form->field($model, 'direction_id')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Direction::find()->all(), 'id', 'name'), ['prompt' => ' - Yo\'nalishni tanlang - ']); ?>
                 </div>
                 <div class="col-md-3">
-                    <?=(!$model->isNewRecord) ? Html::img('/uploads/'.$model->group->name.'/'.$model->photo,['style'=>'max-width:200px;']) : ''; ?>
+                    <?= (!$model->isNewRecord) ? Html::img('/uploads/groups/' . $model->group->name . '/' . $model->photo, ['style' => 'max-width:200px;']) : ''; ?>
                     <?= $form->field($model, 'photo')->widget(\kartik\file\FileInput::classname(), [
                         'options' => ['accept' => 'image/*'],
                         'language' => 'ru',
@@ -112,7 +112,7 @@ use yii\widgets\ActiveForm;
             <br/>
             <?= $form->field($model, 'workplace')->textInput(['maxlength' => true]) ?>
 
-            <?= $form->field($model, 'living_type')->dropDownList([ 'Uy' => 'Uy', 'TTJ' => 'TTJ', 'Ijara' => 'Ijara', ], ['prompt' => '']) ?>
+            <?= $form->field($model, 'living_type')->dropDownList(['Uy' => 'Uy', 'TTJ' => 'TTJ', 'Ijara' => 'Ijara',], ['prompt' => '']) ?>
 
             <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
         </div>
