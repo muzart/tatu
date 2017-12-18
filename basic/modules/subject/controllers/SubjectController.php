@@ -40,14 +40,14 @@ class SubjectController extends Controller
     {
         $searchModel = new SubjectSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $model1=new Subject();
-        $model=Subject::find()->all();
+        $model1 = new Subject();
+        $model = Subject::find()->all();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
 
-            'models'=>$model,
-            'model'=>$model1,
+            'models' => $model,
+            'model' => $model1,
         ]);
     }
 
@@ -58,30 +58,31 @@ class SubjectController extends Controller
      */
     public function getIndex()
     {
-       header('location: ../materials');
+        header('location: ../materials');
     }
 
     public function actionView($id)
     {
-        $lectures = Materials::find()->where(['subject_id' => $id, 'studies_kind'=>'lecture'])->all();
-        $laboratorys=Materials::find()->where(['subject_id'=>$id,   'studies_kind'=>'laboratory'])->all();
-        $practices=Materials::find()->where(['subject_id'=>$id,   'studies_kind'=>'practice'])->all();
+        $lectures = Materials::find()->where(['subject_id' => $id, 'studies_kind' => 'lecture'])->all();
+        $laboratorys = Materials::find()->where(['subject_id' => $id, 'studies_kind' => 'laboratory'])->all();
+        $practices = Materials::find()->where(['subject_id' => $id, 'studies_kind' => 'practice'])->all();
         $material = new Materials;
         $material->subject_id = $id;
 
-        if($material->load(Yii::$app->request->post()) && $material->save())
+        if ($material->load(Yii::$app->request->post()) && $material->save())
             return $this->refresh() and $this->getIndex();
         return $this->render('view', [
-            'model' => $this->findModel($id),
-            'material' => $material,
-            'lectures' => $lectures,
-            'laboratorys'=>$laboratorys,
-            'practices' => $practices,
+                'model' => $this->findModel($id),
+                'material' => $material,
+                'lectures' => $lectures,
+                'laboratorys' => $laboratorys,
+                'practices' => $practices,
 
-        ]
+            ]
 
         );
     }
+
     /**
      * Creates a new Subject model.
      * If creation is successful, the browser will be redirected to the 'view' page.

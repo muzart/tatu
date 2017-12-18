@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "teacher".
@@ -110,4 +111,40 @@ class Teacher extends \yii\db\ActiveRecord
     protected function getDepartmentDir(){
         return strtolower(str_replace(' ','_',$this->department->name));
     }
+    protected function imgUpload()
+    {
+        $image = UploadedFile::getInstance($this, 'img');
+        if ($image) {
+            $path = 'uploads/departments/' . strtolower(str_replace(" ", "_", $this->department->name));
+            if (!file_exists($path)) {
+                mkdir($path);
+
+            }
+
+
+            $dir = strtolower(str_replace(" ", "_", $this->fio)) . "." . $image->extension;
+            $file_path = 'uploads/departments/' . strtolower(str_replace(" ", "_", $this->department->name)) . '/' . $dir;
+            $image->saveAs($file_path);
+
+            $this->img = $dir;
+
+        }
+
+
+    }
+
+    public function beforeValidate()
+    {
+        $this->imgUpload();
+        return true;
+
+    }
+
+
+    public function beforeSave($insert)
+    {
+        return parent::beforeSave($insert);
+
+    }
+
 }

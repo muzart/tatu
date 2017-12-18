@@ -146,12 +146,12 @@ class Student extends \yii\db\ActiveRecord
     protected function imgUpload(){
         $image = UploadedFile::getInstance($this,'photo');
         if($image){
-            $path =  'uploads/' . $this->group->name;
+            $path =  'uploads/groups/' . $this->group->name;
             if(!file_exists($path)){
                 mkdir($path);
             }
             $file_name = strtolower($this->name . "_" . $this->surname . "." ) . $image->extension;
-            $file_path = 'uploads/' . $this->group->name . '/' . $file_name;
+            $file_path = 'uploads/groups/' . $this->group->name . '/' . $file_name;
             $image->saveAs($file_path);
             $this->photo = $file_name;
         }

@@ -39,7 +39,7 @@ $baseUrl = Yii::$app->request->baseUrl;
 			<h4> Ismi sharifi <?=$model->surname." ".$model->name." ".$model->patronymic;?></h4>
 		</td>
 		<td style="vertical-align: middle">
-			<img src="<?= $baseUrl ?>/uploads/<?= $model->group->name."/".$model->photo; ?>" class="img-thumbnail st-img" width="150" height="200" >
+			<img src="<?= $baseUrl ?>/uploads/groups/<?= $model->group->name."/".$model->photo; ?>" class="img-thumbnail st-img" width="150" height="200" >
 		</td>
 	</tr>
     </tr>

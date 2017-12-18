@@ -117,11 +117,11 @@ use yii\widgets\ActiveForm;
 
             <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
-            <?= $form->field($model, 'tel')->textInput(['maxlength' => true]) ?>
+            <?/*= $form->field($model, 'tel')->textInput(['maxlength' => true]) */?>
         </div>
         <div id="user" class="tab-pane fade">
             <br/>
-            <?= $form->field($user, 'email')->textInput(['maxlength' => true]) ?>
+            <?/*= $form->field($user, 'email')->textInput(['maxlength' => true]) */?>
 
             <?= $form->field($user, 'username')->textInput(['maxlength' => true]) ?>
 
