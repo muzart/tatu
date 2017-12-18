@@ -27,7 +27,7 @@ use yii\web\UploadedFile;
  * @property string $foreign_langs
  * @property string $gov_awards
  * @property string $deputy
- *
+ * @property string $started_work
  * @property User $user
  * @property Department $department
  */
@@ -55,6 +55,7 @@ class Teacher extends \yii\db\ActiveRecord
             [['birthday', 'degree'], 'string', 'max' => 16],
             [['fio','birthplace', 'ended', 'deputy'], 'string', 'max' => 64],
             [['nationality'], 'string', 'max' => 20],
+            [['started_work'], 'string', 'max' => 25],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'id']],
         ];
@@ -85,6 +86,7 @@ class Teacher extends \yii\db\ActiveRecord
             'foreign_langs' => Yii::t('app', 'Кайси чет тилларини билади'),
             'gov_awards' => Yii::t('app', 'Давлат мукофотлари билан тақдирланганми (қанақа)'),
             'deputy' => Yii::t('app', 'Халқ депутатлари, республика, вилоят, шаҳар ва туман Кенгаши депутатими ёки бошқа  сайланадиган органларнинг аъзосими (тўлиқ кўрсатилиши лозим)'),
+            'started_work' => Yii::t('app', 'Started Work'),
         ];
     }
 
