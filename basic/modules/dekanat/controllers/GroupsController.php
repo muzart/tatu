@@ -6,6 +6,7 @@ use Yii;
 use app\models\Groups;
 use app\models\search\GroupsSearch;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -35,13 +36,18 @@ class GroupsController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new GroupsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (\Yii::$app->user->can('create-dekanat')) {
+            $searchModel = new GroupsSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        } else {
+            throw new ForbiddenHttpException;
+        }
+
     }
 
     /**
@@ -51,9 +57,10 @@ class GroupsController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+        if (!Yii::$app->user->can('create-dekanat')) {return $this->render('view', [
             'model' => $this->findModel($id),
-        ]);
+        ]);}else throw new ForbiddenHttpException;
+
     }
 
     /**
@@ -63,15 +70,16 @@ class GroupsController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Groups();
+        if (!Yii::$app->user->can('create-dekanat')) {$model = new Groups();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }}else throw new ForbiddenHttpException;
+
     }
 
     /**

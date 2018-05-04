@@ -9,6 +9,7 @@ use yii\widgets\ListView;
 use app\models\Materials;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
+use kartik\file\FileInput;
 
 
 /* @var $this yii\web\View */
@@ -36,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="w3-container">
             <table class="w3-table-all w3-hoverable">
-
+                <h1><?=$model->name;?></h1>
                 <tr>
                     <th>ID</th>
                     <td><?= $model->id ?></td>
@@ -100,6 +101,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <th>Mashg'ulot turi</th>
                             <th>Mavzu</th>
                             <th>Ajratilgan soat</th>
+                            <th>Materiallar</th>
                             <th>Amallar</th>
                         </tr>
                         <?php $i = 0;
@@ -109,6 +111,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <td>Ma'ruza</td>
                                 <td><?= $lecture->topic; ?></td>
                                 <td><?= $lecture->planned_hour ?></td>
+                                <td>
+                                    <?php
+                                    $i = 0;
+                                    foreach ($lecture->materialFiles as $mf){
+                                        echo Html::a('M-'.++$i,Yii::$app->request->getBaseUrl().'/'.$mf->file_path)." ";
+                                    }
+                                    ?>
+                                </td>
                                 <td>
                                     <?= Html::a('Tahrirlash', ['materials/update', 'id' => $lecture->id], ['class' => 'w3-btn w3-teal']) ?>
                                     <?= Html::a('O\'chirish', ['materials/delete', 'id' => $lecture->id], ['class' => 'w3-btn w3-red',
@@ -141,7 +151,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <td>Amaliyot</td>
                                 <td><?= $practice->topic; ?></td>
                                 <td><?= $practice->planned_hour; ?></td>
-
+                                <td>
+                                    <?php
+                                    $i = 0;
+                                    foreach ($practice->materialFiles as $mf){
+                                        echo Html::a('M-'.++$i,Yii::$app->request->getBaseUrl().'/'.$mf->file_path)." ";
+                                    }
+                                    ?>
+                                </td>
                                 <td>
                                     <?= Html::a('Tahrirlash', ['materials/update', 'id' => $practice->id], ['class' => 'w3-btn w3-teal']) ?>
                                     <?= Html::a('O\'chirish', ['materials/delete', 'id' => $practice->id], ['class' => 'w3-btn w3-red',
@@ -174,7 +191,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <td>Tajriba ishi</td>
                                 <td><?= $laboratory->topic; ?></td>
                                 <td><?= $laboratory->planned_hour ?></td>
-
+                                <td>
+                                    <?php
+                                    $i = 0;
+                                    foreach ($laboratory->materialFiles as $mf){
+                                        echo Html::a('M-'.++$i,Yii::$app->request->getBaseUrl().'/'.$mf->file_path)." ";
+                                    }
+                                    ?>
+                                </td>
                                 <td>
                                     <?= Html::a('Tahrirlash', ['materials/update', 'id' => $laboratory->id], ['class' => 'w3-btn w3-teal']) ?>
                                     <?= Html::a('O\'chirish', ['materials/delete', 'id' => $laboratory->id], ['class' => 'w3-btn w3-red',
@@ -203,7 +227,7 @@ Modal::begin([
 
     <div class="materials-form">
 
-        <?php $form = ActiveForm::begin(); ?>
+        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]);?>
 
         <?= $form->field($material, 'subject_id')->dropDownList(\yii\helpers\ArrayHelper::map(
             \app\models\Subject::find()->all(),
@@ -216,6 +240,12 @@ Modal::begin([
         <?= $form->field($material, 'topic')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($material, 'planned_hour')->textInput(['maxlength' => true]) ?>
+
+        <?= $form->field($material, 'file[]')->widget(FileInput::classname(), [
+            'options' => ['multiple' => true],
+            'pluginOptions' => ['previewFileType' => 'any']
+        ]);
+        ?>
 
         <div class="form-group">
             <?= Html::submitButton($material->isNewRecord ? 'Yaratish' : 'Update', ['class' => $material->isNewRecord ? 'w3-btn w3-green' : 'btn btn-primary']) ?>

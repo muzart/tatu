@@ -3,6 +3,8 @@
 namespace app\modules\dekanat\controllers;
 
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
+use yii\widgets\FragmentCache;
 
 /**
  * Default controller for the `dekanat` module
@@ -15,6 +17,10 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+
+
+            return $this->render('index');
+
+
     }
 }

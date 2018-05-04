@@ -42,14 +42,13 @@ $baseUrl = Yii::$app->request->baseUrl;
 
                 <td style="vertical-align: middle">
                     <img src="<?= $baseUrl ?>/uploads/departments/<?= strtolower(str_replace(" ", "_", $model->department->name)) . "/" . $model->img; ?>"
-                         class="img-thumbnail st-img" width="150" height="200">
+                         class="img-thumbnail st-img" width="10" height="20">
                 </td>
             </tr>
             <tr>
                 <td colspan="1" style="vertical-align: middle;">
                     <b>Tugilgan yili:</b>
                     <?= $model->birthday ?>
-
                 </td>
                 <td style="">
                     <b> Tugilgan joyi:</b> <?= $model->birthplace ?>

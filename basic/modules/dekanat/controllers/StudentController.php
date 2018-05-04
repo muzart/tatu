@@ -6,6 +6,7 @@ use Yii;
 use app\models\Student;
 use app\models\search\StudentSearch;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -35,13 +36,17 @@ class StudentController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new StudentSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (Yii::$app->user->can('create-dekanat')) {
+            $searchModel = new StudentSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        } else
+            throw new ForbiddenHttpException;
+
     }
 
     /**
@@ -51,9 +56,12 @@ class StudentController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        if (Yii::$app->user->can('create-dekanat')) {
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        } else throw new ForbiddenHttpException;
+
     }
 
     /**
@@ -63,18 +71,22 @@ class StudentController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Student();
-        $user = new \app\models\User();
+        if (Yii::$app->user->can('create-dekanat')) {
+            $model = new Student();
+            $user = new \app\models\User();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $user->load(Yii::$app->request->post() && $user->save());
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-                'user' => $user,
-            ]);
-        }
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                $user->load(Yii::$app->request->post() && $user->save());
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                    'user' => $user,
+                ]);
+            }
+        } else throw new ForbiddenHttpException;
+
+
     }
 
     /**

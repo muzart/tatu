@@ -213,6 +213,9 @@ Modal::begin([
 
         <?= $form->field($material, 'planned_hour')->textInput(['maxlength' => true]) ?>
 
+
+
+
         <div class="form-group">
             <?= Html::submitButton($material->isNewRecord ? 'Yaratish' : 'Update', ['class' => $material->isNewRecord ? 'w3-btn w3-green' : 'btn btn-primary']) ?>
         </div>

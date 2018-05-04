@@ -53,7 +53,7 @@ class Teacher extends \yii\db\ActiveRecord
             [['img'], 'string', 'max' => 255],
             [['post', 'partiya', 'specialization', 'science_degree', 'science_title', 'foreign_langs'], 'string', 'max' => 32],
             [['birthday', 'degree'], 'string', 'max' => 16],
-            [['fio','birthplace', 'ended', 'deputy'], 'string', 'max' => 64],
+            [['fio', 'birthplace', 'ended', 'deputy'], 'string', 'max' => 64],
             [['nationality'], 'string', 'max' => 20],
             [['started_work'], 'string', 'max' => 25],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -106,13 +106,16 @@ class Teacher extends \yii\db\ActiveRecord
         return $this->hasOne(Department::className(), ['id' => 'department_id']);
     }
 
-    public function getImageUrl(){
-        return 'uploads/departments/'.$this->getDepartmentDir().'/'.strtolower(str_replace(' ','_',$this->img));
+    public function getImageUrl()
+    {
+        return '/uploads/departments/' . $this->getDepartmentDir() . '/' . strtolower(str_replace(' ', '_', $this->img));
     }
 
-    protected function getDepartmentDir(){
-        return strtolower(str_replace(' ','_',$this->department->name));
+    protected function getDepartmentDir()
+    {
+        return strtolower(str_replace(' ', '_', $this->department->name));
     }
+
     protected function imgUpload()
     {
         $image = UploadedFile::getInstance($this, 'img');

@@ -2,6 +2,9 @@
 
 namespace app\modules\department\controllers;
 
+use app\models\MaterialFiles;
+//use app\models\MaterialFiles;
+use app\models\Subject;
 use Yii;
 use app\models\Materials;
 use app\models\MaterialsSearch;
@@ -51,10 +54,11 @@ class MaterialsController extends Controller
      */
     public function actionView($id)
     {
-        $laboratorys=Materials::find()->where(['subject_id' => $id, 'studies_kind'=>'laboratory'])->all();
+
+        $laboratorys = Materials::find()->where(['subject_id' => $id, 'studies_kind' => 'laboratory'])->all();
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'laboratory'=>$laboratorys,
+            'laboratory' => $laboratorys,
 
         ]);
     }
@@ -102,12 +106,16 @@ class MaterialsController extends Controller
      * @param integer $id
      * @return mixed
      */
+
+
     public function actionDelete($id)
     {
-        $model = $this->findModel($id);
-        $this->findModel($id)->delete();
 
-        return $this->redirect(['subject/view','id'=>$model->subject_id]);
+        //$file_path = Yii::getAlias('@web') . '/upload/materials/fizika'.$dfd-> ;
+        $model = $this->findModel($id);
+        //unlink(dirname(__FILE__) . $file_path . $model->file);
+        $this->findModel($id)->delete();
+        return $this->redirect(['subject/view', 'id' => $model->subject_id]);
     }
 
     /**
