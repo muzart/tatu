@@ -1,19 +1,18 @@
 <?php
 
-namespace app\modules\dekanat\controllers;
+namespace app\controllers;
 
 use Yii;
-use app\models\Term;
-use app\models\search\TermSearch;
+use app\models\User;
+use app\models\UserSearch;
 use yii\web\Controller;
-use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TermController implements the CRUD actions for Term model.
+ * UserController implements the CRUD actions for User model.
  */
-class TermController extends Controller
+class UserController extends Controller
 {
     /**
      * @inheritdoc
@@ -31,63 +30,52 @@ class TermController extends Controller
     }
 
     /**
-     * Lists all Term models.
+     * Lists all User models.
      * @return mixed
      */
-
     public function actionIndex()
     {
+        $searchModel = new UserSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-
-            $searchModel = new TermSearch();
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-            return $this->render('index', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-            ]);
-
-
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**
-     * Displays a single Term model.
+     * Displays a single User model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
-
-            return $this->render('view', [
-                'model' => $this->findModel($id),
-            ]);
-
-
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
     }
 
     /**
-     * Creates a new Term model.
+     * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
+        $model = new User();
 
-            $model = new Term();
-
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            } else {
-                return $this->render('create', [
-                    'model' => $model,
-                ]);
-            }
-
-
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
     }
 
     /**
-     * Updates an existing Term model.
+     * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -106,7 +94,7 @@ class TermController extends Controller
     }
 
     /**
-     * Deletes an existing Term model.
+     * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -119,15 +107,15 @@ class TermController extends Controller
     }
 
     /**
-     * Finds the Term model based on its primary key value.
+     * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Term the loaded model
+     * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Term::findOne($id)) !== null) {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

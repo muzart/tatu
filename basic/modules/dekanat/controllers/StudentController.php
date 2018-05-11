@@ -36,16 +36,15 @@ class StudentController extends Controller
      */
     public function actionIndex()
     {
-        if (Yii::$app->user->can('create-dekanat')) {
-            $searchModel = new StudentSearch();
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-            return $this->render('index', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-            ]);
-        } else
-            throw new ForbiddenHttpException;
+        $searchModel = new StudentSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+
 
     }
 
@@ -56,11 +55,11 @@ class StudentController extends Controller
      */
     public function actionView($id)
     {
-        if (Yii::$app->user->can('create-dekanat')) {
+
             return $this->render('view', [
                 'model' => $this->findModel($id),
             ]);
-        } else throw new ForbiddenHttpException;
+
 
     }
 
@@ -71,7 +70,7 @@ class StudentController extends Controller
      */
     public function actionCreate()
     {
-        if (Yii::$app->user->can('create-dekanat')) {
+
             $model = new Student();
             $user = new \app\models\User();
 
@@ -84,7 +83,7 @@ class StudentController extends Controller
                     'user' => $user,
                 ]);
             }
-        } else throw new ForbiddenHttpException;
+
 
 
     }
