@@ -53,6 +53,8 @@ $config = [
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+                '<module:\w+>/<controller:\w+>/view/<id:\d+>' => '<module>/<controller>/view',
             ),
         ],
     ],
@@ -78,31 +80,30 @@ $config = [
         'admin' => [
             'class' => 'app\modules\admin\Module',
         ],
-        'rbac' => [
-            'class' => 'mdm\admin\Module',
-            'controllerMap' => [
-                'assignment' => [
-                    'class' => 'mdm\admin\controllers\AssignmentController',
-                    /* 'userClassName' => 'app\models\User', */
-                    'idField' => 'id',
-                    'usernameField' => 'username',
-                ],
-            ],
-            'layout' => 'left-menu',
-            'mainLayout' => '@app/views/layouts/main.php',
-
-        ],
+//        'rbac' => [
+//            'class' => 'mdm\admin\Module',
+//            'controllerMap' => [
+//                'assignment' => [
+//                    'class' => 'mdm\admin\controllers\AssignmentController',
+//                    /* 'userClassName' => 'app\models\User', */
+//                    'idField' => 'id',
+//                    'usernameField' => 'username',
+//                ],
+//            ],
+//            'layout' => 'left-menu',
+//            'mainLayout' => '@app/views/layouts/main.php',
+//
+//        ],
     ],
-    'as access' => [
-        'class' => 'mdm\admin\components\AccessControl',
-        'allowActions' => [
-            'site/*',
-            'admin/*',
-            'site/*',
-            'rbac/*',
-
-        ]
-    ],
+//    'as access' => [
+//        'class' => 'mdm\admin\components\AccessControl',
+//        'allowActions' => [
+//            'site/*',
+//            'admin/*',
+//            'site/*',
+//            'rbac/*',
+//        ],
+//    ],
     'aliases' => [
         '@university' => '@app/modules/university',
     ],

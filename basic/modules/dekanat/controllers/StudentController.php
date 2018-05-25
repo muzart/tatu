@@ -2,6 +2,7 @@
 
 namespace app\modules\dekanat\controllers;
 
+use app\models\User;
 use Yii;
 use app\models\Student;
 use app\models\search\StudentSearch;
@@ -75,7 +76,8 @@ class StudentController extends Controller
             $user = new \app\models\User();
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                $user->load(Yii::$app->request->post() && $user->save());
+                $user->load(Yii::$app->request->post());
+                $user->save();
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 return $this->render('create', [
@@ -97,8 +99,10 @@ class StudentController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $user = $model->user;
+        $user = ($model->user) ? $model->user : new User();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $user->load(Yii::$app->request->post());
+            $user->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

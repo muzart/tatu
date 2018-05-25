@@ -121,9 +121,9 @@ use yii\widgets\ActiveForm;
         </div>
         <div id="user" class="tab-pane fade">
             <br/>
-            <?/*= $form->field($user, 'email')->textInput(['maxlength' => true]) */?>
+            <?= $form->field($user, 'email')->textInput(['maxlength' => true]) ?>
 
-            <?= $form->field($user, 'username')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($user, 'username')->textInput(['maxlength' => true])?>
 
             <?= $form->field($user, 'password_hash')->passwordInput() ?>
 
