@@ -94,6 +94,11 @@
       <path value="$PROJECT_DIR$/basic/vendor/mdmsoft/yii2-admin" />
       <path value="$PROJECT_DIR$/basic/vendor/sintret/yii2-chat-adminlte" />
       <path value="$PROJECT_DIR$/basic/vendor/kartik-v/yii2-helpers" />
+      <path value="$PROJECT_DIR$/basic/vendor/kartik-v/yii2-widgets" />
+      <path value="$PROJECT_DIR$/basic/vendor/kartik-v/yii2-widget-select2" />
+      <path value="$PROJECT_DIR$/basic/vendor/kartik-v/yii2-widget-datetimepicker" />
+      <path value="$PROJECT_DIR$/basic/vendor/kartik-v/yii2-widget-timepicker" />
+      <path value="$PROJECT_DIR$/basic/vendor/kartik-v/yii2-widget-datepicker" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.4.0" />
