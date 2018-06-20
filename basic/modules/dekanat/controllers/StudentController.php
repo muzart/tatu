@@ -2,6 +2,7 @@
 
 namespace app\modules\dekanat\controllers;
 
+use app\models\User;
 use Yii;
 use app\models\Student;
 use app\models\search\StudentSearch;
@@ -36,16 +37,15 @@ class StudentController extends Controller
      */
     public function actionIndex()
     {
-        if (Yii::$app->user->can('create-dekanat')) {
-            $searchModel = new StudentSearch();
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-            return $this->render('index', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-            ]);
-        } else
-            throw new ForbiddenHttpException;
+        $searchModel = new StudentSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+
 
     }
 
@@ -56,11 +56,11 @@ class StudentController extends Controller
      */
     public function actionView($id)
     {
-        if (Yii::$app->user->can('create-dekanat')) {
+
             return $this->render('view', [
                 'model' => $this->findModel($id),
             ]);
-        } else throw new ForbiddenHttpException;
+
 
     }
 
@@ -71,12 +71,13 @@ class StudentController extends Controller
      */
     public function actionCreate()
     {
-        if (Yii::$app->user->can('create-dekanat')) {
+
             $model = new Student();
             $user = new \app\models\User();
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                $user->load(Yii::$app->request->post() && $user->save());
+                $user->load(Yii::$app->request->post());
+                $user->save();
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 return $this->render('create', [
@@ -84,7 +85,7 @@ class StudentController extends Controller
                     'user' => $user,
                 ]);
             }
-        } else throw new ForbiddenHttpException;
+
 
 
     }
@@ -98,8 +99,10 @@ class StudentController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $user = $model->user;
+        $user = ($model->user) ? $model->user : new User();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $user->load(Yii::$app->request->post());
+            $user->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

@@ -1,10 +1,21 @@
 <?php
+
 use yii\widgets\Breadcrumbs;
 use dmstr\widgets\Alert;
 
 ?>
 <div class="content-wrapper">
     <section class="content-header">
+        <?php
+        /*echo \sintret\chat\ChatRoom::widget([
+            'url' =>\yii\helpers\Url::to(['/chat/send-chat']),
+            'userModel' => \app\models\User::className(),
+            'userField' => 'avatarImage'
+        ]);*/
+        ?>
+
+
+
         <?php if (isset($this->blocks['content-header'])) { ?>
             <h1><?= $this->blocks['content-header'] ?></h1>
         <?php } else { ?>

@@ -36,7 +36,7 @@ class GroupsController extends Controller
      */
     public function actionIndex()
     {
-        if (\Yii::$app->user->can('create-dekanat')) {
+
             $searchModel = new GroupsSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -44,9 +44,7 @@ class GroupsController extends Controller
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);
-        } else {
-            throw new ForbiddenHttpException;
-        }
+
 
     }
 
@@ -57,9 +55,11 @@ class GroupsController extends Controller
      */
     public function actionView($id)
     {
-        if (!Yii::$app->user->can('create-dekanat')) {return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);}else throw new ForbiddenHttpException;
+
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+
 
     }
 
@@ -70,7 +70,8 @@ class GroupsController extends Controller
      */
     public function actionCreate()
     {
-        if (!Yii::$app->user->can('create-dekanat')) {$model = new Groups();
+
+            $model = new Groups();
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -78,7 +79,8 @@ class GroupsController extends Controller
                 return $this->render('create', [
                     'model' => $model,
                 ]);
-            }}else throw new ForbiddenHttpException;
+            }
+
 
     }
 

@@ -38,7 +38,7 @@ class TermController extends Controller
     public function actionIndex()
     {
 
-        if (!Yii::$app->user->can('create-dekanat')) {
+
             $searchModel = new TermSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -47,8 +47,6 @@ class TermController extends Controller
                 'dataProvider' => $dataProvider,
             ]);
 
-        } else
-            throw new ForbiddenHttpException;
 
     }
 
@@ -59,11 +57,11 @@ class TermController extends Controller
      */
     public function actionView($id)
     {
-        if (!Yii::$app->user->can('create-dekanat')) {
+
             return $this->render('view', [
                 'model' => $this->findModel($id),
             ]);
-        } else throw new ForbiddenHttpException;
+
 
     }
 
@@ -74,7 +72,7 @@ class TermController extends Controller
      */
     public function actionCreate()
     {
-        if (!Yii::$app->user->can('create-dekanat')) {
+
             $model = new Term();
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -84,7 +82,7 @@ class TermController extends Controller
                     'model' => $model,
                 ]);
             }
-        } else throw new ForbiddenHttpException;
+
 
     }
 

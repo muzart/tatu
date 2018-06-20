@@ -46,10 +46,16 @@ $config = [
             'defaultRoles' => ['guest'],
         ],
         'urlManager' => [
+            'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'rules' => array(
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+                '<module:\w+>/<controller:\w+>/view/<id:\d+>' => '<module>/<controller>/view',
+            ),
         ],
     ],
     'modules' => [
@@ -70,6 +76,9 @@ $config = [
         ],
         'department' => [
             'class' => 'app\modules\department\DepartmentModule',
+        ],
+        'dormitory' => [
+            'class' => 'app\modules\dormitory\DormitoryModule',
         ],
         'admin' => [
             'class' => 'app\modules\admin\Module',
@@ -96,8 +105,7 @@ $config = [
             'admin/*',
             'site/*',
             'rbac/*',
-
-        ]
+        ],
     ],
     'aliases' => [
         '@university' => '@app/modules/university',

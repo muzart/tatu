@@ -50,7 +50,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
             [['status', 'created_at', 'updated_at'], 'integer'],
-            [['username', 'auth_key','role'], 'string', 'max' => 32],
+            [['username', 'auth_key'], 'string', 'max' => 32],
             [['password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
@@ -89,6 +89,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function getStudents()
     {
+
         return $this->hasMany(Student::className(), ['user_id' => 'id']);
     }
 
@@ -216,4 +217,5 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         }
         return false;
     }
+
 }

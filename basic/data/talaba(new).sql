@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Дек 06 2017 г., 13:16
--- Версия сервера: 10.1.19-MariaDB
--- Версия PHP: 5.6.28
+-- Время создания: Май 15 2018 г., 08:21
+-- Версия сервера: 10.1.28-MariaDB
+-- Версия PHP: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,6 +21,91 @@ SET time_zone = "+00:00";
 --
 -- База данных: `talaba`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `auth_assignment`
+--
+
+CREATE TABLE `auth_assignment` (
+  `item_name` varchar(64) NOT NULL,
+  `user_id` varchar(64) NOT NULL,
+  `created_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `auth_assignment`
+--
+
+INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
+('admin', '2', 1525402405),
+('create-dekanat', '1', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `auth_item`
+--
+
+CREATE TABLE `auth_item` (
+  `name` varchar(64) NOT NULL,
+  `type` int(11) NOT NULL,
+  `description` text,
+  `rule_name` varchar(64) DEFAULT NULL,
+  `data` text,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `auth_item`
+--
+
+INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`) VALUES
+('/dekanat/*', 2, NULL, NULL, NULL, 1525397479, 1525397479),
+('/department/*', 2, NULL, NULL, NULL, 1525402691, 1525402691),
+('/gii/*', 2, NULL, NULL, NULL, 1525412129, 1525412129),
+('admin', 1, 'admin can perform all of them.', NULL, NULL, NULL, NULL),
+('create-dekanat', 1, 'it allows to create dekanat. ', NULL, NULL, NULL, NULL),
+('create-department', 1, 'it allows to crea.te department', NULL, NULL, NULL, NULL),
+('create-subject', 1, 'it allows to create subject.', NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `auth_item_child`
+--
+
+CREATE TABLE `auth_item_child` (
+  `parent` varchar(64) NOT NULL,
+  `child` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `auth_item_child`
+--
+
+INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
+('admin', '/dekanat/*'),
+('admin', '/department/*'),
+('admin', '/gii/*'),
+('admin', 'create-dekanat'),
+('admin', 'create-department'),
+('admin', 'create-subject');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `auth_rule`
+--
+
+CREATE TABLE `auth_rule` (
+  `name` varchar(64) NOT NULL,
+  `data` text,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -117,7 +204,7 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`id`, `name`, `group_head_id`, `direction_id`, `course`, `faculty_id`) VALUES
-(1, '911-17', 1, 1, 1, 1);
+(1, '914-45', 1, 1, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -147,6 +234,58 @@ CREATE TABLE `lesson_type` (
   `subject_id` int(11) NOT NULL,
   `lesson_type` enum('lecture','practice','laboratory','seminar') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `materials`
+--
+
+CREATE TABLE `materials` (
+  `id` int(11) NOT NULL,
+  `subject_id` int(10) NOT NULL,
+  `studies_kind` enum('lecture','laboratory','practice') NOT NULL,
+  `topic` varchar(255) NOT NULL,
+  `planned_hour` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `materials`
+--
+
+INSERT INTO `materials` (`id`, `subject_id`, `studies_kind`, `topic`, `planned_hour`) VALUES
+(1, 1, 'lecture', 'Web ilovalarni yaratish faniga kirish', '2'),
+(2, 1, 'practice', 'HTML oddiy teglarini o\'rganish', '2'),
+(3, 2, 'laboratory', 'oiho', '12'),
+(4, 3, 'laboratory', 'Bir ish qilish', '2'),
+(6, 3, 'lecture', '2-maruza', '2'),
+(7, 3, 'laboratory', 'Bir ish qilish ikki', '2');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `material_files`
+--
+
+CREATE TABLE `material_files` (
+  `id` int(11) NOT NULL,
+  `material_id` int(10) NOT NULL,
+  `file_path` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `material_files`
+--
+
+INSERT INTO `material_files` (`id`, `material_id`, `file_path`) VALUES
+(1, 4, 'uploads/materials/fizika/bir_ish_qilish.jpg'),
+(2, 4, 'uploads/materials/fizika/bir_ish_qilish.png'),
+(3, 4, 'uploads/materials/fizika/bir_ish_qilish.png'),
+(9, 6, 'uploads/materials/fizika/2-maruza_2018-01-03_at_13-03-16.png71.png'),
+(10, 7, 'uploads/materials/fizika/bir_ish_qilish_ikki_2017-12-11_at_13-25-34.png75.png'),
+(11, 7, 'uploads/materials/fizika/bir_ish_qilish_ikki_2017-12-11_at_13-25-41.png41.png'),
+(15, 6, 'uploads/materials/fizika/2-maruza_2017-11-03_at_20-17-12.png56.png'),
+(16, 3, 'uploads/materials/linux/oiho_user.sql56.sql');
 
 -- --------------------------------------------------------
 
@@ -242,7 +381,7 @@ CREATE TABLE `student` (
   `nationality` varchar(16) NOT NULL COMMENT 'Миллати',
   `photo` varchar(255) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
-  `group_id` int(11) NOT NULL
+  `group_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -250,7 +389,8 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`id`, `reyting_no`, `direction_id`, `surname`, `name`, `patronymic`, `birthday`, `birthplace`, `education`, `workplace`, `father_name`, `father_workplace`, `father_phone`, `mother_name`, `mother_workplace`, `mother_phone`, `family_status`, `passport_serie`, `passport_number`, `passport_given`, `parents_address`, `address`, `living_type`, `created`, `updated`, `nationality`, `photo`, `user_id`, `group_id`) VALUES
-(2, '552222', 1, 'Test', 'Test', 'Test', '11.02.1996', 'Urganch', 'o''rta', '', '', '', '', '', '', '', 'uylanmagan', 'AA', '4545454', 'Urganch shahar IIB', '', 'manzi', 'Uy', NULL, NULL, 'o''zbek', 'test_test.png', 0, 1);
+(6, '454', 1, 'dfjdk', 'kjkj', 'kjkj', 'jkjkj', 'kjkj', 'kjkjkj', 'lklk', 'ljlk', 'jkjkj', 'kjkjkj', 'kjkj', 'kjkjkj', 'kjkjk', 'kjkjk', 'kjk', 'jkjkj', 'kjkjkj', 'j', 'kokok', 'Uy', NULL, NULL, 'kjkkj', 'kjkj_dfjdk.jpg', 0, 1),
+(7, '654', 1, 'ojoijoij', 'ouhiu', 'oijoi', 'oijoi', 'oijoi', 'oijoij', 'pok', 'ojoij', 'oijo', 'ij', 'oij', 'oi', 'joi', 'oij', 'oij', 'oijoij', 'oijoi', 'j', 'ijoi', 'Uy', NULL, NULL, 'joij', 'ouhiu_ojoijoij.jpg', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -274,6 +414,15 @@ CREATE TABLE `subject` (
   `independent_hour` int(11) DEFAULT NULL COMMENT 'Мустақил соат'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `subject`
+--
+
+INSERT INTO `subject` (`id`, `direction_id`, `semester_id`, `name`, `lecturer_id`, `practice_id`, `lab1_id`, `lab2_id`, `department_id`, `lecture_hour`, `practice_hour`, `lab_hour`, `independent_hour`) VALUES
+(1, 1, 1, 'Web ilovalarni ishlab chiqish', 3, 1, 1, 1, 1, 68, 34, 34, 60),
+(2, 1, 1, 'linux', 4, 4, 3, 4, 1, 23, 32, 546, 956),
+(3, 1, 1, 'fizika', 3, 3, 3, 3, 1, 20, 20, 20, 20);
+
 -- --------------------------------------------------------
 
 --
@@ -294,7 +443,7 @@ CREATE TABLE `subject_direction` (
 
 CREATE TABLE `teacher` (
   `id` int(11) NOT NULL,
-  `fio` varchar(64) NOT NULL COMMENT 'ФИО',
+  `fio` tinytext NOT NULL COMMENT 'ФИО',
   `user_id` int(11) NOT NULL COMMENT 'Фойдаланувчи',
   `department_id` int(11) NOT NULL COMMENT 'Кафедра',
   `img` varchar(255) DEFAULT NULL COMMENT 'Расм',
@@ -311,15 +460,17 @@ CREATE TABLE `teacher` (
   `science_title` varchar(32) DEFAULT NULL COMMENT 'Илмий унвони',
   `foreign_langs` varchar(32) DEFAULT NULL COMMENT 'Кайси чет тилларини билади',
   `gov_awards` text COMMENT 'Давлат мукофотлари билан тақдирланганми (қанақа)',
-  `deputy` varchar(64) DEFAULT NULL COMMENT 'Халқ депутатлари, республика, вилоят, шаҳар ва туман Кенгаши депутатими ёки бошқа  сайланадиган органларнинг аъзосими (тўлиқ кўрсатилиши лозим)'
+  `deputy` varchar(64) DEFAULT NULL COMMENT 'Халқ депутатлари, республика, вилоят, шаҳар ва туман Кенгаши депутатими ёки бошқа  сайланадиган органларнинг аъзосими (тўлиқ кўрсатилиши лозим)',
+  `started_work` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `teacher`
 --
 
-INSERT INTO `teacher` (`id`, `fio`, `user_id`, `department_id`, `img`, `post`, `type`, `birthday`, `birthplace`, `nationality`, `partiya`, `degree`, `ended`, `specialization`, `science_degree`, `science_title`, `foreign_langs`, `gov_awards`, `deputy`) VALUES
-(1, 'Artikov Muzaffar', 1, 1, '', 'assistent', 'asosiy', '1990', 'Urganch', 'o''zbek', '-', 'oliy', 'TATU Urganch filiali', 'Kompyuter injiniring', '-', '-', 'ingliz, rus', '-', '-');
+INSERT INTO `teacher` (`id`, `fio`, `user_id`, `department_id`, `img`, `post`, `type`, `birthday`, `birthplace`, `nationality`, `partiya`, `degree`, `ended`, `specialization`, `science_degree`, `science_title`, `foreign_langs`, `gov_awards`, `deputy`, `started_work`) VALUES
+(3, 'Arslon Saidov Davron og`li', 1, 1, 'arslon_saidov_davron_og`li.jpg', 'direktror', 'asosiy', '1996.09.19', 'iuewf', 'iug', 'iug', 'iu', 'gi', 'ug', 'iug', 'iu', 'gi', 'ug', 'uig', '12.21'),
+(4, 'ofhgo', 1, 1, 'ofhgo.png', 'huh', 'ichki', 'o', 'ho', 'ih', 'oi', 'ho', 'ih', 'oih', 'o', 'ih', 'oih', 'o', 'ih', '51');
 
 -- --------------------------------------------------------
 
@@ -329,7 +480,7 @@ INSERT INTO `teacher` (`id`, `fio`, `user_id`, `department_id`, `img`, `post`, `
 
 CREATE TABLE `term` (
   `id` int(11) NOT NULL,
-  `name` varchar(32) NOT NULL COMMENT 'Номи',
+  `name` varchar(50) NOT NULL COMMENT 'Номи',
   `semester` enum('autumn','spring') NOT NULL COMMENT 'Семестр'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -338,7 +489,7 @@ CREATE TABLE `term` (
 --
 
 INSERT INTO `term` (`id`, `name`, `semester`) VALUES
-(1, '2017/2018 Kuzgi semestr', 'autumn');
+(1, '2017/18 Kuzgi', 'autumn');
 
 -- --------------------------------------------------------
 
@@ -363,11 +514,39 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'asjdjkasdnasldmaklsdna', '12345', 'asdasdlksadaskl', 'qwerty@ui.op', 10, 0, 0);
+(1, 'admin', 'asjdjkasdnasldmaklsdna', '12345', 'asdasdlksadaskl', 'qwerty@ui.op', 10, 0, 0),
+(2, 'arslon', '2m1a8iVU6LmQLx7TYajOFQqYueEsUxT7', '$2y$13$Oq/TLelf2nU3pjglnEjLI.xRTHvfHDVC/8nC4bLEewoOuGYtovnA2', NULL, 'arslonsaidov300@gmail.com', 10, 1525338226, 1525338226);
 
 --
 -- Индексы сохранённых таблиц
 --
+
+--
+-- Индексы таблицы `auth_assignment`
+--
+ALTER TABLE `auth_assignment`
+  ADD PRIMARY KEY (`item_name`,`user_id`);
+
+--
+-- Индексы таблицы `auth_item`
+--
+ALTER TABLE `auth_item`
+  ADD PRIMARY KEY (`name`),
+  ADD KEY `rule_name` (`rule_name`),
+  ADD KEY `type` (`type`);
+
+--
+-- Индексы таблицы `auth_item_child`
+--
+ALTER TABLE `auth_item_child`
+  ADD PRIMARY KEY (`parent`,`child`),
+  ADD KEY `child` (`child`);
+
+--
+-- Индексы таблицы `auth_rule`
+--
+ALTER TABLE `auth_rule`
+  ADD PRIMARY KEY (`name`);
 
 --
 -- Индексы таблицы `building`
@@ -422,6 +601,20 @@ ALTER TABLE `lesson`
 ALTER TABLE `lesson_type`
   ADD PRIMARY KEY (`id`),
   ADD KEY `subject_id` (`subject_id`);
+
+--
+-- Индексы таблицы `materials`
+--
+ALTER TABLE `materials`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `subject_id` (`subject_id`);
+
+--
+-- Индексы таблицы `material_files`
+--
+ALTER TABLE `material_files`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `material_files_ibfk_1` (`material_id`);
 
 --
 -- Индексы таблицы `menu`
@@ -509,79 +702,125 @@ ALTER TABLE `user`
 --
 ALTER TABLE `building`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT для таблицы `department`
 --
 ALTER TABLE `department`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT для таблицы `direction`
 --
 ALTER TABLE `direction`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT для таблицы `faculty`
 --
 ALTER TABLE `faculty`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT для таблицы `groups`
 --
 ALTER TABLE `groups`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT для таблицы `lesson`
 --
 ALTER TABLE `lesson`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `lesson_type`
 --
 ALTER TABLE `lesson_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `materials`
+--
+ALTER TABLE `materials`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT для таблицы `material_files`
+--
+ALTER TABLE `material_files`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT для таблицы `menu`
 --
 ALTER TABLE `menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `room`
 --
 ALTER TABLE `room`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT для таблицы `settings`
 --
 ALTER TABLE `settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT для таблицы `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT для таблицы `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT для таблицы `term`
 --
 ALTER TABLE `term`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
+
+--
+-- Ограничения внешнего ключа таблицы `auth_assignment`
+--
+ALTER TABLE `auth_assignment`
+  ADD CONSTRAINT `auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `auth_item`
+--
+ALTER TABLE `auth_item`
+  ADD CONSTRAINT `auth_item_ibfk_1` FOREIGN KEY (`rule_name`) REFERENCES `auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `auth_item_child`
+--
+ALTER TABLE `auth_item_child`
+  ADD CONSTRAINT `auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `department`
@@ -617,6 +856,18 @@ ALTER TABLE `lesson`
 --
 ALTER TABLE `lesson_type`
   ADD CONSTRAINT `lesson_type_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`) ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `materials`
+--
+ALTER TABLE `materials`
+  ADD CONSTRAINT `materials_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`) ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `material_files`
+--
+ALTER TABLE `material_files`
+  ADD CONSTRAINT `material_files_ibfk_1` FOREIGN KEY (`material_id`) REFERENCES `materials` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `menu`
@@ -659,6 +910,7 @@ ALTER TABLE `subject_direction`
 ALTER TABLE `teacher`
   ADD CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `teacher_ibfk_2` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
