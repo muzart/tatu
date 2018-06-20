@@ -9,7 +9,6 @@ $config = [
     'language' => 'uz',
     'bootstrap' => ['log'],
     'components' => [
-
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'Oc8AYJk7Lx72IPN8QL6ebaQj3zaZLx5m',
@@ -41,10 +40,6 @@ $config = [
             ],
         ],
         'db' => $db,
-        'authManager' => [
-            'class' => 'yii\rbac\DbManager', // or use  yii\rbac\PhpManager
-            'defaultRoles' => ['guest'],
-        ],
         'urlManager' => [
             'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
@@ -82,29 +77,6 @@ $config = [
         ],
         'admin' => [
             'class' => 'app\modules\admin\Module',
-        ],
-        'rbac' => [
-            'class' => 'mdm\admin\Module',
-            'controllerMap' => [
-                'assignment' => [
-                    'class' => 'mdm\admin\controllers\AssignmentController',
-                    /* 'userClassName' => 'app\models\User', */
-                    'idField' => 'id',
-                    'usernameField' => 'username',
-                ],
-            ],
-            'layout' => 'left-menu',
-            'mainLayout' => '@app/views/layouts/main.php',
-
-        ],
-    ],
-    'as access' => [
-        'class' => 'mdm\admin\components\AccessControl',
-        'allowActions' => [
-            'site/*',
-            'admin/*',
-            'site/*',
-            'rbac/*',
         ],
     ],
     'aliases' => [
