@@ -21,7 +21,6 @@
       <path value="$PROJECT_DIR$/basic/vendor/bower-asset/yii2-pjax" />
       <path value="$PROJECT_DIR$/basic/vendor/bower-asset/jquery" />
       <path value="$PROJECT_DIR$/basic/vendor/bower/jquery" />
-      <path value="$PROJECT_DIR$/basic/vendor/stecman/symfony-console-completion" />
       <path value="$PROJECT_DIR$/basic/vendor/bower-asset/bootstrap" />
       <path value="$PROJECT_DIR$/basic/vendor/swiftmailer/swiftmailer" />
       <path value="$PROJECT_DIR$/basic/vendor/yiisoft/yii2" />
@@ -38,7 +37,6 @@
       <path value="$PROJECT_DIR$/basic/vendor/symfony/console" />
       <path value="$PROJECT_DIR$/basic/vendor/codeception/verify" />
       <path value="$PROJECT_DIR$/basic/vendor/codeception/specify" />
-      <path value="$PROJECT_DIR$/basic/vendor/symfony/debug" />
       <path value="$PROJECT_DIR$/basic/vendor/symfony/css-selector" />
       <path value="$PROJECT_DIR$/basic/vendor/codeception/base" />
       <path value="$PROJECT_DIR$/basic/vendor/symfony/polyfill-mbstring" />
@@ -67,7 +65,6 @@
       <path value="$PROJECT_DIR$/basic/vendor/rmrevin/yii2-fontawesome" />
       <path value="$PROJECT_DIR$/basic/vendor/fortawesome/font-awesome" />
       <path value="$PROJECT_DIR$/basic/vendor/psr/http-message" />
-      <path value="$PROJECT_DIR$/basic/vendor/psr/log" />
       <path value="$PROJECT_DIR$/basic/vendor/guzzlehttp/psr7" />
       <path value="$PROJECT_DIR$/basic/vendor/sebastian/comparator" />
       <path value="$PROJECT_DIR$/basic/vendor/sebastian/global-state" />
@@ -90,15 +87,14 @@
       <path value="$PROJECT_DIR$/basic/vendor/kartik-v/yii2-widget-fileinput" />
       <path value="$PROJECT_DIR$/basic/vendor/kartik-v/bootstrap-fileinput" />
       <path value="$PROJECT_DIR$/basic/vendor/perminder-klair/yii2-dropzone" />
-      <path value="$PROJECT_DIR$/basic/vendor/2amigos/yii2-disqus-widget" />
-      <path value="$PROJECT_DIR$/basic/vendor/mdmsoft/yii2-admin" />
-      <path value="$PROJECT_DIR$/basic/vendor/sintret/yii2-chat-adminlte" />
-      <path value="$PROJECT_DIR$/basic/vendor/kartik-v/yii2-helpers" />
       <path value="$PROJECT_DIR$/basic/vendor/kartik-v/yii2-widgets" />
       <path value="$PROJECT_DIR$/basic/vendor/kartik-v/yii2-widget-select2" />
       <path value="$PROJECT_DIR$/basic/vendor/kartik-v/yii2-widget-datetimepicker" />
       <path value="$PROJECT_DIR$/basic/vendor/kartik-v/yii2-widget-timepicker" />
       <path value="$PROJECT_DIR$/basic/vendor/kartik-v/yii2-widget-datepicker" />
+      <path value="$PROJECT_DIR$/basic/vendor/codeception/phpunit-wrapper" />
+      <path value="$PROJECT_DIR$/basic/vendor/codeception/stub" />
+      <path value="$PROJECT_DIR$/basic/vendor/symfony/polyfill-ctype" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.4.0" />

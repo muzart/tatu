@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Май 15 2018 г., 08:21
+-- Время создания: Июн 20 2018 г., 08:17
 -- Версия сервера: 10.1.28-MariaDB
 -- Версия PHP: 7.1.11
 
@@ -21,6 +21,58 @@ SET time_zone = "+00:00";
 --
 -- База данных: `talaba`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `announcements`
+--
+
+CREATE TABLE `announcements` (
+  `id` int(11) NOT NULL,
+  `start_date` varchar(200) NOT NULL,
+  `tittle` varchar(255) NOT NULL,
+  `body` text NOT NULL,
+  `end_date` varchar(200) NOT NULL,
+  `status` enum('active','inactive') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `announcements`
+--
+
+INSERT INTO `announcements` (`id`, `start_date`, `tittle`, `body`, `end_date`, `status`) VALUES
+(1, '10.02.2018', 'Yangilik', 'doifjdofij', '10.03.2018', 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `announcement_student`
+--
+
+CREATE TABLE `announcement_student` (
+  `id` int(11) NOT NULL,
+  `announcement_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `appeals`
+--
+
+CREATE TABLE `appeals` (
+  `id` int(11) NOT NULL,
+  `term_id` int(11) NOT NULL,
+  `student_fio` varchar(255) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `region` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `phone` varchar(100) NOT NULL,
+  `date` varchar(100) NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -63,9 +115,108 @@ CREATE TABLE `auth_item` (
 --
 
 INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`) VALUES
+('/chat/send-chat/*', 2, NULL, NULL, NULL, 1527075373, 1527075373),
 ('/dekanat/*', 2, NULL, NULL, NULL, 1525397479, 1525397479),
+('/dekanat/default/*', 2, NULL, NULL, NULL, 1527771055, 1527771055),
+('/dekanat/default/index', 2, NULL, NULL, NULL, 1527771055, 1527771055),
+('/dekanat/groups/*', 2, NULL, NULL, NULL, 1527771055, 1527771055),
+('/dekanat/groups/create', 2, NULL, NULL, NULL, 1527771055, 1527771055),
+('/dekanat/groups/delete', 2, NULL, NULL, NULL, 1527771055, 1527771055),
+('/dekanat/groups/index', 2, NULL, NULL, NULL, 1527771055, 1527771055),
+('/dekanat/groups/update', 2, NULL, NULL, NULL, 1527771055, 1527771055),
+('/dekanat/groups/view', 2, NULL, NULL, NULL, 1527771055, 1527771055),
+('/dekanat/student/*', 2, NULL, NULL, NULL, 1527771056, 1527771056),
+('/dekanat/student/create', 2, NULL, NULL, NULL, 1527771056, 1527771056),
+('/dekanat/student/delete', 2, NULL, NULL, NULL, 1527771056, 1527771056),
+('/dekanat/student/index', 2, NULL, NULL, NULL, 1527771055, 1527771055),
+('/dekanat/student/update', 2, NULL, NULL, NULL, 1527771056, 1527771056),
+('/dekanat/student/view', 2, NULL, NULL, NULL, 1527771055, 1527771055),
+('/dekanat/term/*', 2, NULL, NULL, NULL, 1527771056, 1527771056),
+('/dekanat/term/create', 2, NULL, NULL, NULL, 1527771056, 1527771056),
+('/dekanat/term/delete', 2, NULL, NULL, NULL, 1527771056, 1527771056),
+('/dekanat/term/index', 2, NULL, NULL, NULL, 1527771056, 1527771056),
+('/dekanat/term/update', 2, NULL, NULL, NULL, 1527771056, 1527771056),
+('/dekanat/term/view', 2, NULL, NULL, NULL, 1527771056, 1527771056),
 ('/department/*', 2, NULL, NULL, NULL, 1525402691, 1525402691),
+('/department/default/*', 2, NULL, NULL, NULL, 1527771060, 1527771060),
+('/department/default/index', 2, NULL, NULL, NULL, 1527771060, 1527771060),
+('/department/materials/*', 2, NULL, NULL, NULL, 1527771060, 1527771060),
+('/department/materials/create', 2, NULL, NULL, NULL, 1527771060, 1527771060),
+('/department/materials/delete', 2, NULL, NULL, NULL, 1527771060, 1527771060),
+('/department/materials/index', 2, NULL, NULL, NULL, 1527771060, 1527771060),
+('/department/materials/update', 2, NULL, NULL, NULL, 1527771060, 1527771060),
+('/department/materials/view', 2, NULL, NULL, NULL, 1527771060, 1527771060),
+('/department/subject/*', 2, NULL, NULL, NULL, 1527771061, 1527771061),
+('/department/subject/create', 2, NULL, NULL, NULL, 1527771061, 1527771061),
+('/department/subject/delete', 2, NULL, NULL, NULL, 1527771061, 1527771061),
+('/department/subject/index', 2, NULL, NULL, NULL, 1527771060, 1527771060),
+('/department/subject/update', 2, NULL, NULL, NULL, 1527771061, 1527771061),
+('/department/subject/view', 2, NULL, NULL, NULL, 1527771060, 1527771060),
+('/department/teacher/*', 2, NULL, NULL, NULL, 1527771061, 1527771061),
+('/department/teacher/create', 2, NULL, NULL, NULL, 1527771061, 1527771061),
+('/department/teacher/delete', 2, NULL, NULL, NULL, 1527771061, 1527771061),
+('/department/teacher/index', 2, NULL, NULL, NULL, 1527771061, 1527771061),
+('/department/teacher/update', 2, NULL, NULL, NULL, 1527771061, 1527771061),
+('/department/teacher/view', 2, NULL, NULL, NULL, 1527771061, 1527771061),
+('/dormitory/*', 2, NULL, NULL, NULL, 1527771061, 1527771061),
+('/dormitory/default/*', 2, NULL, NULL, NULL, 1527771061, 1527771061),
+('/dormitory/default/index', 2, NULL, NULL, NULL, 1527771061, 1527771061),
 ('/gii/*', 2, NULL, NULL, NULL, 1525412129, 1525412129),
+('/http://basic.uz/chat/send-chat', 2, NULL, NULL, NULL, 1527075695, 1527075695),
+('/student/*', 2, NULL, NULL, NULL, 1527771055, 1527771055),
+('/student/default/*', 2, NULL, NULL, NULL, 1527771055, 1527771055),
+('/student/default/index', 2, NULL, NULL, NULL, 1527771054, 1527771054),
+('/subject/*', 2, NULL, NULL, NULL, 1527771060, 1527771060),
+('/subject/default/*', 2, NULL, NULL, NULL, 1527771059, 1527771059),
+('/subject/default/index', 2, NULL, NULL, NULL, 1527771059, 1527771059),
+('/subject/materials/*', 2, NULL, NULL, NULL, 1527771060, 1527771060),
+('/subject/materials/create', 2, NULL, NULL, NULL, 1527771059, 1527771059),
+('/subject/materials/delete', 2, NULL, NULL, NULL, 1527771059, 1527771059),
+('/subject/materials/index', 2, NULL, NULL, NULL, 1527771059, 1527771059),
+('/subject/materials/update', 2, NULL, NULL, NULL, 1527771059, 1527771059),
+('/subject/materials/view', 2, NULL, NULL, NULL, 1527771059, 1527771059),
+('/subject/subject/*', 2, NULL, NULL, NULL, 1527771060, 1527771060),
+('/subject/subject/create', 2, NULL, NULL, NULL, 1527771060, 1527771060),
+('/subject/subject/delete', 2, NULL, NULL, NULL, 1527771060, 1527771060),
+('/subject/subject/index', 2, NULL, NULL, NULL, 1527771060, 1527771060),
+('/subject/subject/update', 2, NULL, NULL, NULL, 1527771060, 1527771060),
+('/subject/subject/view', 2, NULL, NULL, NULL, 1527771060, 1527771060),
+('/teacher/*', 2, NULL, NULL, NULL, 1527771059, 1527771059),
+('/teacher/default/*', 2, NULL, NULL, NULL, 1527771059, 1527771059),
+('/teacher/default/index', 2, NULL, NULL, NULL, 1527771059, 1527771059),
+('/university/*', 2, NULL, NULL, NULL, 1527771059, 1527771059),
+('/university/building/*', 2, NULL, NULL, NULL, 1527771057, 1527771057),
+('/university/building/create', 2, NULL, NULL, NULL, 1527771056, 1527771056),
+('/university/building/delete', 2, NULL, NULL, NULL, 1527771057, 1527771057),
+('/university/building/index', 2, NULL, NULL, NULL, 1527771056, 1527771056),
+('/university/building/update', 2, NULL, NULL, NULL, 1527771057, 1527771057),
+('/university/building/view', 2, NULL, NULL, NULL, 1527771056, 1527771056),
+('/university/default/*', 2, NULL, NULL, NULL, 1527771057, 1527771057),
+('/university/default/index', 2, NULL, NULL, NULL, 1527771057, 1527771057),
+('/university/department/*', 2, NULL, NULL, NULL, 1527771057, 1527771057),
+('/university/department/create', 2, NULL, NULL, NULL, 1527771057, 1527771057),
+('/university/department/delete', 2, NULL, NULL, NULL, 1527771057, 1527771057),
+('/university/department/index', 2, NULL, NULL, NULL, 1527771057, 1527771057),
+('/university/department/update', 2, NULL, NULL, NULL, 1527771057, 1527771057),
+('/university/department/view', 2, NULL, NULL, NULL, 1527771057, 1527771057),
+('/university/direction/*', 2, NULL, NULL, NULL, 1527771058, 1527771058),
+('/university/direction/create', 2, NULL, NULL, NULL, 1527771057, 1527771057),
+('/university/direction/delete', 2, NULL, NULL, NULL, 1527771058, 1527771058),
+('/university/direction/index', 2, NULL, NULL, NULL, 1527771057, 1527771057),
+('/university/direction/update', 2, NULL, NULL, NULL, 1527771058, 1527771058),
+('/university/direction/view', 2, NULL, NULL, NULL, 1527771057, 1527771057),
+('/university/faculty/*', 2, NULL, NULL, NULL, 1527771058, 1527771058),
+('/university/faculty/create', 2, NULL, NULL, NULL, 1527771058, 1527771058),
+('/university/faculty/delete', 2, NULL, NULL, NULL, 1527771058, 1527771058),
+('/university/faculty/index', 2, NULL, NULL, NULL, 1527771058, 1527771058),
+('/university/faculty/update', 2, NULL, NULL, NULL, 1527771058, 1527771058),
+('/university/faculty/view', 2, NULL, NULL, NULL, 1527771058, 1527771058),
+('/university/room/*', 2, NULL, NULL, NULL, 1527771059, 1527771059),
+('/university/room/create', 2, NULL, NULL, NULL, 1527771058, 1527771058),
+('/university/room/delete', 2, NULL, NULL, NULL, 1527771059, 1527771059),
+('/university/room/index', 2, NULL, NULL, NULL, 1527771058, 1527771058),
+('/university/room/update', 2, NULL, NULL, NULL, 1527771059, 1527771059),
+('/university/room/view', 2, NULL, NULL, NULL, 1527771058, 1527771058),
 ('admin', 1, 'admin can perform all of them.', NULL, NULL, NULL, NULL),
 ('create-dekanat', 1, 'it allows to create dekanat. ', NULL, NULL, NULL, NULL),
 ('create-department', 1, 'it allows to crea.te department', NULL, NULL, NULL, NULL),
@@ -87,9 +238,108 @@ CREATE TABLE `auth_item_child` (
 --
 
 INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
+('admin', '/chat/send-chat/*'),
 ('admin', '/dekanat/*'),
+('admin', '/dekanat/default/*'),
+('admin', '/dekanat/default/index'),
+('admin', '/dekanat/groups/*'),
+('admin', '/dekanat/groups/create'),
+('admin', '/dekanat/groups/delete'),
+('admin', '/dekanat/groups/index'),
+('admin', '/dekanat/groups/update'),
+('admin', '/dekanat/groups/view'),
+('admin', '/dekanat/student/*'),
+('admin', '/dekanat/student/create'),
+('admin', '/dekanat/student/delete'),
+('admin', '/dekanat/student/index'),
+('admin', '/dekanat/student/update'),
+('admin', '/dekanat/student/view'),
+('admin', '/dekanat/term/*'),
+('admin', '/dekanat/term/create'),
+('admin', '/dekanat/term/delete'),
+('admin', '/dekanat/term/index'),
+('admin', '/dekanat/term/update'),
+('admin', '/dekanat/term/view'),
 ('admin', '/department/*'),
+('admin', '/department/default/*'),
+('admin', '/department/default/index'),
+('admin', '/department/materials/*'),
+('admin', '/department/materials/create'),
+('admin', '/department/materials/delete'),
+('admin', '/department/materials/index'),
+('admin', '/department/materials/update'),
+('admin', '/department/materials/view'),
+('admin', '/department/subject/*'),
+('admin', '/department/subject/create'),
+('admin', '/department/subject/delete'),
+('admin', '/department/subject/index'),
+('admin', '/department/subject/update'),
+('admin', '/department/subject/view'),
+('admin', '/department/teacher/*'),
+('admin', '/department/teacher/create'),
+('admin', '/department/teacher/delete'),
+('admin', '/department/teacher/index'),
+('admin', '/department/teacher/update'),
+('admin', '/department/teacher/view'),
+('admin', '/dormitory/*'),
+('admin', '/dormitory/default/*'),
+('admin', '/dormitory/default/index'),
 ('admin', '/gii/*'),
+('admin', '/http://basic.uz/chat/send-chat'),
+('admin', '/student/*'),
+('admin', '/student/default/*'),
+('admin', '/student/default/index'),
+('admin', '/subject/*'),
+('admin', '/subject/default/*'),
+('admin', '/subject/default/index'),
+('admin', '/subject/materials/*'),
+('admin', '/subject/materials/create'),
+('admin', '/subject/materials/delete'),
+('admin', '/subject/materials/index'),
+('admin', '/subject/materials/update'),
+('admin', '/subject/materials/view'),
+('admin', '/subject/subject/*'),
+('admin', '/subject/subject/create'),
+('admin', '/subject/subject/delete'),
+('admin', '/subject/subject/index'),
+('admin', '/subject/subject/update'),
+('admin', '/subject/subject/view'),
+('admin', '/teacher/*'),
+('admin', '/teacher/default/*'),
+('admin', '/teacher/default/index'),
+('admin', '/university/*'),
+('admin', '/university/building/*'),
+('admin', '/university/building/create'),
+('admin', '/university/building/delete'),
+('admin', '/university/building/index'),
+('admin', '/university/building/update'),
+('admin', '/university/building/view'),
+('admin', '/university/default/*'),
+('admin', '/university/default/index'),
+('admin', '/university/department/*'),
+('admin', '/university/department/create'),
+('admin', '/university/department/delete'),
+('admin', '/university/department/index'),
+('admin', '/university/department/update'),
+('admin', '/university/department/view'),
+('admin', '/university/direction/*'),
+('admin', '/university/direction/create'),
+('admin', '/university/direction/delete'),
+('admin', '/university/direction/index'),
+('admin', '/university/direction/update'),
+('admin', '/university/direction/view'),
+('admin', '/university/faculty/*'),
+('admin', '/university/faculty/create'),
+('admin', '/university/faculty/delete'),
+('admin', '/university/faculty/index'),
+('admin', '/university/faculty/update'),
+('admin', '/university/faculty/view'),
+('admin', '/university/room/*'),
+('admin', '/university/room/create'),
+('admin', '/university/room/delete'),
+('admin', '/university/room/index'),
+('admin', '/university/room/update'),
+('admin', '/university/room/view'),
 ('admin', 'create-dekanat'),
 ('admin', 'create-department'),
 ('admin', 'create-subject');
@@ -124,6 +374,40 @@ CREATE TABLE `building` (
 
 INSERT INTO `building` (`id`, `name`) VALUES
 (1, 'Asosiy bino');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `chat`
+--
+
+CREATE TABLE `chat` (
+  `id` int(11) NOT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `message` text,
+  `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `chat`
+--
+
+INSERT INTO `chat` (`id`, `userId`, `message`, `updateDate`) VALUES
+(21, 2, 'dffdf', '2018-05-23 12:24:28'),
+(22, 2, 'dffdf', '2018-05-23 12:24:29'),
+(23, 2, 'dffdf', '2018-05-23 12:24:29'),
+(24, 2, 'sdsdsd', '2018-05-23 12:24:35'),
+(25, 2, 'sdsdsd', '2018-05-23 12:24:35'),
+(26, 2, 'sdsdsd', '2018-05-23 12:24:36'),
+(27, 2, 'koko', '2018-05-23 12:25:29'),
+(28, 2, 'uiuiui', '2018-05-23 12:25:42'),
+(29, 2, 'arslon', '2018-05-23 12:26:17'),
+(30, 2, 'arslon', '2018-05-23 12:26:18'),
+(31, 2, 'fefefe', '2018-05-23 12:28:07'),
+(32, 2, 'odjfodjfdoijfdf', '2018-05-23 12:28:16'),
+(33, 2, 'odjfodjfdoijfdf', '2018-05-23 12:28:17'),
+(34, 2, 'uuue', '2018-05-23 12:28:23'),
+(35, 2, 'ooo', '2018-05-23 12:36:48');
 
 -- --------------------------------------------------------
 
@@ -285,7 +569,8 @@ INSERT INTO `material_files` (`id`, `material_id`, `file_path`) VALUES
 (10, 7, 'uploads/materials/fizika/bir_ish_qilish_ikki_2017-12-11_at_13-25-34.png75.png'),
 (11, 7, 'uploads/materials/fizika/bir_ish_qilish_ikki_2017-12-11_at_13-25-41.png41.png'),
 (15, 6, 'uploads/materials/fizika/2-maruza_2017-11-03_at_20-17-12.png56.png'),
-(16, 3, 'uploads/materials/linux/oiho_user.sql56.sql');
+(16, 3, 'uploads/materials/linux/oiho_user.sql56.sql'),
+(17, 6, 'uploads/materials/fizika/2-maruza_1.png23.png');
 
 -- --------------------------------------------------------
 
@@ -316,6 +601,31 @@ CREATE TABLE `migration` (
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `payments`
+--
+
+CREATE TABLE `payments` (
+  `id` int(11) NOT NULL,
+  `month` varchar(100) NOT NULL,
+  `year` varchar(100) NOT NULL,
+  `payed` varchar(100) NOT NULL,
+  `student_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `room`
 --
 
@@ -331,6 +641,18 @@ CREATE TABLE `room` (
 
 INSERT INTO `room` (`id`, `name`, `building_id`) VALUES
 (1, '325-xona', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `sections`
+--
+
+CREATE TABLE `sections` (
+  `id` int(11) NOT NULL,
+  `number` varchar(100) NOT NULL,
+  `floor` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -390,7 +712,21 @@ CREATE TABLE `student` (
 
 INSERT INTO `student` (`id`, `reyting_no`, `direction_id`, `surname`, `name`, `patronymic`, `birthday`, `birthplace`, `education`, `workplace`, `father_name`, `father_workplace`, `father_phone`, `mother_name`, `mother_workplace`, `mother_phone`, `family_status`, `passport_serie`, `passport_number`, `passport_given`, `parents_address`, `address`, `living_type`, `created`, `updated`, `nationality`, `photo`, `user_id`, `group_id`) VALUES
 (6, '454', 1, 'dfjdk', 'kjkj', 'kjkj', 'jkjkj', 'kjkj', 'kjkjkj', 'lklk', 'ljlk', 'jkjkj', 'kjkjkj', 'kjkj', 'kjkjkj', 'kjkjk', 'kjkjk', 'kjk', 'jkjkj', 'kjkjkj', 'j', 'kokok', 'Uy', NULL, NULL, 'kjkkj', 'kjkj_dfjdk.jpg', 0, 1),
-(7, '654', 1, 'ojoijoij', 'ouhiu', 'oijoi', 'oijoi', 'oijoi', 'oijoij', 'pok', 'ojoij', 'oijo', 'ij', 'oij', 'oi', 'joi', 'oij', 'oij', 'oijoij', 'oijoi', 'j', 'ijoi', 'Uy', NULL, NULL, 'joij', 'ouhiu_ojoijoij.jpg', 0, 1);
+(7, '654', 1, 'ojoijoij', 'ouhiu', 'oijoi', 'oijoi', 'oijoi', 'oijoij', 'pok', 'ojoij', 'oijo', 'ij', 'oij', 'oi', 'joi', 'oij', 'oij', 'oijoij', 'oijoi', 'j', 'ijoi', 'Uy', NULL, NULL, 'joij', 'ouhiu_ojoijoij.jpg', 0, 1),
+(8, '98946465', 1, 'Jabborov', 'Jabbor', 'Jabborovich', '1970', 'Bogot', 'oliy', 'jhjkhkjhkjh', 'fgfghkhkjh', 'kjhkjhk', 'jh', 'kjh', 'kjh', 'k', 'norma', 'aa', '9876543', 'IIB', 'jh', 'odjfoijgdfojg', 'Uy', NULL, NULL, 'ozbek', 'jabbor_jabborov.jpg', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `student_mistakes`
+--
+
+CREATE TABLE `student_mistakes` (
+  `id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `date` varchar(200) NOT NULL,
+  `description` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -494,6 +830,33 @@ INSERT INTO `term` (`id`, `name`, `semester`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `ttj_room`
+--
+
+CREATE TABLE `ttj_room` (
+  `id` int(11) NOT NULL,
+  `section_id` int(100) NOT NULL,
+  `number` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ttj_students`
+--
+
+CREATE TABLE `ttj_students` (
+  `id` int(11) NOT NULL,
+  `term_id` int(11) NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `section_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `inside` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `user`
 --
 
@@ -520,6 +883,28 @@ INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_res
 --
 -- Индексы сохранённых таблиц
 --
+
+--
+-- Индексы таблицы `announcements`
+--
+ALTER TABLE `announcements`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `announcement_student`
+--
+ALTER TABLE `announcement_student`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `announcement_id` (`announcement_id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
+-- Индексы таблицы `appeals`
+--
+ALTER TABLE `appeals`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`),
+  ADD KEY `term_id` (`term_id`);
 
 --
 -- Индексы таблицы `auth_assignment`
@@ -553,6 +938,13 @@ ALTER TABLE `auth_rule`
 --
 ALTER TABLE `building`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `chat`
+--
+ALTER TABLE `chat`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `chat_ibfk_1` (`userId`);
 
 --
 -- Индексы таблицы `department`
@@ -630,11 +1022,25 @@ ALTER TABLE `migration`
   ADD PRIMARY KEY (`version`);
 
 --
+-- Индексы таблицы `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`),
+  ADD KEY `student_id_2` (`student_id`);
+
+--
 -- Индексы таблицы `room`
 --
 ALTER TABLE `room`
   ADD PRIMARY KEY (`id`),
   ADD KEY `building_id` (`building_id`);
+
+--
+-- Индексы таблицы `sections`
+--
+ALTER TABLE `sections`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `settings`
@@ -651,6 +1057,13 @@ ALTER TABLE `student`
   ADD KEY `direction_id` (`direction_id`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `group_id` (`group_id`);
+
+--
+-- Индексы таблицы `student_mistakes`
+--
+ALTER TABLE `student_mistakes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`);
 
 --
 -- Индексы таблицы `subject`
@@ -688,6 +1101,23 @@ ALTER TABLE `term`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `ttj_room`
+--
+ALTER TABLE `ttj_room`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `section_id` (`section_id`);
+
+--
+-- Индексы таблицы `ttj_students`
+--
+ALTER TABLE `ttj_students`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `section_id` (`section_id`),
+  ADD KEY `room_id` (`room_id`),
+  ADD KEY `term_id` (`term_id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
 -- Индексы таблицы `user`
 --
 ALTER TABLE `user`
@@ -698,10 +1128,34 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `announcements`
+--
+ALTER TABLE `announcements`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `announcement_student`
+--
+ALTER TABLE `announcement_student`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `appeals`
+--
+ALTER TABLE `appeals`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT для таблицы `building`
 --
 ALTER TABLE `building`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `chat`
+--
+ALTER TABLE `chat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT для таблицы `department`
@@ -749,7 +1203,7 @@ ALTER TABLE `materials`
 -- AUTO_INCREMENT для таблицы `material_files`
 --
 ALTER TABLE `material_files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT для таблицы `menu`
@@ -758,10 +1212,22 @@ ALTER TABLE `menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT для таблицы `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT для таблицы `room`
 --
 ALTER TABLE `room`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `sections`
+--
+ALTER TABLE `sections`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `settings`
@@ -773,7 +1239,13 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT для таблицы `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT для таблицы `student_mistakes`
+--
+ALTER TABLE `student_mistakes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `subject`
@@ -794,6 +1266,18 @@ ALTER TABLE `term`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT для таблицы `ttj_room`
+--
+ALTER TABLE `ttj_room`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `ttj_students`
+--
+ALTER TABLE `ttj_students`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
@@ -802,6 +1286,20 @@ ALTER TABLE `user`
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
+
+--
+-- Ограничения внешнего ключа таблицы `announcement_student`
+--
+ALTER TABLE `announcement_student`
+  ADD CONSTRAINT `announcement_student_ibfk_1` FOREIGN KEY (`announcement_id`) REFERENCES `announcements` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `announcement_student_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `appeals`
+--
+ALTER TABLE `appeals`
+  ADD CONSTRAINT `appeals_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `appeals_ibfk_2` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `auth_assignment`
@@ -821,6 +1319,12 @@ ALTER TABLE `auth_item`
 ALTER TABLE `auth_item_child`
   ADD CONSTRAINT `auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `chat`
+--
+ALTER TABLE `chat`
+  ADD CONSTRAINT `chat_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `department`
@@ -876,6 +1380,12 @@ ALTER TABLE `menu`
   ADD CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `menu` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
+-- Ограничения внешнего ключа таблицы `payments`
+--
+ALTER TABLE `payments`
+  ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Ограничения внешнего ключа таблицы `room`
 --
 ALTER TABLE `room`
@@ -887,6 +1397,12 @@ ALTER TABLE `room`
 ALTER TABLE `student`
   ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`direction_id`) REFERENCES `direction` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `student_ibfk_3` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `student_mistakes`
+--
+ALTER TABLE `student_mistakes`
+  ADD CONSTRAINT `student_mistakes_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `subject`
@@ -910,6 +1426,21 @@ ALTER TABLE `subject_direction`
 ALTER TABLE `teacher`
   ADD CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `teacher_ibfk_2` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `ttj_room`
+--
+ALTER TABLE `ttj_room`
+  ADD CONSTRAINT `ttj_room_ibfk_1` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `ttj_students`
+--
+ALTER TABLE `ttj_students`
+  ADD CONSTRAINT `ttj_students_ibfk_1` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ttj_students_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `ttj_room` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ttj_students_ibfk_3` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ttj_students_ibfk_4` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

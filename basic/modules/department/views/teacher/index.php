@@ -24,12 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             [
                 'attribute' => 'img',
                 'value' => function($model){
                         /* @var $model \app\models\Teacher */
-                        return Html::img($model->getImageUrl(),['alt'=>$model->fio]);
+                        return Html::img($model->getImageUrl(),['alt'=>$model->fio,'class'=>'img-circle','width'=>'70', 'height'=>'70']);
                     },
                 'format' => 'raw'
             ],

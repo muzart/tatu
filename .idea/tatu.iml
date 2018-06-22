@@ -3,7 +3,6 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/2amigos/yii2-ckeditor-widget" />
-      <excludeFolder url="file://$MODULE_DIR$/basic/vendor/2amigos/yii2-disqus-widget" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/2amigos/yii2-editable-widget" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/almasaeed2010/adminlte" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/behat/gherkin" />
@@ -24,7 +23,9 @@
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/cebe/markdown" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/cebe/yii2-gravatar" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/codeception/base" />
+      <excludeFolder url="file://$MODULE_DIR$/basic/vendor/codeception/phpunit-wrapper" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/codeception/specify" />
+      <excludeFolder url="file://$MODULE_DIR$/basic/vendor/codeception/stub" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/codeception/verify" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/components/jquery" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/composer" />
@@ -39,7 +40,6 @@
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/kartik-v/yii2-krajee-base" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/kartik-v/yii2-widget-fileinput" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/kriswallsmith/assetic" />
-      <excludeFolder url="file://$MODULE_DIR$/basic/vendor/mdmsoft/yii2-admin" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/myclabs/deep-copy" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/perminder-klair/yii2-dropzone" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/phar-io/manifest" />
@@ -57,7 +57,6 @@
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/phpunit/phpunit" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/phpunit/phpunit-mock-objects" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/psr/http-message" />
-      <excludeFolder url="file://$MODULE_DIR$/basic/vendor/psr/log" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/rmrevin/yii2-fontawesome" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/robloach/component-installer" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/sebastian/code-unit-reverse-lookup" />
@@ -71,15 +70,14 @@
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/sebastian/recursion-context" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/sebastian/resource-operations" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/sebastian/version" />
-      <excludeFolder url="file://$MODULE_DIR$/basic/vendor/stecman/symfony-console-completion" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/swiftmailer/swiftmailer" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/symfony/browser-kit" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/symfony/console" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/symfony/css-selector" />
-      <excludeFolder url="file://$MODULE_DIR$/basic/vendor/symfony/debug" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/symfony/dom-crawler" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/symfony/event-dispatcher" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/symfony/finder" />
+      <excludeFolder url="file://$MODULE_DIR$/basic/vendor/symfony/polyfill-ctype" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/symfony/polyfill-mbstring" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/symfony/process" />
       <excludeFolder url="file://$MODULE_DIR$/basic/vendor/symfony/yaml" />

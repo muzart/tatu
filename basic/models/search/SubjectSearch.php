@@ -18,7 +18,7 @@ class SubjectSearch extends Subject
     public function rules()
     {
         return [
-            [['id', 'direction_id', 'semester_id', 'lecturer_id', 'practice_id', 'lab1_id', 'lab2_id', 'department_id', 'lecture_hour', 'practice_hour', 'lab_hour', 'independent_hour'], 'integer'],
+            [['id', 'direction_id', 'semester_id', 'lecturer_id', 'practice_id', 'lab1_id', 'lab2_id', 'department_id', 'lecture_hour', 'practice_hour', 'lab_hour','seminar', 'independent_hour','s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8'], 'integer'],
             [['name'], 'safe'],
         ];
     }
@@ -70,7 +70,16 @@ class SubjectSearch extends Subject
             'lecture_hour' => $this->lecture_hour,
             'practice_hour' => $this->practice_hour,
             'lab_hour' => $this->lab_hour,
+            'seminar' => $this->seminar,
             'independent_hour' => $this->independent_hour,
+            's1' => $this->s1,
+            's2' => $this->s2,
+            's3' => $this->s3,
+            's4' => $this->s4,
+            's5' => $this->s5,
+            's6' => $this->s6,
+            's7' => $this->s7,
+            's8' => $this->s8,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);
