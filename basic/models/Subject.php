@@ -19,7 +19,16 @@ use Yii;
  * @property integer $lecture_hour
  * @property integer $practice_hour
  * @property integer $lab_hour
+ * @property integer $seminar
  * @property integer $independent_hour
+ * @property integer $s1
+ * @property integer $s2
+ * @property integer $s3
+ * @property integer $s4
+ * @property integer $s5
+ * @property integer $s6
+ * @property integer $s7
+ * @property integer $s8
  *
  * @property Lesson[] $lessons
  * @property Direction $direction
@@ -48,7 +57,8 @@ class Subject extends \yii\db\ActiveRecord
     {
         return [
             [['direction_id', 'semester_id', 'name', 'lecturer_id', 'practice_id', 'lab1_id', 'lab2_id', 'department_id'], 'required'],
-            [['direction_id', 'semester_id', 'lecturer_id', 'practice_id', 'lab1_id', 'lab2_id', 'department_id', 'lecture_hour', 'practice_hour', 'lab_hour', 'independent_hour'], 'integer'],
+            [['direction_id', 'semester_id', 'lecturer_id', 'practice_id', 'lab1_id', 'lab2_id', 'department_id', 'lecture_hour', 'seminar', 'practice_hour', 'lab_hour', 'independent_hour', 's1',
+                's2','s3','s4','s5','s6','s7', 's8',], 'integer'],
             [['name'], 'string', 'max' => 64],
             [['direction_id'], 'exist', 'skipOnError' => true, 'targetClass' => Direction::className(), 'targetAttribute' => ['direction_id' => 'id']],
             [['semester_id'], 'exist', 'skipOnError' => true, 'targetClass' => Term::className(), 'targetAttribute' => ['semester_id' => 'id']],
@@ -78,7 +88,16 @@ class Subject extends \yii\db\ActiveRecord
             'lecture_hour' => Yii::t('app', 'Маъруза соат'),
             'practice_hour' => Yii::t('app', 'Амалиёт соат'),
             'lab_hour' => Yii::t('app', 'Тажриба соат'),
+            'seminar' => Yii::t('app', 'Семинар соат'),
             'independent_hour' => Yii::t('app', 'Мустақил соат'),
+            's1' => Yii::t('app', '1-Семестр'),
+            's2' => Yii::t('app', '2-Семестр'),
+            's3' => Yii::t('app', '3-Семестр'),
+            's4' => Yii::t('app', '4-Семестр'),
+            's5' => Yii::t('app', '5-Семестр'),
+            's6' => Yii::t('app', '6-Семестр'),
+            's7' => Yii::t('app', '7-Семестр'),
+            's8' => Yii::t('app', '8-Семестр'),
         ];
     }
 

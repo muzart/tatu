@@ -39,6 +39,8 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'lab_hour') ?>
 
+    <?php // echo $form->field($model, 'seminar') ?>
+
     <?php // echo $form->field($model, 'independent_hour') ?>
 
     <div class="form-group">
