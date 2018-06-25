@@ -113,6 +113,22 @@ class TeacherController extends Controller
      * @return Teacher the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
+    public function actionYuklama()
+    {
+        $model = Teacher::find()->all();
+        return $this->render('Yuklama', ['model' => $model]
+
+        );
+    }
+
+    public function actionYuklama2()
+    {
+        $model = Teacher::find()->all();
+        return $this->render('Yuklama2', ['model' => $model]
+
+        );
+    }
+
     protected function findModel($id)
     {
         if (($model = Teacher::findOne($id)) !== null) {

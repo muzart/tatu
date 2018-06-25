@@ -18,7 +18,7 @@ class SubjectSearch extends Subject
     public function rules()
     {
         return [
-            [['id', 'direction_id', 'semester_id', 'lecturer_id', 'practice_id', 'lab1_id', 'lab2_id', 'department_id', 'lecture_hour', 'practice_hour', 'lab_hour','seminar', 'independent_hour','s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8'], 'integer'],
+            [['id', 'direction_id', 'semester_id', 'lecturer_id', 'practice_id', 'lab1_id', 'lab2_id', 'department_id', 'lecture_hour', 'practice_hour', 'lab_hour','seminar','seminar_id', 'independent_hour','s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8'], 'integer'],
             [['name'], 'safe'],
         ];
     }
@@ -71,6 +71,8 @@ class SubjectSearch extends Subject
             'practice_hour' => $this->practice_hour,
             'lab_hour' => $this->lab_hour,
             'seminar' => $this->seminar,
+            'seminar_id' => $this->seminar_id,
+
             'independent_hour' => $this->independent_hour,
             's1' => $this->s1,
             's2' => $this->s2,

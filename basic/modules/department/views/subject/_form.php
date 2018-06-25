@@ -69,36 +69,39 @@ use yii\widgets\ActiveForm;
     <div class="col-md-6">
         <?= $form->field($model, 'independent_hour')->textInput() ?>
     </div>
+    <div class="col-md-6">
+        <?= $form->field($model, 'seminar_id')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Teacher::find()->all(),'id','fio'),['prompt'=>'- O`qituvchini tanlang -']) ?>
+    </div>
 </div>
 
 <div class="row">
-<div class="w3-center">
-    <div class="col-md-3">
-        <?= $form->field($model, 's1')->textInput(['type'=>'number']) ?>
+    <div class="w3-center">
+        <div class="col-md-3">
+            <?= $form->field($model, 's1')->textInput(['type' => 'number']) ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->field($model, 's2')->textInput(['type' => 'number']) ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->field($model, 's3')->textInput(['type' => 'number']) ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->field($model, 's4')->textInput(['type' => 'number']) ?>
+        </div>
+        <div class="row"></div>
+        <div class="col-md-3">
+            <?= $form->field($model, 's5')->textInput(['type' => 'number']) ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->field($model, 's6')->textInput(['type' => 'number']) ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->field($model, 's7')->textInput(['type' => 'number']) ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->field($model, 's8')->textInput(['type' => 'number']) ?>
+        </div>
     </div>
-    <div class="col-md-3">
-        <?= $form->field($model, 's2')->textInput(['type'=>'number']) ?>
-    </div>
-    <div class="col-md-3">
-        <?= $form->field($model, 's3')->textInput(['type'=>'number']) ?>
-    </div>
-    <div class="col-md-3">
-        <?= $form->field($model, 's4')->textInput(['type'=>'number']) ?>
-    </div>
-    <div class="row"></div>
-    <div class="col-md-3">
-        <?= $form->field($model, 's5')->textInput(['type'=>'number']) ?>
-    </div>
-    <div class="col-md-3">
-        <?= $form->field($model, 's6')->textInput(['type'=>'number']) ?>
-    </div>
-    <div class="col-md-3">
-        <?= $form->field($model, 's7')->textInput(['type'=>'number']) ?>
-    </div>
-    <div class="col-md-3">
-        <?= $form->field($model, 's8')->textInput(['type'=>'number']) ?>
-    </div>
-</div>
 </div>
 
 <div class="form-group">

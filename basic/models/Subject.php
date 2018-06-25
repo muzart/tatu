@@ -20,6 +20,7 @@ use Yii;
  * @property integer $practice_hour
  * @property integer $lab_hour
  * @property integer $seminar
+ * @property integer $seminar_id
  * @property integer $independent_hour
  * @property integer $s1
  * @property integer $s2
@@ -57,7 +58,7 @@ class Subject extends \yii\db\ActiveRecord
     {
         return [
             [['direction_id', 'semester_id', 'name', 'lecturer_id', 'practice_id', 'lab1_id', 'lab2_id', 'department_id'], 'required'],
-            [['direction_id', 'semester_id', 'lecturer_id', 'practice_id', 'lab1_id', 'lab2_id', 'department_id', 'lecture_hour', 'seminar', 'practice_hour', 'lab_hour', 'independent_hour', 's1',
+            [['direction_id', 'semester_id', 'lecturer_id', 'practice_id', 'lab1_id', 'lab2_id', 'department_id', 'lecture_hour', 'seminar','seminar_id', 'practice_hour', 'lab_hour', 'independent_hour', 's1',
                 's2','s3','s4','s5','s6','s7', 's8',], 'integer'],
             [['name'], 'string', 'max' => 64],
             [['direction_id'], 'exist', 'skipOnError' => true, 'targetClass' => Direction::className(), 'targetAttribute' => ['direction_id' => 'id']],
@@ -67,6 +68,7 @@ class Subject extends \yii\db\ActiveRecord
             [['lab1_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teacher::className(), 'targetAttribute' => ['lab1_id' => 'id']],
             [['lab2_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teacher::className(), 'targetAttribute' => ['lab2_id' => 'id']],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'id']],
+            [['seminar_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teacher::className(), 'targetAttribute' => ['seminar_id' => 'id']],
         ];
     }
 
@@ -89,6 +91,7 @@ class Subject extends \yii\db\ActiveRecord
             'practice_hour' => Yii::t('app', 'Амалиёт соат'),
             'lab_hour' => Yii::t('app', 'Тажриба соат'),
             'seminar' => Yii::t('app', 'Семинар соат'),
+            'seminar_id' =>Yii::t('app','Семинарчи'),
             'independent_hour' => Yii::t('app', 'Мустақил соат'),
             's1' => Yii::t('app', '1-Семестр'),
             's2' => Yii::t('app', '2-Семестр'),
@@ -171,5 +174,9 @@ class Subject extends \yii\db\ActiveRecord
     public function getSubjectDirections()
     {
         return $this->hasMany(SubjectDirection::className(), ['subject_id' => 'id']);
+    }
+    public function getSeminar0()
+    {
+        return $this->hasOne(Teacher::className(), ['id' => 'seminar_id']);
     }
 }

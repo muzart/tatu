@@ -24,9 +24,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+           // 'id',
+
             'reyting_no',
-            'direction_id',
+            //'direction_id',
+            [
+                'attribute' => 'direction_id',
+                'value' => function ($model) {
+                    return $model->direction->name;
+                },
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Direction::find()->asArray()->all(), 'id', 'name'),
+            ],
             'surname',
             'name',
             // 'patronymic',

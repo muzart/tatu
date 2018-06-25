@@ -23,7 +23,10 @@ $baseUrl = Yii::$app->request->baseUrl;
                 'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
             ],
-        ]) ?>
+        ])
+        ?>
+        <button class="btn btn-default no-print" onclick="printDiv('printableArea')"<i class="fa fa-print" aria-hidden="true" style="font-size: 17px;"></i>Print</button>
+    <?= Html::a(Yii::t('app', 'Ko`rish'), ['yuklama', 'id' => $model->id], ['class' => 'btn btn-primary no-print']) ?>
     </p>
     <div class="containter">
         <table class="table table-bordered">
@@ -83,3 +86,10 @@ $baseUrl = Yii::$app->request->baseUrl;
     <h3 style="text-align: center"><b>Mexnat faoliyati</b></h3>
 
 </div>
+<script>
+    function printDiv(divName) {
+
+        window.print();
+
+    }
+</script>

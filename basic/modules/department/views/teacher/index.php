@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('app', 'Create Teacher'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
