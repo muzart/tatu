@@ -54,31 +54,36 @@ class SubjectController extends Controller
      */
     public function getIndex()
     {
-       header('location: ../materials');
+        header('location: ../materials');
     }
 
     public function actionView($id)
     {
-        $lectures = Materials::find()->where(['subject_id' => $id, 'studies_kind'=>'lecture'])->all();
-        $laboratorys=Materials::find()->where(['subject_id'=>$id,   'studies_kind'=>'laboratory'])->all();
-        $practices=Materials::find()->where(['subject_id'=>$id,   'studies_kind'=>'practice'])->all();
+        $lectures = Materials::find()->where(['subject_id' => $id, 'studies_kind' => 'lecture'])->all();
+        $laboratorys = Materials::find()->where(['subject_id' => $id, 'studies_kind' => 'laboratory'])->all();
+        $practices = Materials::find()->where(['subject_id' => $id, 'studies_kind' => 'practice'])->all();
         $material = new Materials;
         $material->subject_id = $id;
 
-        if($material->load(Yii::$app->request->post()) && $material->save())
+        if ($material->load(Yii::$app->request->post()) && $material->save())
             return $this->refresh() and $this->getIndex();
         return $this->render('view', [
-            'model' => $this->findModel($id),
-            'material' => $material,
-            'lectures' => $lectures,
-            'laboratorys'=>$laboratorys,
-            'practices' => $practices,
+                'model' => $this->findModel($id),
+                'material' => $material,
+                'lectures' => $lectures,
+                'laboratorys' => $laboratorys,
+                'practices' => $practices,
 
-        ]
+            ]
 
         );
     }
 
+    public function actionEducation_plan()
+    {
+        $model = Subject::find()->all();
+        return $this->render('Education_plan', ['model' => $model]);
+    }
 
 
     /**

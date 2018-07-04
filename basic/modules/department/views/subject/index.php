@@ -16,11 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="subject-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<!--   = Html::encode($this->title) -->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a(Yii::t('app', 'Create Subject'), ['create'], ['class' => 'w3-btn w3-green']) ?>
+        <?= Html::a(Yii::t('app', 'O\'quv rejasi'), ['education_plan'], ['class' => 'w3-btn w3-blue']) ?>
     </p>
     <?php Pjax::begin(); ?>
 
@@ -28,13 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-          //  'id',
+            //  'id',
             [
                 'attribute' => 'direction_id',
                 'value' => function ($model) {
                     return $model->direction->name;
                 },
-               'filter' => \yii\helpers\ArrayHelper::map(\app\models\Direction::find()->asArray()->all(), 'id', 'name'),
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Direction::find()->asArray()->all(), 'id', 'name'),
             ],
             [
                 'attribute' => 'semester_id',
@@ -53,30 +54,30 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                    'buttons'=>[
-                        'view' => function ($url, $model) {
-                            return Html::a('<span class="w3-btn w3-green">Ko\'rish</span>', $url, [
-                                'title' => Yii::t('yii', 'Create'),
-                            ]);
-                        },
-                        'update' => function ($url, $model) {
-                            return Html::a('<span class="w3-btn w3-teal">Yangilash</span>', $url, [
-                                'title' => Yii::t('yii', 'Update'),
-                            ]);
-                        },
-                        'delete' => function ($url, $model) {
-                            return Html::a('<span class="w3-btn w3-red"><i class="glyphicon glyphicon-trash"></i></span>', $url, [
-                                'title' => Yii::t('yii', 'Delete'),
-                                'data' => [
-                                    'confirm' => 'Are you sure you want to delete this item?',
-                                    'method' => 'post',
-                                ],
-                            ]);
-                        },
-                    ],
-                    'options' => [
-                        'style' => 'width: 250px',
-                    ]
+                'buttons' => [
+                    'view' => function ($url, $model) {
+                        return Html::a('<span class="w3-btn w3-green">Ko\'rish</span>', $url, [
+                            'title' => Yii::t('yii', 'Create'),
+                        ]);
+                    },
+                    'update' => function ($url, $model) {
+                        return Html::a('<span class="w3-btn w3-teal">Yangilash</span>', $url, [
+                            'title' => Yii::t('yii', 'Update'),
+                        ]);
+                    },
+                    'delete' => function ($url, $model) {
+                        return Html::a('<span class="w3-btn w3-red"><i class="glyphicon glyphicon-trash"></i></span>', $url, [
+                            'title' => Yii::t('yii', 'Delete'),
+                            'data' => [
+                                'confirm' => 'Are you sure you want to delete this item?',
+                                'method' => 'post',
+                            ],
+                        ]);
+                    },
+                ],
+                'options' => [
+                    'style' => 'width: 250px',
+                ]
             ],
 
         ],
