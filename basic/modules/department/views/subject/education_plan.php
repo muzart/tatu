@@ -82,30 +82,10 @@ if (count($model)):?>
         <td>18</td>
         <td>19</td>
     </tr>
+
+<?php (double)$i=1; foreach ($model as $item):$i++;?>
     <tr>
-        <td>1.00</td>
-        <td>Gumanitar va ijtimoiy-iqtisodiy fanlar</td>
-        <td><?=$summa?></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-<?php (double)$i=0; foreach ($model as $item):$i++;?>
-    <tr>
-        <td>1.0<?=$i;?></td>
+        <td><?=$i;?></td>
         <td><?=$item->name?></td>
         <td><?=$summa=$item->lecture_hour+$item->practice_hour+$item->practice_hour+$item->lab_hour+$item->seminar+$item->independent_hour?></td>
         <td></td>
