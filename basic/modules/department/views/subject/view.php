@@ -86,7 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <td>s5</td>
         <td>s6</td>
         <td>s7</td>
-        <td>s7</td>
+        <td>s8</td>
     </tr>
     <tr>
         <td><?=$model->s1?></td>

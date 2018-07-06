@@ -65,6 +65,10 @@ class Groups extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Teacher::className(), ['id' => 'group_head_id']);
     }
+    public function getTeacher()
+    {
+        return $this->hasOne(Teacher::className(), ['id' => 'group_head_id']);
+    }
 
     /**
      * @return \yii\db\ActiveQuery

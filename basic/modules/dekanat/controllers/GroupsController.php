@@ -2,6 +2,7 @@
 
 namespace app\modules\dekanat\controllers;
 
+use app\models\Student;
 use Yii;
 use app\models\Groups;
 use app\models\search\GroupsSearch;
@@ -37,13 +38,13 @@ class GroupsController extends Controller
     public function actionIndex()
     {
 
-            $searchModel = new GroupsSearch();
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $searchModel = new GroupsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-            return $this->render('index', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-            ]);
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
 
 
     }
@@ -55,13 +56,19 @@ class GroupsController extends Controller
      */
     public function actionView($id)
     {
+        $student = Student::find()->where(['group_id' => $id])->all();
 
-            return $this->render('view', [
-                'model' => $this->findModel($id),
-            ]);
+
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+            'student'=>$student
+
+
+        ]);
 
 
     }
+
 
     /**
      * Creates a new Groups model.
@@ -71,15 +78,15 @@ class GroupsController extends Controller
     public function actionCreate()
     {
 
-            $model = new Groups();
+        $model = new Groups();
 
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            } else {
-                return $this->render('create', [
-                    'model' => $model,
-                ]);
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
 
 
     }

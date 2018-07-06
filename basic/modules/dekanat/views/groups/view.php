@@ -30,11 +30,36 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name',
-            'group_head_id',
-            'direction_id',
+            'groupHead.fio',
+            'direction.name',
             'course',
-            'faculty_id',
+            'faculty.name',
         ],
     ]) ?>
 
 </div>
+
+<?php
+
+$summa = 0;
+if (count($student)):?>
+    <table class="w3-table-all ">
+        <tr>
+            <td style="width: 3%">#</td>
+            <td style="text-align: center">FIO</td>
+            <td></td>
+        </tr>
+        <?php
+        $a = 0;
+        foreach ($student as $item): $a++ ?>
+            <tr>
+                <td style="width: 3%"><?= $a ?></td>
+                <td><?= $item->name ?></td>
+                <td style="width: 15%;text-align: center    "><?= Html::a(Yii::t('app', 'Ko`rish'), ['student/view', 'id' => $item->id], ['class' => 'w3-btn w3-green']) ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+<?php endif; ?>
+
+
+
