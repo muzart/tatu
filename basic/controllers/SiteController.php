@@ -6,6 +6,7 @@ use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
@@ -21,10 +22,10 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['index','logout'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['index','logout'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -78,7 +79,7 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->redirect('/'.Yii::$app->user->identity->getRole());
         }
         return $this->render('login', [
             'model' => $model,

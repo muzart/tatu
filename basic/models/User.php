@@ -217,4 +217,15 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         }
         return false;
     }
+
+    public static function getRoles(){
+        return [
+            self::ROLE_ADMIN,
+            self::ROLE_DEKANAT,
+            self::ROLE_DEPARTMENT,
+            self::ROLE_STUDENT,
+            self::ROLE_TEACHER,
+            self::ROLE_UNIVERSITY,
+        ];
+    }
 }

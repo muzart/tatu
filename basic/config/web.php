@@ -7,6 +7,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'language' => 'uz',
+    'name' => 'TUIT Urgench',
     'bootstrap' => ['log'],
     'components' => [
         'request' => [
