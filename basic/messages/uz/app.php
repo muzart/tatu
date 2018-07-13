@@ -16,4 +16,15 @@ return [
     'Departments' => 'Kafedralar',
     'Directions' => 'Yo\'nalishlar',
     'Rooms' => 'Xonalar',
+
+    'Create Term'=>'Term yaratish',
+    'Create Student'=>'Talaba yaratish',
+    'Create Groups'=>'Guruh yaratish',
+    'Students'=>'Talabalar',
+    'Groups'=>'Guruhlar',
+    'Teachers'=>'O\'qituvchilar',
+    'Material'=>'Materiallar',
+    'Create Teacher'=>'O\'qituvchi yaratish',
+    'Update Teacher : '=>'O\'qituvchi tahrirlash:',
+
 ];

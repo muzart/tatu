@@ -57,11 +57,9 @@ class GroupsController extends Controller
     public function actionView($id)
     {
         $student = Student::find()->where(['group_id' => $id])->all();
-
-
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'student'=>$student
+            'student' => $student
 
 
         ]);

@@ -34,6 +34,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     const ROLE_DEKANAT = 'dekanat';
     const ROLE_TEACHER = 'teacher';
     const ROLE_STUDENT = 'student';
+    const ROLE_DORMITORY = 'dormitory';
+
     /**
      * @inheritdoc
      */
@@ -56,6 +58,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
         ];
     }
+
     /**
      * @inheritdoc
      */
@@ -153,6 +156,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->getPrimaryKey();
     }
 
+
+
     /**
      * @return int|string current user ID
      */
@@ -218,7 +223,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return false;
     }
 
-    public static function getRoles(){
+    public static function getRoles()
+    {
         return [
             self::ROLE_ADMIN,
             self::ROLE_DEKANAT,
@@ -226,6 +232,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             self::ROLE_STUDENT,
             self::ROLE_TEACHER,
             self::ROLE_UNIVERSITY,
+            self::ROLE_DORMITORY,
         ];
     }
 }

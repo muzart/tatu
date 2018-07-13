@@ -86,7 +86,7 @@ class Teacher extends \yii\db\ActiveRecord
             'foreign_langs' => Yii::t('app', 'Кайси чет тилларини билади'),
             'gov_awards' => Yii::t('app', 'Давлат мукофотлари билан тақдирланганми (қанақа)'),
             'deputy' => Yii::t('app', 'Халқ депутатлари, республика, вилоят, шаҳар ва туман Кенгаши депутатими ёки бошқа  сайланадиган органларнинг аъзосими (тўлиқ кўрсатилиши лозим)'),
-            'started_work' => Yii::t('app', 'Started Work'),
+            'started_work' => Yii::t('app', 'Ish boshlagan vaqti'),
         ];
     }
 

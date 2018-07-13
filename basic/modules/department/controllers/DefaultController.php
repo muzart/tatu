@@ -18,4 +18,3 @@ class DefaultController extends Controller
         return $this->render('index');
     }
 }
-//if (!Yii::$app->user->can('create-dekanat')) {}else throw new ForbiddenHttpException;

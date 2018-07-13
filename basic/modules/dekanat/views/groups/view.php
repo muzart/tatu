@@ -54,7 +54,9 @@ if (count($student)):?>
         foreach ($student as $item): $a++ ?>
             <tr>
                 <td style="width: 3%"><?= $a ?></td>
-                <td><?= $item->name ?></td>
+                <td style="text-align: center">
+                    <?= $item->name ?>
+                </td>
                 <td style="width: 15%;text-align: center    "><?= Html::a(Yii::t('app', 'Ko`rish'), ['student/view', 'id' => $item->id], ['class' => 'w3-btn w3-green']) ?></td>
             </tr>
         <?php endforeach; ?>

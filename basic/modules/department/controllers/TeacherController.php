@@ -121,13 +121,7 @@ class TeacherController extends Controller
         );
     }
 
-    public function actionYuklama2()
-    {
-        $model = Teacher::find()->all();
-        return $this->render('Yuklama2', ['model' => $model]
 
-        );
-    }
 
     protected function findModel($id)
     {

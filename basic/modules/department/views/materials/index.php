@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\MaterialsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Materials';
+$this->title = Yii::t('app', 'Material');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="materials-index">
