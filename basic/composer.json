@@ -31,7 +31,9 @@
     "perminder-klair/yii2-dropzone": "dev-master",
     "kartik-v/yii2-widget-datetimepicker": "*",
     "kartik-v/yii2-widget-select2": "@dev",
-    "kartik-v/yii2-widget-datepicker":"@dev"
+    "kartik-v/yii2-widget-datepicker":"@dev",
+    "2amigos/yii2-tinymce-widget": "*"
+    
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",

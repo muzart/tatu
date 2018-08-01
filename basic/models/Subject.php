@@ -179,4 +179,5 @@ class Subject extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Teacher::className(), ['id' => 'seminar_id']);
     }
+
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "79f51710a470f0793ee27be0bb1773e9",
+    "content-hash": "49e7276d9e29df7d10875daf7e9b4a82",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -108,6 +108,66 @@
                 "yii"
             ],
             "time": "2014-12-22T08:30:43+00:00"
+        },
+        {
+            "name": "2amigos/yii2-tinymce-widget",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/2amigos/yii2-tinymce-widget.git",
+                "reference": "4f519e37774ef231e4b4d6046854d5638548c8e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/2amigos/yii2-tinymce-widget/zipball/4f519e37774ef231e4b4d6046854d5638548c8e0",
+                "reference": "4f519e37774ef231e4b4d6046854d5638548c8e0",
+                "shasum": ""
+            },
+            "require": {
+                "tinymce/tinymce": ">=4",
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "asset-installer-paths": {
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "dosamigos\\tinymce\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "2amigOS! Consulting Group",
+                    "email": "hola@2amigos.us",
+                    "homepage": "http://2amigos.us",
+                    "role": "Developer"
+                }
+            ],
+            "description": "TinyMCE widget for Yii2.",
+            "homepage": "http://yiiwheels.com/extension/tinymce-widget",
+            "keywords": [
+                "2amigos",
+                "extension",
+                "tinymce",
+                "widget",
+                "yii",
+                "yii 2",
+                "yii2"
+            ],
+            "time": "2017-06-09T14:12:14+00:00"
         },
         {
             "name": "almasaeed2010/adminlte",
@@ -1495,6 +1555,52 @@
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
             "time": "2018-05-16T08:49:21+00:00"
+        },
+        {
+            "name": "tinymce/tinymce",
+            "version": "4.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tinymce/tinymce-dist.git",
+                "reference": "66308359bd3ff09996ed0e4121ca777c7f4ab508"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/66308359bd3ff09996ed0e4121ca777c7f4ab508",
+                "reference": "66308359bd3ff09996ed0e4121ca777c7f4ab508",
+                "shasum": ""
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "scripts": [
+                        "tinymce.js",
+                        "plugins/*/plugin.js",
+                        "themes/*/theme.js"
+                    ],
+                    "files": [
+                        "tinymce.min.js",
+                        "plugins/*/plugin.min.js",
+                        "themes/*/theme.min.js",
+                        "skins/**"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1-only"
+            ],
+            "description": "Web based JavaScript HTML WYSIWYG editor control.",
+            "homepage": "http://www.tinymce.com",
+            "keywords": [
+                "editor",
+                "html",
+                "javascript",
+                "richtext",
+                "tinymce",
+                "wysiwyg"
+            ],
+            "time": "2018-07-26T06:38:42+00:00"
         },
         {
             "name": "yiisoft/yii2",

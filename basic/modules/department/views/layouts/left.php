@@ -23,6 +23,7 @@
                     ['label' => 'Menu', 'options' => ['class' => 'header']],
                     ['label' => 'O\'qituvchilar', 'url' => ['teacher/index']],
                     ['label' => 'Fanlar', 'url' => ['subject/index']],
+                    ['label' => 'Protocollar', 'url' => ['protocol/index']],
 
                 ],
             ]
