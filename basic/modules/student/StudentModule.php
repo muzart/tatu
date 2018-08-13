@@ -16,19 +16,22 @@ class StudentModule extends \yii\base\Module
     public $controllerNamespace = 'app\modules\student\controllers';
 
     public $layout ='main';
-        /**
-         * @inheritdoc
-         */
+    public static $access_roles = [User::ROLE_STUDENT,User::ROLE_ADMIN];
+    /**
+     * @inheritdoc
+     */
     public function init()
     {
         parent::init();
 
         // custom initialization code goes here
     }
+
     public function beforeAction($action)
     {
-        if(\Yii::$app->user->isGuest){
-            if(\Yii::$app->user->identity->getRole() !== User::ROLE_STUDENT)
+        if(!\Yii::$app->user->isGuest){
+            $role = \Yii::$app->user->identity->getRole();
+            if(!in_array($role ,static::$access_roles))
                 throw new ForbiddenHttpException("Siz bu sahifaga kirish huquqiga ega emassiz");
         }
         else{

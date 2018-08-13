@@ -15,6 +15,7 @@ class SubjectModule extends \yii\base\Module
 
     public $controllerNamespace = 'app\modules\subject\controllers';
 
+    public static $access_roles = [User::ROLE_ADMIN];
     /**
      * @inheritdoc
      */
@@ -24,10 +25,12 @@ class SubjectModule extends \yii\base\Module
 
         // custom initialization code goes here
     }
+
     public function beforeAction($action)
     {
         if(!\Yii::$app->user->isGuest){
-            if(\Yii::$app->user->identity->getRole() !== User::ROLE_SUBJECT)
+            $role = \Yii::$app->user->identity->getRole();
+            if(!in_array($role ,static::$access_roles))
                 throw new ForbiddenHttpException("Siz bu sahifaga kirish huquqiga ega emassiz");
         }
         else{

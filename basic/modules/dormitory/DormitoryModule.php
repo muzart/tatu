@@ -14,6 +14,7 @@ class DormitoryModule extends \yii\base\Module
      */
     public $controllerNamespace = 'app\modules\dormitory\controllers';
     public $layout = 'main';
+    public static $access_roles = [User::ROLE_DORMITORY,User::ROLE_ADMIN];
     /**
      * @inheritdoc
      */
@@ -23,10 +24,12 @@ class DormitoryModule extends \yii\base\Module
 
         // custom initialization code goes here
     }
+
     public function beforeAction($action)
     {
         if(!\Yii::$app->user->isGuest){
-            if(\Yii::$app->user->identity->getRole() !== User::ROLE_DORMITORY)
+            $role = \Yii::$app->user->identity->getRole();
+            if(!in_array($role ,static::$access_roles))
                 throw new ForbiddenHttpException("Siz bu sahifaga kirish huquqiga ega emassiz");
         }
         else{
