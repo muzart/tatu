@@ -9,20 +9,22 @@ use yii\widgets\DetailView;
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Groups'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="groups-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'w3-btn w3-teal']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
+            'class' => 'w3-btn w3-red',
             'data' => [
                 'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
             ],
         ]) ?>
+        <?= Html::a(Yii::t('app', 'Talaba yaratish'), ['student/create'], ['class' => 'w3-btn w3-green']) ?>
     </p>
 
     <?= DetailView::widget([
@@ -38,12 +40,12 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
-
+<BR>
 <?php
 
 $summa = 0;
 if (count($student)):?>
-    <table class="w3-table-all ">
+    <table class="table table-striped table-bordered detail-view ">
         <tr>
             <td style="width: 3%">#</td>
             <td style="text-align: center">FIO</td>

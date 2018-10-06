@@ -62,6 +62,7 @@ class GroupsController extends Controller
             'student' => $student
 
 
+
         ]);
 
 
@@ -83,6 +84,7 @@ class GroupsController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+
             ]);
         }
 

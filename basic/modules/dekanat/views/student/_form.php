@@ -127,7 +127,7 @@ use yii\widgets\ActiveForm;
 
             <?= $form->field($user, 'password_hash')->passwordInput() ?>
 
-            <?= $form->field($user, 'status')->dropDownList([0=>'Nofaol',1=>'Faol']) ?>
+            <?= $form->field($user, 'status')->dropDownList([0=>'Nofaol', 10=>'Faol']) ?>
         </div>
     </div>
 

@@ -77,6 +77,10 @@ class StudentController extends Controller
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 $user->load(Yii::$app->request->post());
+                $user->created_at = time();
+                $user->setPassword($user->password_hash);
+                $user->updated_at = time();
+                $user->role = User::ROLE_STUDENT;
                 $user->save();
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {

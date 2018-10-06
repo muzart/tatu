@@ -14,7 +14,7 @@ class DekanatModule extends \yii\base\Module
      */
     public $controllerNamespace = 'app\modules\dekanat\controllers';
     public $layout = 'main';
-    public static $access_roles = [User::ROLE_DEPARTMENT,User::ROLE_ADMIN];
+    public static $access_roles = [User::ROLE_DEKANAT,User::ROLE_ADMIN];
     /**
      * @inheritdoc
      */
