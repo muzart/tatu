@@ -32,7 +32,10 @@
     "kartik-v/yii2-widget-datetimepicker": "*",
     "kartik-v/yii2-widget-select2": "@dev",
     "kartik-v/yii2-widget-datepicker":"@dev",
-    "2amigos/yii2-tinymce-widget": "*"
+    "2amigos/yii2-tinymce-widget": "*",
+    "kartik-v/yii2-editable": "*",
+    "kartik-v/yii2-grid": "*"
+
     
   },
   "require-dev": {

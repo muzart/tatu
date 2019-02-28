@@ -8,6 +8,7 @@ return [
     'Create Faculty' => 'Fakultet yaratish',
     'Create Department' => 'Kafedra yaratish',
     'Create Subject'=>'Fan yaratish',
+    'Create Contract'=>'Yangi talabani yaratish',
 
     'Update' => 'Tahrirlash',
     'Delete' => 'O\'chirish',
@@ -26,5 +27,16 @@ return [
     'Material'=>'Materiallar',
     'Create Teacher'=>'O\'qituvchi yaratish',
     'Update Teacher : '=>'O\'qituvchi tahrirlash:',
+
+    'fio' => 'Talabaning ismi va familiyasi ',
+    'faculty_id' => 'Mutaxasisligi',
+    'group_id' => 'Guruhi',
+    'contract' => 'Shartnoma',
+    'full_paid' => '100% to\'langan',
+    'half_paid' => '50% to\'langan',
+    'total_rest' => 'Jami qoldiq',
+    'total_plan' => 'Jami amalda',
+    'faculty'=>'Fakultet nomi'
+
 
 ];

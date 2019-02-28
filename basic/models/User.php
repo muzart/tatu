@@ -29,6 +29,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     const STATUS_ACTIVE = 10;
 
     const ROLE_ADMIN = 'admin';
+    const ROLE_CONTRACT = 'contract';
     const ROLE_UNIVERSITY = 'university';
     const ROLE_DEPARTMENT = 'department';
     const ROLE_DEKANAT = 'dekanat';
@@ -158,7 +159,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
 
-
     /**
      * @return int|string current user ID
      */
@@ -234,6 +234,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             self::ROLE_TEACHER,
             self::ROLE_UNIVERSITY,
             self::ROLE_DORMITORY,
+            self::ROLE_CONTRACT,
         ];
     }
 }

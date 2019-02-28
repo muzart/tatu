@@ -45,7 +45,7 @@ class Faculty extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Номи'),
+            'name' => Yii::t('app', 'faculty'),
             'building_id' => Yii::t('app', 'Бино'),
         ];
     }

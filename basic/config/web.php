@@ -79,6 +79,12 @@ $config = [
         'admin' => [
             'class' => 'app\modules\admin\Module',
         ],
+        'marketing' => [
+            'class' => 'app\modules\marketing\Module',
+        ],
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+        ]
     ],
     'aliases' => [
         '@university' => '@app/modules/university',

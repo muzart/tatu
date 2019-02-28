@@ -33,8 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ]) ?>
         </p>
-
-
         <div class="w3-container">
             <table class="w3-table-all w3-hoverable">
                 <h1><?= $model->name; ?></h1>
@@ -49,7 +47,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     <td><?= $model->direction->name ?></td>
                     <th>2-Laboratoriyachi</th>
                     <td><?= $model->lab2->fio ?></td>
-
                 </tr>
                 <tr>
                     <th>Nomi</th>
@@ -105,7 +102,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <br>
 <?= Html::button('Material yaratish', ['value' => Url::to('materials/create'), 'class' => 'w3-btn w3-green', 'id' => 'modalButton']) ?>
     <br><br>
-
     <div class="">
         <ul class="nav nav-pills">
             <li class="active"><a data-toggle="tab" href="#menu1">Maruza</a></li>
