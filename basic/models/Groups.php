@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\helpers\ScheduleHelper;
 use Yii;
 
 /**
@@ -27,6 +28,17 @@ class Groups extends \yii\db\ActiveRecord
     {
         return 'groups';
     }
+
+        public static function getGroupNames()
+        {
+            $names = [];
+            $list = static::find()->all();
+            foreach ($list as $name){
+                $names[] = $name['name'];
+            }
+            return $names;
+        }
+
 
     /**
      * @inheritdoc
@@ -84,5 +96,9 @@ class Groups extends \yii\db\ActiveRecord
     public function getFaculty()
     {
         return $this->hasOne(Faculty::className(), ['id' => 'faculty_id']);
+    }
+
+    public function getSchedule(){
+        return ScheduleHelper::getScheduleByGroup($this->id);
     }
 }

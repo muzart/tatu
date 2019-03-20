@@ -57,9 +57,9 @@ class StudentController extends Controller
     public function actionView($id)
     {
 
-            return $this->render('view', [
-                'model' => $this->findModel($id),
-            ]);
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
 
 
     }
@@ -72,24 +72,26 @@ class StudentController extends Controller
     public function actionCreate()
     {
 
-            $model = new Student();
-            $user = new \app\models\User();
+        $model = new Student();
+        $user = new \app\models\User();
 
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                $user->load(Yii::$app->request->post());
-                $user->created_at = time();
-                $user->setPassword($user->password_hash);
-                $user->updated_at = time();
-                $user->role = User::ROLE_STUDENT;
-                $user->save();
-                return $this->redirect(['view', 'id' => $model->id]);
-            } else {
-                return $this->render('create', [
-                    'model' => $model,
-                    'user' => $user,
-                ]);
+        if ($model->load(Yii::$app->request->post())) {
+            $user->load(Yii::$app->request->post());
+            $user->created_at = time();
+            $user->setPassword($user->password_hash);
+            $user->updated_at = time();
+            $user->role = User::ROLE_STUDENT;
+            if($user->save()){
+                $model->user_id = $user->id;
+                $model->save();
             }
-
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+                'user' => $user,
+            ]);
+        }
 
 
     }
@@ -104,10 +106,13 @@ class StudentController extends Controller
     {
         $model = $this->findModel($id);
         $user = ($model->user) ? $model->user : new User();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
             $user->load(Yii::$app->request->post());
-            $user->save();
-            return $this->redirect(['view', 'id' => $model->id]);
+            if($user->save()){
+                $model->user_id = $user->id;
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         } else {
             return $this->render('update', [
                 'model' => $model,

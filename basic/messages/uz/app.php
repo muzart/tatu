@@ -36,7 +36,9 @@ return [
     'half_paid' => '50% to\'langan',
     'total_rest' => 'Jami qoldiq',
     'total_plan' => 'Jami amalda',
-    'faculty'=>'Fakultet nomi'
+    'faculty'=>'Fakultet nomi',
+    'Contract Payments'=>'Shartnoma to\'lovi',
+    'Create Contract Payments'=>'Yangi to\'lovni amalga oshirish'
 
 
 ];

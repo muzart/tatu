@@ -2,6 +2,7 @@
 
 namespace app\modules\department\controllers;
 
+use app\models\User;
 use Yii;
 use app\models\Teacher;
 use app\models\search\TeacherSearch;
@@ -64,12 +65,23 @@ class TeacherController extends Controller
     public function actionCreate()
     {
         $model = new Teacher();
+        $user = new User();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $user->load(Yii::$app->request->post());
+            $user->created_at = time();
+            $user->setPassword($user->password_hash);
+            $user->updated_at = time();
+            $user->role = User::ROLE_TEACHER;
+            if ($user->save()) {
+                $model->user_id = $user->id;
+                $model->save();
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'user'=>$user
             ]);
         }
     }
@@ -83,14 +95,19 @@ class TeacherController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        $user = $user = ($model->user) ? $model->user : new User();
+        if ($model->load(Yii::$app->request->post())) {
+            $user->load(Yii::$app->request->post());
+            if ($user->save()) {
+                $model->user_id = $user->id;
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
+        return $this->render('update', [
+            'model' => $model,
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -120,7 +137,6 @@ class TeacherController extends Controller
 
         );
     }
-
 
 
     protected function findModel($id)

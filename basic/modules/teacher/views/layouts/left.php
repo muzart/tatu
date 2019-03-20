@@ -21,7 +21,7 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
-                    ['label' => 'O`qituvchi qoshish', 'url' => ['#']],
+                    ['label' => 'Dars jadvali', 'url' => ['default/schedule']],
 
                 ],
             ]

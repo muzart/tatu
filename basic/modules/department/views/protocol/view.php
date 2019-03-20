@@ -36,10 +36,10 @@ $this->params['breadcrumbs'][] = $this->title;
 </center>
 
 
-<?=$model->participants;
-echo $model->schedule;
-echo $model->statement;
-echo $model->decision;
+<?= $model->participants; ?>
+<?= $model->schedule;?>
+<?= $model->statement;?>
+<?= $model->decision;?>
 
 
 ?>

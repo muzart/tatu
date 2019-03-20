@@ -123,6 +123,14 @@ class GroupsController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionSchedule($id){
+        $model = $this->findModel($id);
+        $schedule = $model->getSchedule();
+        return $this->render('schedule',[
+            'schedule' => $schedule
+        ]);
+    }
+
     /**
      * Finds the Groups model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

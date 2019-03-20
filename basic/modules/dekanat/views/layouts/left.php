@@ -24,7 +24,7 @@
                     ['label' => 'Semestrlar', 'url' => ['term/index']],
                     ['label' => 'Guruhlar', 'url' => ['groups/index']],
                     ['label' => 'Talabalar', 'url' => ['student/index']],
-
+                    ['label' => 'Dars jadvali', 'url' => ['schedule-item/index']],
                 ],
             ]
         ) ?>

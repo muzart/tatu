@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use app\modules\contract\models\ContractAmounts;
+use app\modules\contract\models\ContractPayments;
 use Yii;
 use yii\web\UploadedFile;
 
@@ -172,5 +174,6 @@ class Student extends \yii\db\ActiveRecord
         }
         return parent::beforeSave($insert);
     }
+
 
 }

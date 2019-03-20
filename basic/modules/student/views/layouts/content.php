@@ -2,7 +2,7 @@
 
 use yii\widgets\Breadcrumbs;
 use dmstr\widgets\Alert;
-
+use app\modules\student\StudentModule;
 ?>
 <div class="content-wrapper">
     <section class="content-header">
@@ -33,6 +33,7 @@ use dmstr\widgets\Alert;
     <section class="content">
         <?= Alert::widget() ?>
         <?= $content ?>
+
     </section>
 </div>
 

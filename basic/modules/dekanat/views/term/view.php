@@ -10,20 +10,21 @@ $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Terms'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="term-view">
+<p>
+    <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'w3-btn w3-green no-print']) ?>
+    <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+        'class' => 'w3-btn w3-red',
+        'data' => [
+            'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+            'method' => 'post',
+        ],
+    ]) ?>
+</p>
+<div class="term-view w3-animate-zoom">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'w3-btn w3-green no-print']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'w3-btn w3-red',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+
 
     <?= DetailView::widget([
         'model' => $model,

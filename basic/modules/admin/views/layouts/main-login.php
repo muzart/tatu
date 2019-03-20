@@ -21,7 +21,8 @@ dmstr\web\AdminLteAsset::register($this);
 
 <?php $this->beginBody() ?>
 
-    <?= $content ?>
+    <?=$content ?>
+
 
 <?php $this->endBody() ?>
 </body>

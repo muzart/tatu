@@ -56,7 +56,7 @@ class Teacher extends \yii\db\ActiveRecord
             [['fio', 'birthplace', 'ended', 'deputy'], 'string', 'max' => 64],
             [['nationality'], 'string', 'max' => 20],
             [['started_work'], 'string', 'max' => 25],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+          // [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'id']],
         ];
     }
@@ -148,8 +148,13 @@ class Teacher extends \yii\db\ActiveRecord
 
     public function beforeSave($insert)
     {
+        $user = new \app\models\User();
+        if ($user->load(Yii::$app->request->post())) {
+            $user->save();
+        }
         return parent::beforeSave($insert);
-
     }
+
+
 
 }

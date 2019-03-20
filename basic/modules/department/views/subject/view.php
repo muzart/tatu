@@ -162,7 +162,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <th>Materiallar</th>
                         <th>Amallar</th>
                     </tr>
-                    <?php $j = 0;
+                     <?php $j = 0;
                     foreach ($practices as $practice):?>
                         <tr>
                             <td><?= ++$j ?></td>

@@ -21,67 +21,49 @@ use yii\widgets\ActiveForm;
     <div class="tab-content">
         <div id="main" class="tab-pane fade in active">
             <br>
+
             <div class="row">
-                <div class="col-md-3">
-                    <?= $form->field($model, 'group_id')->dropDownList(
-                        \yii\helpers\ArrayHelper::map(\app\models\Groups::find()->all(), 'id', 'name')) ?>
-                </div>
-                <div class="col-md-3">
-                    <?= $form->field($model, 'reyting_no')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-md-3">
-                    <?= $form->field($model, 'direction_id')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Direction::find()->all(), 'id', 'name'), ['prompt' => ' - Yo\'nalishni tanlang - ']); ?>
-                </div>
-                <div class="col-md-3">
-                    <?= (!$model->isNewRecord) ? Html::img('/uploads/groups/' . $model->group->name . '/' . $model->photo, ['style' => 'max-width:200px;']) : ''; ?>
-                    <?= $form->field($model, 'photo')->widget(\kartik\file\FileInput::classname(), [
-                        'options' => ['accept' => 'image/*'],
-                        'language' => 'ru',
+                <div class="container">
+                    <div class="col-md-12">
+
+                        <div class="col-md-3">
+                            <?= $form->field($model, 'group_id')->dropDownList(
+                                \yii\helpers\ArrayHelper::map(\app\models\Groups::find()->all(), 'id', 'name')) ?>
+                            <?= $form->field($model, 'surname')->textInput(['maxlength' => true]) ?>
+                            <?= $form->field($model, 'birthday')->textInput(['maxlength' => true]) ?>
+                            <?= $form->field($model, 'passport_serie')->textInput(['maxlength' => true]) ?>
+                            <?= $form->field($model, 'nationality')->textInput(['maxlength' => true]) ?>
+
+                        </div>
+                        <div class="col-md-3">
+                            <?= $form->field($model, 'reyting_no')->textInput(['maxlength' => true]) ?>
+                            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+                            <?= $form->field($model, 'birthplace')->textInput(['maxlength' => true]) ?>
+                            <?= $form->field($model, 'passport_number')->textInput(['maxlength' => true]) ?>
+                            <?= $form->field($model, 'family_status')->textInput(['maxlength' => true]) ?>
+
+                        </div>
+                        <div class="col-md-3">
+                            <?= $form->field($model, 'direction_id')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Direction::find()->all(), 'id', 'name'), ['prompt' => ' - Yo\'nalishni tanlang - ']); ?>
+                            <?= $form->field($model, 'patronymic')->textInput(['maxlength' => true]) ?>
+                            <?= $form->field($model, 'education')->textInput(['maxlength' => true]) ?>
+                            <?= $form->field($model, 'passport_given')->textInput(['maxlength' => true]) ?>
+
+                        </div>
+                        <div class="col-md-3" style="margin-left: -22px; ">
+                            <?= (!$model->isNewRecord) ? Html::img('/uploads/groups/' . $model->group->name . '/' . $model->photo, ['style' => 'max-width:100px;']) : ''; ?>
+                            <?= $form->field($model, 'photo')->widget(\kartik\file\FileInput::classname(), [
+                                'options' => ['accept' => 'image/*'],
+                                'language' => 'ru',
 //                        'pluginOptions' => ['previewFileType' => 'any', 'uploadUrl' => \yii\helpers\Url::to(['/site/file-upload']),]
-                    ]); ?>
+                            ]); ?>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <?= $form->field($model, 'surname')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-md-4">
-                    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-md-4">
-                    <?= $form->field($model, 'patronymic')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <?= $form->field($model, 'birthday')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-md-4">
-                    <?= $form->field($model, 'birthplace')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-md-4">
-                    <?= $form->field($model, 'education')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <?= $form->field($model, 'passport_serie')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-md-4">
-                    <?= $form->field($model, 'passport_number')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-md-4">
-                    <?= $form->field($model, 'passport_given')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <?= $form->field($model, 'nationality')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-md-4">
-                    <?= $form->field($model, 'family_status')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
+
+
         </div>
         <div id="parents" class="tab-pane fade">
             <br/>
@@ -117,17 +99,17 @@ use yii\widgets\ActiveForm;
 
             <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
-            <?/*= $form->field($model, 'tel')->textInput(['maxlength' => true]) */?>
+            <? /*= $form->field($model, 'tel')->textInput(['maxlength' => true]) */ ?>
         </div>
         <div id="user" class="tab-pane fade">
             <br/>
             <?= $form->field($user, 'email')->textInput(['maxlength' => true]) ?>
 
-            <?= $form->field($user, 'username')->textInput(['maxlength' => true])?>
+            <?= $form->field($user, 'username')->textInput(['maxlength' => true]) ?>
 
             <?= $form->field($user, 'password_hash')->passwordInput() ?>
 
-            <?= $form->field($user, 'status')->dropDownList([0=>'Nofaol', 10=>'Faol']) ?>
+            <?= $form->field($user, 'status')->dropDownList([0 => 'Nofaol', 10 => 'Faol']) ?>
         </div>
     </div>
 

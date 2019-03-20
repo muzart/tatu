@@ -10,7 +10,7 @@ $this->title = Yii::t('app', 'Create Term');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Terms'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="term-create">
+<div class="term-create w3-animate-zoom w3-card-24 w3-silver">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

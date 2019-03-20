@@ -21,7 +21,8 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
                     ['label' => 'Menu', 'options' => ['class' => 'header']],
-                    //['label' => 'O\'qituvchilar', 'url' => ['teacher/index']],
+                    ['label' => 'Shartnoma qaydlari', 'url' => ['default/contract']],
+                    ['label' => 'Dars jadvali', 'url' => ['default/schedule']],
 
 
                 ],

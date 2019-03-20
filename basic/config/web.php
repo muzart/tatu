@@ -77,10 +77,10 @@ $config = [
             'class' => 'app\modules\dormitory\DormitoryModule',
         ],
         'admin' => [
-            'class' => 'app\modules\admin\Module',
+            'class' => 'app\modules\admin\AdminModule',
         ],
-        'marketing' => [
-            'class' => 'app\modules\marketing\Module',
+        'contract' => [
+            'class' => 'app\modules\contract\ContractModule',
         ],
         'gridview' =>  [
             'class' => '\kartik\grid\Module'
