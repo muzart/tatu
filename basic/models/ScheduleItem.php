@@ -16,6 +16,7 @@ use Yii;
  * @property string $day Hafta kuni
  * @property string $pair Juftlik/Toqlik
  * @property int $term_id Semestr
+ * @property string $week_type
  *
  * @property Groups $group
  * @property Room $room
@@ -33,25 +34,15 @@ class ScheduleItem extends \yii\db\ActiveRecord
         return 'schedule_item';
     }
 
-//    public static function getGroupid()
-//    {
-//        $groupid = [];
-//        $list = static::find()->all();
-//        foreach ($list as $id) {
-//            $groupid[] = $id['group_id'];
-//        }
-//        return $groupid;
-//    }
-
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['subject_id', 'subject_type', 'teacher_id', 'room_id', 'group_id', 'day', 'pair', 'term_id'], 'required'],
+            [['subject_id', 'subject_type', 'teacher_id', 'room_id', 'group_id', 'day', 'pair', 'term_id', 'week_type'], 'required'],
             [['subject_id', 'teacher_id', 'room_id', 'group_id', 'term_id'], 'integer'],
-            [['subject_type', 'day', 'pair'], 'string'],
+            [['subject_type', 'day', 'pair', 'week_type'], 'string'],
             [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Groups::className(), 'targetAttribute' => ['group_id' => 'id']],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['room_id' => 'id']],
             [['teacher_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teacher::className(), 'targetAttribute' => ['teacher_id' => 'id']],
@@ -67,7 +58,7 @@ class ScheduleItem extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'subject_id' => Yii::t('app', 'Fan'),
+            'subject_id' => Yii::t('app', 'Subject ID'),
             'subject_type' => Yii::t('app', 'Dars turi'),
             'teacher_id' => Yii::t('app', 'O\'qituvchi'),
             'room_id' => Yii::t('app', 'Xona'),
@@ -75,6 +66,7 @@ class ScheduleItem extends \yii\db\ActiveRecord
             'day' => Yii::t('app', 'Hafta kuni'),
             'pair' => Yii::t('app', 'Juftlik'),
             'term_id' => Yii::t('app', 'Semestr'),
+            'week_type' => Yii::t('app', 'Week Type'),
         ];
     }
 
@@ -117,4 +109,5 @@ class ScheduleItem extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Subject::className(), ['id' => 'subject_id']);
     }
+
 }
