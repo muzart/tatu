@@ -124,12 +124,13 @@ class GroupsController extends Controller
     }
 
     public function actionSchedule($id){
-        $model = $this->findModel($id);
-        $schedule = $model->getSchedule();
-        return $this->render('schedule',[
-            'schedule' => $schedule
-        ]);
+            $model = $this->findModel($id);
+            $schedule = $model->getSchedule();
+            return $this->render('schedule',[
+                'schedule' => $schedule
+            ]);
     }
+
 
     /**
      * Finds the Groups model based on its primary key value.
