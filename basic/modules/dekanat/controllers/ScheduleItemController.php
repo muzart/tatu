@@ -124,4 +124,18 @@ class ScheduleItemController extends Controller
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
+
+    public static function findLessonType($type)
+    {
+        if ($type == 'lecture') {
+            return 'Ma\'ruza';
+        } elseif ($type == 'practice') {
+            return 'Amaliyot';
+        } elseif ($type == 'labaratory') {
+            return 'Tajriba';
+        } elseif ($type=='seminar'){
+            return 'Seminar';
+        } elseif ($type == 'discussion'){return 'Munozara';}
+    }
+
 }
