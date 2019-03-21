@@ -39,13 +39,13 @@ class TermController extends Controller
     {
 
 
-            $searchModel = new TermSearch();
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $searchModel = new TermSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-            return $this->render('index', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-            ]);
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
 
 
     }
@@ -58,9 +58,9 @@ class TermController extends Controller
     public function actionView($id)
     {
 
-            return $this->render('view', [
-                'model' => $this->findModel($id),
-            ]);
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
 
 
     }
@@ -73,15 +73,15 @@ class TermController extends Controller
     public function actionCreate()
     {
 
-            $model = new Term();
+        $model = new Term();
 
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            } else {
-                return $this->render('create', [
-                    'model' => $model,
-                ]);
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
 
 
     }
@@ -132,5 +132,12 @@ class TermController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public static function findSeason($season)
+    {
+        if ($season == 'autumn') {
+            return 'Kuzgi';
+        } else return 'Bahorgi';
     }
 }
