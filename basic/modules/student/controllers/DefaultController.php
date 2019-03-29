@@ -8,26 +8,31 @@ use app\modules\admin\models\Announcements;
 use app\modules\contract\models\ContractAmounts;
 use app\modules\contract\models\ContractPayments;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 
 /**
  * Default controller for the `student` module
  */
-class   DefaultController extends Controller
+class DefaultController extends Controller
 {
     /**
      * Renders the index view for the module
      * @return string
+     * @throws ForbiddenHttpException
      */
     public function actionIndex()
     {
         $user_id = \Yii::$app->user->id;
-        $student_id = Student::find()->where(["user_id" => $user_id])->one()->id;
-        $model = ContractPayments::find()->where(["student_id" => $student_id])->one();
-        return $this->render('index', [
-            'model' => $model,
-        ]);
 
+        $student = Student::findOne(["user_id"=>$user_id]);
+        if ($student !== null) {
+            $model = ContractPayments::find()->where(["student_id" => $student->id])->one();
+            return $this->render('index', [
+                'model' => $model,
+            ]);
+        }
+        throw new ForbiddenHttpException("Siz studen emassiz, shuning uchun bu sahifaga kira olmaysiz");
     }
 
     public function actionContract()

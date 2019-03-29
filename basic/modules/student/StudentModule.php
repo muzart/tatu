@@ -21,7 +21,7 @@ class StudentModule extends \yii\base\Module
     public $controllerNamespace = 'app\modules\student\controllers';
 
     public $layout = 'main';
-    public static $access_roles = [User::ROLE_STUDENT, User::ROLE_ADMIN];
+    public static $access_roles = [User::ROLE_STUDENT];
 
     /**
      * @inheritdoc
