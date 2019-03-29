@@ -8,6 +8,7 @@
 
 namespace app\helpers;
 
+use app\models\CurrentTerm;
 use app\models\ScheduleItem;
 
 class ScheduleHelper
@@ -19,10 +20,11 @@ class ScheduleHelper
      * @return array
      */
     public static function getScheduleByGroup($group_id){
+        $current_term=CurrentTerm::findOne(['id'=>1]);
         $days = ["1-kun","2-kun","3-kun","4-kun","5-kun","6-kun"];
         $result = [];
         foreach ($days as $day){
-            $result[$day] = \app\models\ScheduleItem::find()->where(['group_id'=>$group_id,'day'=>$day])->orderBy('pair')->all(); // todo term ham qo'shilishi kerak
+            $result[$day] = \app\models\ScheduleItem::find()->where(['group_id'=>$group_id,'day'=>$day,'term_id'=>$current_term])->orderBy('pair')->all(); // todo term ham qo'shilishi kerak
         }
         return $result;
     }
