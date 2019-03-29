@@ -2,6 +2,7 @@
 
 namespace app\modules\teacher\controllers;
 
+use app\models\CurrentTerm;
 use app\models\ScheduleItem;
 use app\models\Teacher;
 use yii\web\Controller;
@@ -23,13 +24,14 @@ class DefaultController extends Controller
     public function actionSchedule()
     {
         $user_id = \Yii::$app->user->id;
+        $current_term=CurrentTerm::findOne(['id'=>1]);
         $teacher_id = Teacher::find()->where(['user_id' => $user_id])->one()->id;
-        $first_day = ScheduleItem::find()->where(['teacher_id' => $teacher_id, 'day' => '1-kun'])->orderBy(['pair'=> 4])->all();
-        $second_day = ScheduleItem::find()->where(['teacher_id' => $teacher_id, 'day' => '2-kun'])->orderBy(['pair'=> 4])->all();
-        $third_day = ScheduleItem::find()->where(['teacher_id' => $teacher_id, 'day' => '3-kun'])->orderBy(['pair'=> 4])->all();
-        $forth_day = ScheduleItem::find()->where(['teacher_id' => $teacher_id, 'day' => '4-kun'])->orderBy(['pair'=> 4])->all();
-        $fifth_day = ScheduleItem::find()->where(['teacher_id' => $teacher_id, 'day' => '5-kun'])->orderBy(['pair'=> 4])->all();
-        $sixth_day = ScheduleItem::find()->where(['teacher_id' => $teacher_id, 'day' => '6-kun'])->orderBy(['pair'=> 4])->all();
+        $first_day = ScheduleItem::find()->where(['teacher_id' => $teacher_id, 'day' => '1-kun','term_id'=>$current_term])->orderBy(['pair'=> 4])->all();
+        $second_day = ScheduleItem::find()->where(['teacher_id' => $teacher_id, 'day' => '2-kun','term_id'=>$current_term])->orderBy(['pair'=> 4])->all();
+        $third_day = ScheduleItem::find()->where(['teacher_id' => $teacher_id, 'day' => '3-kun','term_id'=>$current_term])->orderBy(['pair'=> 4])->all();
+        $forth_day = ScheduleItem::find()->where(['teacher_id' => $teacher_id, 'day' => '4-kun','term_id'=>$current_term])->orderBy(['pair'=> 4])->all();
+        $fifth_day = ScheduleItem::find()->where(['teacher_id' => $teacher_id, 'day' => '5-kun','term_id'=>$current_term])->orderBy(['pair'=> 4])->all();
+        $sixth_day = ScheduleItem::find()->where(['teacher_id' => $teacher_id, 'day' => '6-kun','term_id'=>$current_term])->orderBy(['pair'=> 4])->all();
         return $this->render('schedule', [
             'first_day' => $first_day,
             'second_day' => $second_day,
