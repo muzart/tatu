@@ -83,6 +83,7 @@ class SubjectController extends Controller
         );
     }
 
+
     /**
      * Creates a new Subject model.
      * If creation is successful, the browser will be redirected to the 'view' page.

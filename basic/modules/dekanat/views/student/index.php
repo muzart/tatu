@@ -62,6 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'user_id',
 
             [
+                    'header' => 'Amallar',
                 'class' => 'yii\grid\ActionColumn',
                 'buttons'=>[
                     'view' => function ($url, $model) {

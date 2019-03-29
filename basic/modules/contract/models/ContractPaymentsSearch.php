@@ -19,7 +19,7 @@ class ContractPaymentsSearch extends ContractPayments
     public function rules()
     {
         return [
-            [['id', 'student_id', 'term_id', 'payment_amount',], 'integer'],
+            [['id', 'student_id','group_id', 'term_id', 'payment_amount',], 'integer'],
             [['payment_date'], 'safe'],
         ];
     }
@@ -43,7 +43,7 @@ class ContractPaymentsSearch extends ContractPayments
     public function search($params)
     {
         $query = ContractPayments::find();
-        $query->joinWith(['student']);
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -62,6 +62,7 @@ class ContractPaymentsSearch extends ContractPayments
         $query->andFilterWhere([
             'id' => $this->id,
             'student_id' => $this->student_id,
+            'group_id'=>$this->group_id,
             'term_id' => $this->term_id,
             'payment_amount' => $this->payment_amount,
         ]);

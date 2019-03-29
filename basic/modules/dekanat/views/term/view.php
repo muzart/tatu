@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 </p>
-<div class="term-view w3-animate-zoom">
+<div class="term-view ">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

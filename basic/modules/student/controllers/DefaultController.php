@@ -2,12 +2,13 @@
 
 namespace app\modules\student\controllers;
 
-use app\models\ScheduleItem;
+use app\models\Groups;
 use app\models\Student;
 use app\modules\admin\models\Announcements;
 use app\modules\contract\models\ContractAmounts;
 use app\modules\contract\models\ContractPayments;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 /**
  * Default controller for the `student` module
@@ -58,25 +59,32 @@ class   DefaultController extends Controller
             ]);
     }
 
-    public function actionSchedule()
+    public function findGroupId()
     {
         $user_id = \Yii::$app->user->id;
         $group_id = Student::find()->where(['user_id' => $user_id])->one()->group->id;
-        $first_day = ScheduleItem::find()->where(['group_id' => $group_id, 'day' => '1-kun'])->orderBy(['pair' => 4])->all();
-        $second_day = ScheduleItem::find()->where(['group_id' => $group_id, 'day' => '2-kun'])->orderBy(['pair' => 4])->all();
-        $third_day = ScheduleItem::find()->where(['group_id' => $group_id, 'day' => '3-kun'])->orderBy(['pair' => 4])->all();
-        $forth_day = ScheduleItem::find()->where(['group_id' => $group_id, 'day' => '4-kun'])->orderBy(['pair' => 4])->all();
-        $fifth_day = ScheduleItem::find()->where(['group_id' => $group_id, 'day' => '5-kun'])->orderBy(['pair' => 4])->all();
-        $sixth_day = ScheduleItem::find()->where(['group_id' => $group_id, 'day' => '6-kun'])->orderBy(['pair' => 4])->all();
-        return $this->render('schedule', [
-            'first_day' => $first_day,
-            'second_day' => $second_day,
-            'third_day' => $third_day,
-            'forth_day' => $forth_day,
-            'fifth_day' => $fifth_day,
-            'sixth_day' => $sixth_day,
+        return $group_id;
+    }
 
+    public function actionSchedule($id)
+    {
+
+        $model = $this->findModel($id);
+
+        $schedule = $model->getSchedule();
+
+        return $this->render('schedule', [
+            'schedule' => $schedule
         ]);
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = Groups::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 
 

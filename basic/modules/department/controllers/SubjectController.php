@@ -27,6 +27,7 @@ class SubjectController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+
                 ],
             ],
         ];
@@ -84,7 +85,6 @@ class SubjectController extends Controller
         $model = Subject::find()->all();
         return $this->render('Education_plan', ['model' => $model]);
     }
-
 
     /**
      * Creates a new Subject model.

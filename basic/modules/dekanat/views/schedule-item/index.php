@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Schedule Item'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Schedule Item'), ['create'], ['class' => 'w3-btn w3-green']) ?>
     </p>
 
     <?= GridView::widget([
@@ -33,21 +33,27 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\Subject::find()->asArray()->all(), 'id', 'name'),
             ],
-            'subject_type',
+            [
+                'attribute' => 'subject_type',
+                'value' => function ($model) {
+                    return \app\modules\dekanat\controllers\ScheduleItemController::findLessonType($model->subject_type);
+                }
+            ],
 
-           [ 'attribute' => 'teacher_id',
-            'value' => function ($model) {
-                return $model->teacher->fio;
-            },
-            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Teacher::find()->asArray()->all(), 'id', 'fio'),
-           ],
+
+            ['attribute' => 'teacher_id',
+                'value' => function ($model) {
+                    return $model->teacher->fio;
+                },
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Teacher::find()->asArray()->all(), 'id', 'fio'),
+            ],
 
             [
-                    'attribute' => 'room_id',
-                'value' => function ($model){
-        return $model->room->name;
+                'attribute' => 'room_id',
+                'value' => function ($model) {
+                    return $model->room->name;
                 },
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Room::find()->asArray()->all(),'id','fio'),
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Room::find()->asArray()->all(), 'id', 'fio'),
             ],
             //'room_id',
             //'group_id',
@@ -55,7 +61,35 @@ $this->params['breadcrumbs'][] = $this->title;
             //'pair',
             //'term_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
+
+            [
+                    'header' => 'Amallar',
+                'class' => 'yii\grid\ActionColumn',
+                'buttons' => [
+                    'view' => function ($url, $model) {
+                        return Html::a('<span class="w3-btn w3-green">Ko\'rish</span>', $url, [
+                            'title' => Yii::t('yii', 'Create'),
+                        ]);
+                    },
+                    'update' => function ($url, $model) {
+                        return Html::a('<span class="w3-btn w3-teal">Yangilash</span>', $url, [
+                            'title' => Yii::t('yii', 'Update'),
+                        ]);
+                    },
+                    'delete' => function ($url, $model) {
+                        return Html::a('<span class="w3-btn w3-red"><i class="glyphicon glyphicon-trash"></i></span>', $url, [
+                            'title' => Yii::t('yii', 'Delete'),
+                            'data' => [
+                                'confirm' => 'Are you sure you want to delete this item?',
+                                'method' => 'post',
+                            ],
+                        ]);
+                    },
+                ],
+                'options' => [
+                    'style' => 'width: 250px',
+                ]
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

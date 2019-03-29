@@ -13,8 +13,12 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'student_id')->dropDownList(\yii\helpers\ArrayHelper::map(
-        \app\models\Student::find()->all(), 'id', ['name']
+        \app\models\Student::find()->all(), 'id', 'name'
     ), ['prompt' => ' - Talabani tanlang - ']) ?>
+
+ <?= $form->field($model, 'group_id')->dropDownList(\yii\helpers\ArrayHelper::map(
+        \app\models\Groups::find()->all(), 'id', 'name'
+    ), ['prompt' => ' - Guruhni tanlang - ']) ?>
 
     <?= $form->field($model, 'term_id')->dropDownList(\yii\helpers\ArrayHelper::map(
             \app\models\Term::find()->all(),'id','name'

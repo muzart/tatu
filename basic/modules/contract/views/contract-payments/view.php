@@ -59,6 +59,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'label' => 'Yana qancha to\'lashi kerakligi shu semetr uchun',
                     'value' => $model->restMoney(),
+                    'tdoptions'=> function($model)
+                    {
+                        if ($model->restMoney() == $model->getTotal() || $model->restMoney() > $model->getTotal() )
+                        {
+                            return ['class'=>'w3-hover-green'];
+                        }else return['class'=>'w3-hover-green'];
+                    }
                 ],
                 [
                     'label' => 'Semestr uchun to\'lanishi kerak bo\'lgan umumiy summa',

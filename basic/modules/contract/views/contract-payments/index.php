@@ -32,9 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute' => 'student_id',
                     'value' => function ($model) {
-                        return $model->student->name;
+                        return $model->student->name.' '.$model->student->surname;
                     },
-                    'filter' => \yii\helpers\ArrayHelper::map(\app\models\Student::find()->all(), 'id', 'name'),
+                    'filter' => \yii\helpers\ArrayHelper::map(\app\models\Student::find()->all(), 'id', 'name','surname'),
                 ],
                 [
                     'attribute' => 'term_id',
@@ -60,8 +60,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'payment_amount',
                 [
                     'label' => 'Guruh nomi',
+                    'attribute' => 'group_id',
                     'value' => function ($model) {
-                        return $model->student->group->name;
+                        return $model->group->name;
                     },
                     'filter' => \yii\helpers\ArrayHelper::map(\app\models\Groups::find()->all(), 'id', 'name'),
 
@@ -109,6 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $form->field($model1, 'student_id')->dropDownList(\yii\helpers\ArrayHelper::map(
         \app\models\Student::find()->all(), 'id', 'name'
     ), ['prompt' => ' - Talabani tanlang - ']) ?>
+
 
     <?= $form->field($model1, 'term_id')->dropDownList(\yii\helpers\ArrayHelper::map(
         \app\models\Term::find()->all(), 'id', 'name'

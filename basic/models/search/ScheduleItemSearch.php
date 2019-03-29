@@ -19,7 +19,7 @@ class ScheduleItemSearch extends ScheduleItem
     {
         return [
             [['id', 'subject_id', 'teacher_id', 'room_id', 'group_id', 'term_id'], 'integer'],
-            [['subject_type', 'day', 'pair'], 'safe'],
+            [['subject_type', 'day', 'pair','week_type'], 'safe'],
         ];
     }
 
@@ -69,7 +69,8 @@ class ScheduleItemSearch extends ScheduleItem
 
         $query->andFilterWhere(['like', 'subject_type', $this->subject_type])
             ->andFilterWhere(['like', 'day', $this->day])
-            ->andFilterWhere(['like', 'pair', $this->pair]);
+            ->andFilterWhere(['like', 'pair', $this->pair])
+            ->andFilterWhere(['like', 'week_type', $this->week_type]);
 
         return $dataProvider;
     }

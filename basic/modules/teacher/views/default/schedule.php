@@ -11,14 +11,15 @@
 /* @var  $forth_day  app\modules\teacher\controllers\DefaultController */
 /* @var  $fifth_day  app\modules\teacher\controllers\DefaultController */
 /* @var  $sixth_day  app\modules\teacher\controllers\DefaultController */
+use app\modules\dekanat\controllers\ScheduleItemController;
 ?>
 <ul class="nav  nav-pills">
-    <li class="active"><a data-toggle="tab" href="#1-kun">1-kun</a></li>
-    <li><a data-toggle="tab" href="#2-kun">2-kun</a></li>
-    <li><a data-toggle="tab" href="#3-kun">3-kun</a></li>
-    <li><a data-toggle="tab" href="#4-kun">4-kun</a></li>
-    <li><a data-toggle="tab" href="#5-kun">5-kun</a></li>
-    <li><a data-toggle="tab" href="#6-kun">6-kun</a></li>
+    <li class="active"><a data-toggle="tab" href="#1-kun">Dushanba</a></li>
+    <li><a data-toggle="tab" href="#2-kun">Seshanba</a></li>
+    <li><a data-toggle="tab" href="#3-kun">Chorshanba</a></li>
+    <li><a data-toggle="tab" href="#4-kun">Payshanba</a></li>
+    <li><a data-toggle="tab" href="#5-kun">Juma</a></li>
+    <li><a data-toggle="tab" href="#6-kun">Shanba</a></li>
 </ul>
 <div class="tab-content">
     <div id="1-kun" class="tab-pane fade active in">
@@ -34,7 +35,7 @@
                     foreach ($first_day as $item):?>
                         <tr>
                             <th><?= $item->pair ?></th>
-                            <th><?= $item->subject->name . '' . ' (' . $item->subject_type . ')' ?></th>
+                            <th><?= $item->subject->name . '' . ' (' .ScheduleItemController::findLessonType($item->subject_type) . ')' ?></th>
                                                         <th><?= $item->room->name ?></th>
                         </tr>
                     <?php
@@ -58,7 +59,7 @@
                     foreach ($second_day as $item):?>
                         <tr>
                             <th><?= $item->pair ?></th>
-                            <th><?= $item->subject->name . '' . ' (' . $item->subject_type . ')' ?></th>
+                        <th><?= $item->subject->name . '' . ' (' . ScheduleItemController::findLessonType($item->subject_type) . ')' ?></th>
 
                             <th><?= $item->room->name ?></th>
                         </tr>
@@ -83,7 +84,7 @@
                     foreach ($third_day as $item):?>
                         <tr>
                             <th><?= $item->pair ?></th>
-                            <th><?= $item->subject->name . '' . ' (' . $item->subject_type . ')' ?></th>
+                            <th><?= $item->subject->name . '' . ' (' . ScheduleItemController::findLessonType($item->subject_type) . ')' ?></th>
 
                             <th><?= $item->room->name ?></th>
                         </tr>
@@ -108,7 +109,7 @@
                     foreach ($forth_day as $item):?>
                         <tr>
                             <th><?= $item->pair ?></th>
-                            <th><?= $item->subject->name . '' . ' (' . $item->subject_type . ')' ?></th>
+                            <th><?= $item->subject->name . '' . ' (' . ScheduleItemController::findLessonType($item->subject_type) . ')' ?></th>
 
                             <th><?= $item->room->name ?></th>
                         </tr>
@@ -134,7 +135,7 @@
                     foreach ($fifth_day as $item):?>
                         <tr>
                             <th><?= $item->pair ?></th>
-                            <th><?= $item->subject->name . '' . ' (' . $item->subject_type . ')' ?></th>
+                            <th><?= $item->subject->name . '' . ' (' . ScheduleItemController::findLessonType($item->subject_type) . ')' ?></th>
 
                             <th><?= $item->room->name ?></th>
                         </tr>
@@ -160,7 +161,7 @@
                     foreach ($sixth_day as $item):?>
                         <tr>
                             <th><?= $item->pair ?></th>
-                            <th><?= $item->subject->name . '' . ' (' . $item->subject_type . ')' ?></th>
+                            <th><?= $item->subject->name . '' . ' (' . ScheduleItemController::findLessonType($item->subject_type) . ')' ?></th>
 
                             <th><?= $item->room->name ?></th>
                         </tr>

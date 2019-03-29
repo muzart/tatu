@@ -13,10 +13,7 @@ use dosamigos\ckeditor\CKEditor;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->widget(CKEditor::className(), [
-        'options' => ['row' => 6],
-        'preset' => 'basic'
-    ]) ?>
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'group_head_id')->dropDownList(
         \yii\helpers\ArrayHelper::map(\app\models\Teacher::find()->all(), 'id', 'fio'),

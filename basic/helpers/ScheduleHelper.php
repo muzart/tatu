@@ -8,6 +8,8 @@
 
 namespace app\helpers;
 
+use app\models\ScheduleItem;
+
 class ScheduleHelper
 {
 

@@ -1,47 +1,55 @@
-<?php
+    <?php
 
-use yii\helpers\Html;
-use yii\grid\GridView;
-use yii\widgets\Pjax;
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\search\TermSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+    use yii\helpers\Html;
+    use yii\grid\GridView;
+    use yii\widgets\Pjax;
 
-$this->title = Yii::t('app', 'Terms');
-$this->params['breadcrumbs'][] = $this->title;
-?>
-<div class="term-index">
+    /* @var $this yii\web\View */
+    /* @var $searchModel app\models\search\TermSearch */
+    /* @var $dataProvider yii\data\ActiveDataProvider */
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    $this->title = Yii::t('app', 'Terms');
+    $this->params['breadcrumbs'][] = $this->title;
+    ?>
+    <div class="term-index">
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Term'), ['create'], ['class' => 'w3-btn w3-green']) ?>
-    </p>
-<?php Pjax::begin(); ?>    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+        <h1><?= Html::encode($this->title) ?></h1>
+        <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-            //'id',
-            'name',
-            'semester',
+        <p>
+            <?= Html::a(Yii::t('app', 'Create Term'), ['create'], ['class' => 'w3-btn w3-green']) ?>
+        </p>
+        <?php Pjax::begin(); ?>    <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
 
-            [
-                'class' => 'yii\grid\ActionColumn',
-                'buttons'=>[
-                    'view' => function ($url, $model) {
+                //'id',
+                'name',
+                ['attribute' => 'semester',
+                    'label' => 'Semester',
+                    'value' => function ($model) {
+                        return \app\modules\dekanat\controllers\TermController::findSeason($model->semester);
+                    }
+                ],
+
+
+                [
+                    'class' => 'yii\grid\ActionColumn',
+                    'header' => 'Amallar',
+                    'buttons' => [
+                        'view' => function ($url, $model) {
                             return Html::a('<span class="w3-btn w3-green">Ko\'rish</span>', $url, [
                                 'title' => Yii::t('yii', 'Create'),
                             ]);
                         },
-                    'update' => function ($url, $model) {
+                        'update' => function ($url, $model) {
                             return Html::a('<span class="w3-btn w3-teal">Yangilash</span>', $url, [
                                 'title' => Yii::t('yii', 'Update'),
                             ]);
                         },
-                    'delete' => function ($url, $model) {
+                        'delete' => function ($url, $model) {
                             return Html::a('<span class="w3-btn w3-red"><i class="glyphicon glyphicon-trash"></i></span>', $url, [
                                 'title' => Yii::t('yii', 'Delete'),
                                 'data' => [
@@ -50,11 +58,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ],
                             ]);
                         },
+                    ],
+                    'options' => [
+                        'style' => 'width: 250px',
+                    ]
                 ],
-                'options' => [
-                    'style' => 'width: 250px',
-                ]
             ],
-        ],
-    ]); ?>
-<?php Pjax::end(); ?></div>
+        ]); ?>
+        <?php Pjax::end(); ?></div>

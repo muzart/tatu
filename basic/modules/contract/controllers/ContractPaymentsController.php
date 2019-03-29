@@ -4,6 +4,7 @@ namespace app\modules\contract\controllers;
 
 use app\models\Groups;
 use app\models\search\GroupsSearch;
+use app\models\Student;
 use Yii;
 use app\modules\contract\models\ContractPayments;
 use app\modules\contract\models\ContractPaymentsSearch;
@@ -41,13 +42,15 @@ class ContractPaymentsController extends Controller
         $searchModel = new ContractPaymentsSearch();
 
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        if ($model1->load(Yii::$app->request->post()) && $model1->save()) {
+        if ($model1->load(Yii::$app->request->post())) {
+            $model1->group_id = $model1->student->group_id;
+            $model1->save();
             return $this->redirect(['view', 'id' => $model1->id]);
         }
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'model1'=>$model1,
+            'model1' => $model1,
         ]);
     }
 

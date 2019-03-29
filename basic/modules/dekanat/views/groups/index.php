@@ -47,6 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'faculty_id',
 
             [
+                    'header' => 'Amallar',
                 'class' => 'yii\grid\ActionColumn',
                 'buttons' => [
                     'view' => function ($url, $model) {
