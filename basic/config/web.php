@@ -17,6 +17,12 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'getid' => [
+            'class' => 'app\helpers\GetUserId',
+        ],
+        'dateformatter' => [
+            'class' => 'app\helpers\DateFormat',
+        ],
         'user' => [
             'identityClass' => 'app\models\User',//mdm\admin\models\User
             'loginUrl' => ['site/login'],//rbac/user/login']
@@ -39,6 +45,15 @@ $config = [
                     'levels' => ['error', 'warning'],
                 ],
             ],
+        ],
+        'formatter' => [
+            'dateFormat' => 'dd-MM-yyyy',
+            'datetimeFormat' => 'php:d-m-Y H:i:s',
+            'timeFormat' => 'php:H:i:s',
+            'decimalSeparator' => ',',
+            'thousandSeparator' => ' ',
+            'currencyCode' => 'Rs.',
+            'class' => 'yii\i18n\Formatter',
         ],
         'db' => $db,
         'urlManager' => [
@@ -82,7 +97,7 @@ $config = [
         'contract' => [
             'class' => 'app\modules\contract\ContractModule',
         ],
-        'gridview' =>  [
+        'gridview' => [
             'class' => '\kartik\grid\Module'
         ]
     ],

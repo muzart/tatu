@@ -36,9 +36,9 @@ use dmstr\widgets\Alert;
     </section>
 </div>
 
-<footer class="main-footer">
-    <div class="pull-right hidden-xs">
-        <b>Version</b> 1.0
+<footer class="main-footer ">
+    <div class="pull-right hidden-xs ">
+        <b class="no-print">Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2018 <a href="https://ubtuit.uz">TUIT UB</a>.</strong>
+    <strong class="no-print">Copyright &copy; 2018 <a class="no-print" href="https://ubtuit.uz">TUIT UB</a>.</strong>
 </footer>

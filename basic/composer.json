@@ -34,7 +34,9 @@
     "kartik-v/yii2-widget-datepicker":"@dev",
     "2amigos/yii2-tinymce-widget": "*",
     "kartik-v/yii2-editable": "*",
-    "kartik-v/yii2-grid": "*"
+    "kartik-v/yii2-grid": "*",
+    "philippfrenzel/yii2fullcalendar": "*"
+
 
     
   },

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\dekanat\controllers;
+namespace app\modules\admin\controllers;
 
 use Yii;
 use app\models\CurrentTerm;

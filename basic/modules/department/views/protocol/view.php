@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= $model->decision;?>
 
 
-?>
+
 
 
 <h4 style="text-align: left">

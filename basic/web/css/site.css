@@ -117,3 +117,12 @@ a.desc:after {
 	width: 150px;
 	height: 200px;
 }
+.legend { list-style: none; }
+.legend li { float: left; margin-right: 10px; }
+.legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+/* your colors */
+.legend .holiday { background-color: #00A65A; }
+.legend .importantnotice { background-color: #00C0EF; }
+.legend .meeting { background-color: #F39C12; }
+.legend .messages { background-color: #074979; }
+

@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'current_term_id')->textInput() ?>
+    <?= $form->field($model, 'current_term_id')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Term::find()->all(),'id','name')) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
