@@ -1,15 +1,10 @@
 <?php
 
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use yii\widgets\DetailView;
-use app\modules\subject\controllers;
-use app\models\Direction;
-use yii\widgets\ListView;
-use app\models\Materials;
-use yii\helpers\Url;
-use yii\bootstrap\Modal;
 use kartik\file\FileInput;
+use yii\bootstrap\Modal;
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\widgets\ActiveForm;
 
 
 /* @var $this yii\web\View */
@@ -35,67 +30,17 @@ $this->params['breadcrumbs'][] = $this->title;
         </p>
         <div class="w3-container">
             <table class="w3-table-all w3-hoverable">
-                <h1><?= $model->name; ?></h1>
+
+                <tr>
+                    <th>Fan nomi</th>
+                    <td><?= $model->name; ?></td>
+                </tr>
                 <tr>
                     <th>Kafedra</th>
                     <td><?= $model->department->name ?></td>
-                    <th>1-Laboratoriyachi</th>
-                    <td><?= $model->lab1->fio ?></td>
                 </tr>
-                <tr>
-                    <th>Yo`nalish Nomi</th>
-                    <td><?= $model->direction->name ?></td>
-                    <th>2-Laboratoriyachi</th>
-                    <td><?= $model->lab2->fio ?></td>
-                </tr>
-                <tr>
-                    <th>Nomi</th>
-                    <td><?= $model->semester->name ?></td>
-                    <th>Maruza soati</th>
-                    <td><?= $model->lecture_hour ?></td>
-                </tr>
-                <tr>
-                    <th>Maruzachi</th>
-                    <td><?= $model->lecturer->fio ?></td>
-                    <th>Amaliyot soati</th>
-                    <td><?= $model->practice_hour ?></td>
-                </tr>
-                <tr>
-                    <th>Amaliyotchi</th>
-                    <td><?= $model->practice->fio ?></td>
-                    <th>Tajriba soati</th>
-                    <td><?= $model->lab_hour ?></td>
-                </tr>
-                <tr>
-                    <th>Seminar soat</th>
-                    <td><?= $model->seminar ?></td>
-                    <th>Mustaqil soat</th>
-                    <td><?= $model->independent_hour ?></td>
-                </tr>
+
             </table>
-            <br>
-<table class="w3-table-all w3-hoverable">
-    <tr>
-        <td>s1</td>
-        <td>s2</td>
-        <td>s3</td>
-        <td>s4</td>
-        <td>s5</td>
-        <td>s6</td>
-        <td>s7</td>
-        <td>s8</td>
-    </tr>
-    <tr>
-        <td><?=$model->s1?></td>
-        <td><?=$model->s2?></td>
-        <td><?=$model->s3?></td>
-        <td><?=$model->s4?></td>
-        <td><?=$model->s5?></td>
-        <b><td><b><?=$model->s6?></b></td></b>
-        <td><?=$model->s7?></td>
-        <td><?=$model->s8?></td>
-    </tr>
-</table>
         </div>
 
     </div>
@@ -162,7 +107,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <th>Materiallar</th>
                         <th>Amallar</th>
                     </tr>
-                     <?php $j = 0;
+                    <?php $j = 0;
                     foreach ($practices as $practice):?>
                         <tr>
                             <td><?= ++$j ?></td>

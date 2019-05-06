@@ -2,6 +2,10 @@
 
 namespace app\modules\department\controllers;
 
+use app\helpers\ScheduleHelper;
+use app\helpers\StudentNumberHelper;
+use app\models\CurrentTerm;
+use app\models\Subject;
 use app\models\User;
 use Yii;
 use app\models\Teacher;
@@ -81,7 +85,7 @@ class TeacherController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'user'=>$user
+                'user' => $user
             ]);
         }
     }
@@ -130,10 +134,21 @@ class TeacherController extends Controller
      * @return Teacher the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionYuklama()
+    public function actionYuklama($id)
     {
-        $model = Teacher::find()->all();
-        return $this->render('Yuklama', ['model' => $model]
+
+
+        $model1 = Teacher::find()->all();
+        $current_term = CurrentTerm::findOne(['id' => 1]);
+        $numberStudent =StudentNumberHelper::getStudentNumberByGroup();
+
+        $model = Subject::find()->where(
+            ['semester_id' => $current_term, 'lecturer_id' => $id] ||
+            ['semester_id' => $current_term, 'practice_id' => $id] ||
+            ['semester_id' => $current_term, 'lab1_id' => $id] ||
+            ['semester_id' => $current_term, 'lab2_id' => $id]
+        )->all();
+        return $this->render('yuklama', ['model' => $model1,'numberstudent'=>$numberStudent]
 
         );
     }
@@ -147,4 +162,5 @@ class TeacherController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }

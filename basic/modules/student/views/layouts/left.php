@@ -8,8 +8,14 @@
                 <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
-                <p><?= Yii::$app->user->isGuest ? "Mehmon" : Yii::$app->user->identity->username ?></p>
-
+                <?php
+                 $t = \app\modules\student\controllers\DefaultController::getInfoStudent();
+                foreach ($t as $item => $value):
+                    ?>
+                    <p><?= Yii::$app->user->isGuest ? "Mehmon" : $value->surname . ' ' . $value->name; ?></p>
+                <?php
+                endforeach;
+                ?>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>

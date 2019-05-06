@@ -2,15 +2,14 @@
 
 namespace app\modules\department\controllers;
 
-use app\models\Direction;
 use app\models\Materials;
-use Yii;
-use app\models\Subject;
 use app\models\search\SubjectSearch;
+use app\models\Subject;
+use app\models\SubjectTerm;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\helpers\Url;
 
 /**
  * SubjectController implements the CRUD actions for Subject model.
@@ -48,16 +47,6 @@ class SubjectController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Subject model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function getIndex()
-    {
-        header('location: ../materials');
-    }
-
     public function actionView($id)
     {
         $lectures = Materials::find()->where(['subject_id' => $id, 'studies_kind' => 'lecture'])->all();
@@ -80,10 +69,36 @@ class SubjectController extends Controller
         );
     }
 
+    /**
+     * Displays a single Subject model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function getIndex()
+    {
+        header('location: ../materials');
+    }
+
+    /**
+     * Finds the Subject model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Subject the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Subject::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
     public function actionEducation_plan()
     {
         $model = Subject::find()->all();
-        return $this->render('Education_plan', ['model' => $model]);
+        return $this->render('education_plan', ['model' => $model]);
     }
 
     /**
@@ -94,9 +109,18 @@ class SubjectController extends Controller
     public function actionCreate()
     {
         $model = new Subject();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
+        if ($model->load(Yii::$app->request->post())) {
+          //echo "<pre>";
+          //var_dump($_POST["Subject"]["terms"]);
+            $model->save();
+            //$id = $model->id;
+//            foreach ($model->terms as $term)
+//            {
+//                $SubjectModel= new SubjectTerm();
+//                $SubjectModel->term_id = $term;
+//                $SubjectModel->subject_id = $id;
+//                $SubjectModel->save();
+//            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -135,22 +159,6 @@ class SubjectController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the Subject model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Subject the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Subject::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
     }
 
 }

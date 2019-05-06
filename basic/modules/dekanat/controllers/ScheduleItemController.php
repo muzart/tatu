@@ -124,6 +124,10 @@ class ScheduleItemController extends Controller
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
+    public function actionSchedule()
+    {
+        return $this->render('schedule');
+    }
 
     public static function findLessonType($type)
     {

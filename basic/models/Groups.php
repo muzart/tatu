@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\helpers\ScheduleHelper;
+use app\helpers\StudentNumberHelper;
 use Yii;
 
 /**
@@ -29,15 +30,18 @@ class Groups extends \yii\db\ActiveRecord
         return 'groups';
     }
 
-        public static function getGroupNames()
-        {
-            $names = [];
-            $list = static::find()->all();
-            foreach ($list as $name){
-                $names[] = $name['name'];
-            }
-            return $names;
+    /**
+     * @return array
+     */
+    public static function getGroupNames()
+    {
+        $names = [];
+        $list = static::find()->all();
+        foreach ($list as $name) {
+            $names[] = $name['name'];
         }
+        return $names;
+    }
 
 
     /**
@@ -77,6 +81,7 @@ class Groups extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Teacher::className(), ['id' => 'group_head_id']);
     }
+
     public function getTeacher()
     {
         return $this->hasOne(Teacher::className(), ['id' => 'group_head_id']);
@@ -98,7 +103,31 @@ class Groups extends \yii\db\ActiveRecord
         return $this->hasOne(Faculty::className(), ['id' => 'faculty_id']);
     }
 
-    public function getSchedule(){
+    public function getSchedule()
+    {
         return ScheduleHelper::getScheduleByGroup($this->id);
+    }
+
+    public static function getIdGroup()
+    {
+        $massiv = [];
+        $groups = Groups::find()->all();
+        foreach ($groups as $group) {
+            $massiv[] = $group->id;
+
+        }
+        return $massiv;
+
+    }
+    public static function getIdGroupByDirection($course)
+    {
+        $massiv = [];
+        $groups = Groups::find()->where(['course'=>$course])->all();
+        foreach ($groups as $group) {
+            $massiv[] = $group->id;
+
+        }
+        return $massiv;
+
     }
 }

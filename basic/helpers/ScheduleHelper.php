@@ -24,10 +24,10 @@ class ScheduleHelper
         $days = ["1-kun","2-kun","3-kun","4-kun","5-kun","6-kun"];
         $result = [];
         foreach ($days as $day){
-            $result[$day] = \app\models\ScheduleItem::find()->where(['group_id'=>$group_id,'day'=>$day,'term_id'=>$current_term])->orderBy('pair')->all();
-        }
+            $result[$day] = \app\models\ScheduleItem::find()->where(['group_id'=>$group_id,'day'=>$day,'term_id'=>$current_term])->orderBy('pair')->all();       }
         return $result;
     }
+
 
 
 }

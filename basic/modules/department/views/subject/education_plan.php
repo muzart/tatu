@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 $summa=0;
 if (count($model)):?>
-<table class="table table-bordered" style="border: 1px solid black">
+<table class="w3-table" border="1px solid black">
     <tr>
         <td rowspan="8" style="width: 30%">T/R</td>
         <td rowspan="8" style="width: 30%">O'quv fanlari,bloklar va faoliyat turlarining nomlari</td>
@@ -89,7 +89,7 @@ if (count($model)):?>
         <td><?=$item->name?></td>
         <td><?=$summa=$item->lecture_hour+$item->practice_hour+$item->practice_hour+$item->lab_hour+$item->seminar+$item->independent_hour?></td>
         <td></td>
-        <td><?=$item->lecture_hour+$item->practice_hour+$item->practice_hour+$item->lab_hour+$item->seminar?></td>
+        <td><?=$item->lecture_hour+$item->practice_hour+$item->lab_hour+$item->seminar?></td>
         <td><?=$item->lecture_hour?></td>
         <td><?=$item->practice_hour?></td>
         <td><?=$item->lab_hour?></td>

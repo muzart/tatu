@@ -30,28 +30,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             //  'id',
-            [
-                'attribute' => 'direction_id',
-                'value' => function ($model) {
-                    return $model->direction->name;
-                },
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Direction::find()->asArray()->all(), 'id', 'name'),
-            ],
-            [
-                'attribute' => 'semester_id',
-                'value' => function ($model) {
-                    return $model->semester->name;
-                },
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Term::find()->asArray()->all(), 'id', 'name'),
-            ],
             'name',
             [
-                'attribute' => 'lecturer_id',
+                'attribute' => 'department_id',
                 'value' => function ($model) {
-                    return $model->lecturer->fio;
+                    return $model->department->name;
                 },
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Teacher::find()->asArray()->all(), 'id', 'fio'),
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Department::find()->asArray()->all(), 'id', 'name'),
             ],
+
             [
                 'class' => 'yii\grid\ActionColumn',
                 'buttons' => [

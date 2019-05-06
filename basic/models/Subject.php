@@ -3,161 +3,116 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "subject".
  *
- * @property integer $id
- * @property integer $direction_id
- * @property integer $semester_id
+ * @property int $id
  * @property string $name
- * @property integer $lecturer_id
- * @property integer $practice_id
- * @property integer $lab1_id
- * @property integer $lab2_id
- * @property integer $department_id
- * @property integer $lecture_hour
- * @property integer $practice_hour
- * @property integer $lab_hour
- * @property integer $seminar
- * @property integer $seminar_id
- * @property integer $independent_hour
- * @property integer $s1
- * @property integer $s2
- * @property integer $s3
- * @property integer $s4
- * @property integer $s5
- * @property integer $s6
- * @property integer $s7
- * @property integer $s8
+ * @property int $department_id
+ * @property array $terms
+ * @property array $directions
+ * @property array $subject_type
  *
- * @property Lesson[] $lessons
- * @property Direction $direction
- * @property Term $semester
- * @property Teacher $lecturer
- * @property Teacher $practice
- * @property Teacher $lab1
- * @property Teacher $lab2
+ * @property LessonType[] $lessonTypes
+ * @property Marks[] $marks
+ * @property Materials[] $materials
+ * @property PlanSubjectTeacher[] $planSubjectTeachers
+ * @property PlanSubjectType[] $planSubjectTypes
+ * @property ScheduleItem[] $scheduleItems
  * @property Department $department
  * @property SubjectDirection[] $subjectDirections
+ * @property SubjectTerm[] $subjectTerms
  */
 class Subject extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
+
+    public $terms = array();
+    public $directions = array();
+    public $subject_type = array();
+
     public static function tableName()
     {
         return 'subject';
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['direction_id', 'semester_id', 'name', 'lecturer_id', 'practice_id', 'lab1_id', 'lab2_id', 'department_id'], 'required'],
-            [['direction_id', 'semester_id', 'lecturer_id', 'practice_id', 'lab1_id', 'lab2_id', 'department_id', 'lecture_hour', 'seminar', 'seminar_id', 'practice_hour', 'lab_hour', 'independent_hour', 's1',
-                's2', 's3', 's4', 's5', 's6', 's7', 's8',], 'integer'],
-            [['name'], 'string', 'max' => 64],
-            [['direction_id'], 'exist', 'skipOnError' => true, 'targetClass' => Direction::className(), 'targetAttribute' => ['direction_id' => 'id']],
-            [['semester_id'], 'exist', 'skipOnError' => true, 'targetClass' => Term::className(), 'targetAttribute' => ['semester_id' => 'id']],
-            [['lecturer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teacher::className(), 'targetAttribute' => ['lecturer_id' => 'id']],
-            [['practice_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teacher::className(), 'targetAttribute' => ['practice_id' => 'id']],
-            [['lab1_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teacher::className(), 'targetAttribute' => ['lab1_id' => 'id']],
-            [['lab2_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teacher::className(), 'targetAttribute' => ['lab2_id' => 'id']],
+            [['name', 'department_id', 'terms','directions','subject_type'], 'required'],
+            [['department_id'], 'integer'],
+            [['name'], 'string', 'max' => 100],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'id']],
-            [['seminar_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teacher::className(), 'targetAttribute' => ['seminar_id' => 'id']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'direction_id' => Yii::t('app', 'Йўналиш'),
-            'semester_id' => Yii::t('app', 'Семестр'),
-            'name' => Yii::t('app', 'Фан номи'),
-            'lecturer_id' => Yii::t('app', 'Маърузачи'),
-            'practice_id' => Yii::t('app', 'Амалиётчи'),
-            'lab1_id' => Yii::t('app', '1-Лабораториячи'),
-            'lab2_id' => Yii::t('app', '2-Лабораториячи'),
-            'department_id' => Yii::t('app', 'Кафедра'),
-            'lecture_hour' => Yii::t('app', 'Маъруза соат'),
-            'practice_hour' => Yii::t('app', 'Амалиёт соат'),
-            'lab_hour' => Yii::t('app', 'Тажриба соат'),
-            'seminar' => Yii::t('app', 'Семинар соат'),
-            'seminar_id' => Yii::t('app', 'Семинарчи'),
-            'independent_hour' => Yii::t('app', 'Мустақил соат'),
-            's1' => Yii::t('app', '1-Семестр'),
-            's2' => Yii::t('app', '2-Семестр'),
-            's3' => Yii::t('app', '3-Семестр'),
-            's4' => Yii::t('app', '4-Семестр'),
-            's5' => Yii::t('app', '5-Семестр'),
-            's6' => Yii::t('app', '6-Семестр'),
-            's7' => Yii::t('app', '7-Семестр'),
-            's8' => Yii::t('app', '8-Семестр'),
+            'name' => Yii::t('app', 'Name'),
+            'department_id' => Yii::t('app', 'Department ID'),
+            'terms' => Yii::t('app', 'Terms'),
+            'directions' => Yii::t('app', 'Directions'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getLessons()
+    public function getLessonTypes()
     {
-        return $this->hasMany(Lesson::className(), ['subject_id' => 'id']);
+        return $this->hasMany(LessonType::className(), ['subject_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDirection()
+    public function getMarks()
     {
-        return $this->hasOne(Direction::className(), ['id' => 'direction_id']);
+        return $this->hasMany(Marks::className(), ['subject_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSemester()
+    public function getMaterials()
     {
-        return $this->hasOne(Term::className(), ['id' => 'semester_id']);
+        return $this->hasMany(Materials::className(), ['subject_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getLecturer()
+    public function getPlanSubjectTeachers()
     {
-        return $this->hasOne(Teacher::className(), ['id' => 'lecturer_id']);
+        return $this->hasMany(PlanSubjectTeacher::className(), ['subject_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPractice()
+    public function getPlanSubjectTypes()
     {
-        return $this->hasOne(Teacher::className(), ['id' => 'practice_id']);
+        return $this->hasMany(PlanSubjectType::className(), ['subject_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getLab1()
+    public function getScheduleItems()
     {
-        return $this->hasOne(Teacher::className(), ['id' => 'lab1_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getLab2()
-    {
-        return $this->hasOne(Teacher::className(), ['id' => 'lab2_id']);
+        return $this->hasMany(ScheduleItem::className(), ['subject_id' => 'id']);
     }
 
     /**
@@ -176,13 +131,78 @@ class Subject extends \yii\db\ActiveRecord
         return $this->hasMany(SubjectDirection::className(), ['subject_id' => 'id']);
     }
 
-    public function getSeminar0()
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSubjectTerms()
     {
-        return $this->hasOne(Teacher::className(), ['id' => 'seminar_id']);
+        return $this->hasMany(SubjectTerm::className(), ['subject_id' => 'id']);
     }
 
 
+    public function afterSave($insert, $changedAttributes)
+    {
 
+        $terms = $this->terms;
 
+        foreach ($terms as $term){
+            if(is_array($term)){
+                foreach ($term['directions'] as $direction){
+                    foreach ($direction['subject_type'] as $id => $hour){
+                        $plan = new PlanSubjectType();
+                        $plan->hour = $hour;
+                        $plan->subject_type_id = $id;
+                        $plan->subject_id = $this->id;
+                        $plan->save();
+                        $plan->validate(false);
+                    }
+                }
+            }
+        }
+        foreach ($this->terms as $term) {
+            $SubjectTermModel = new SubjectTerm();
+            //print_r($term);
+            $SubjectTermModel->term_id = $term;
+            $SubjectTermModel->subject_id = $this->id;
+            $SubjectTermModel->save(false);
+        }
+        //die();
+        foreach ($this->directions as $direction) {
+            $SubjectDirectionModel = new SubjectDirection();
+            $SubjectDirectionModel->direction_id = $direction;
+            $SubjectDirectionModel->subject_id = $this->id;
+            $SubjectDirectionModel->save(false);
+
+        }
+        foreach ($this->subject_type as $item) {
+            $SubjectType = new PlanSubjectType();
+            $SubjectType->subject_type_id = $item;
+            //$SubjectDirectionModel->subject_id = $this->id;
+            $SubjectDirectionModel->save(false);
+
+        }
+
+        parent::afterSave($insert, $changedAttributes); // TODO: Change the autogenerated stub
+    }
+
+    public function getTermsDropdown()
+    {
+        $listTerms = Term::find()->select('id,name')->all();
+        $list = ArrayHelper::map($listTerms, 'id', 'name');
+        return $list;
+    }
+
+    public function getDirectionDropdown()
+    {
+        $listTerms = Direction::find()->select('id,name')->all();
+        $list = ArrayHelper::map($listTerms, 'id', 'name');
+        return $list;
+    }
+    public function getSubjectTypeDropdown()
+    {
+        $listTerms = SubjectType::find()->select('id,name')->all();
+        $list = ArrayHelper::map($listTerms, 'id', 'name');
+        return $list;
+    }
 
 }

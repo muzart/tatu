@@ -21,33 +21,33 @@
                 'items' => [
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
-                    [
-                        'label' => 'Tools',
-                        'icon' => 'share',
-                        'url' => '#',
-                        'items' => [
-                            ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
-                            ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
-                        ],
+//                    [
+//                        'label' => 'Tools',
+//                        'icon' => 'share',
+//                        'url' => '#',
+//                        'items' => [
+//                            ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
+//                            ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
+//                        ],
+//
+//                    ],
 
-                    ],
-
-                    [
-                        'label' => 'Bo\'limlar',
-                        'icon' => 'share',
-                        'url' => '#',
-                        'items' => [
-                            ['label' => 'Shartnoma', 'icon' => 'file-code-o', 'url' => ['/contract'],],
-                            ['label' => 'Dekanat', 'icon' => 'dashboard', 'url' => ['/dekanat'],],
-                            ['label' => 'Kafedra', 'icon' => 'dashboard', 'url' => ['/department'],],
-                            ['label' => 'TTJ', 'icon' => 'dashboard', 'url' => ['/dormitory'],],
-                            ['label' => 'Talaba', 'icon' => 'dashboard', 'url' => ['/student'],],
-                            ['label' => 'Fanlar', 'icon' => 'dashboard', 'url' => ['/subject'],],
-                            ['label' => 'O\'qituvchi', 'icon' => 'dashboard', 'url' => ['/teacher'],],
-                            ['label' => 'Universitet', 'icon' => 'dashboard', 'url' => ['/university'],],
-                        ],
-
-                    ],
+//                    [
+//                        'label' => 'Bo\'limlar',
+//                        'icon' => 'share',
+//                        'url' => '#',
+//                        'items' => [
+//                            ['label' => 'Shartnoma', 'icon' => 'file-code-o', 'url' => ['/contract'],],
+//                            ['label' => 'Dekanat', 'icon' => 'dashboard', 'url' => ['/dekanat'],],
+//                            ['label' => 'Kafedra', 'icon' => 'dashboard', 'url' => ['/department'],],
+//                            ['label' => 'TTJ', 'icon' => 'dashboard', 'url' => ['/dormitory'],],
+//                            ['label' => 'Talaba', 'icon' => 'dashboard', 'url' => ['/student'],],
+//                            ['label' => 'Fanlar', 'icon' => 'dashboard', 'url' => ['/subject'],],
+//                            ['label' => 'O\'qituvchi', 'icon' => 'dashboard', 'url' => ['/teacher'],],
+//                            ['label' => 'Universitet', 'icon' => 'dashboard', 'url' => ['/university'],],
+//                        ],
+//
+//                    ],
 
                 ],
             ]

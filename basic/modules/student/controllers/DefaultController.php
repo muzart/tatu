@@ -21,13 +21,13 @@ class DefaultController extends Controller
      * @return string
      * @throws ForbiddenHttpException
      */
-    public function actionIndex()
+    public  function actionIndex()
     {
         $user_id = \Yii::$app->user->id;
 
         $student = Student::findOne(["user_id"=>$user_id]);
         if ($student !== null) {
-            $model = ContractPayments::find()->where(["student_id" => $student->id])->one();
+            $model = Student::find()->where(['user_id'=>$user_id])->all();
             return $this->render('index', [
                 'model' => $model,
             ]);
@@ -91,6 +91,13 @@ class DefaultController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+public static function getInfoStudent()
+{
+    $user_id = \Yii::$app->user->id;
 
+    $students = Student::find()->where(['user_id'=>$user_id])->all();
+
+    return $students;
+}
 
 }

@@ -2,6 +2,11 @@
 
 namespace app\modules\department\controllers;
 
+use app\helpers\StudentNumberHelper;
+use app\models\CurrentTerm;
+use app\models\Subject;
+use app\models\Teacher;
+use app\models\Term;
 use yii\web\Controller;
 
 /**
@@ -17,4 +22,5 @@ class DefaultController extends Controller
     {
         return $this->render('index');
     }
+
 }
