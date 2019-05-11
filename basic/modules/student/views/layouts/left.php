@@ -9,13 +9,10 @@
             </div>
             <div class="pull-left info">
                 <?php
-                 $t = \app\modules\student\controllers\DefaultController::getInfoStudent();
-                foreach ($t as $item => $value):
-                    ?>
-                    <p><?= Yii::$app->user->isGuest ? "Mehmon" : $value->surname . ' ' . $value->name; ?></p>
-                <?php
-                endforeach;
-                ?>
+                 $t = \app\helpers\NameUsers::getInfoUserName();
+                                    ?>
+                    <p><?= Yii::$app->user->isGuest ? "Mehmon" : $t ?></p>
+
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -31,6 +28,7 @@
                     ['label' => 'Shartnoma qaydlari', 'url' => ['default/contract']],
 
                     ['label' => 'Dars jadvali', 'url' => ['default/schedule', 'id' => $id]],
+                    ['label' => 'Ariza yuborish', 'url' => ['announcements/create']],
 
 
                 ],

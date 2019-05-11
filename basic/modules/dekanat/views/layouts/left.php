@@ -21,10 +21,10 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
                     ['label' => 'Menu', 'options' => ['class' => 'header']],
-                    ['label' => 'Semestrlar', 'url' => ['term/index']],
-                    ['label' => 'Guruhlar', 'url' => ['groups/index']],
-                    ['label' => 'Talabalar', 'url' => ['student/index']],
-                    ['label' => 'Dars jadvali', 'url' => ['schedule-item/index']],
+                    ['label' => 'Semestrlar','icon'=>'cubes', 'url' => ['term/index']],
+                    ['label' => 'Guruhlar', 'icon'=>'group','url' => ['groups/index']],
+                    ['label' => 'Talabalar','icon'=>'user', 'url' => ['student/index']],
+                    ['label' => 'Dars jadvali','icon'=>'table', 'url' => ['schedule-item/index']],
                 ],
             ]
         ) ?>

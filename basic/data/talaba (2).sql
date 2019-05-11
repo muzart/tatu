@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1
--- Время создания: Мар 21 2019 г., 10:56
--- Версия сервера: 10.1.28-MariaDB
--- Версия PHP: 7.1.11
+-- Host: 127.0.0.1
+-- Generation Time: May 11, 2019 at 12:53 PM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,19 +19,18 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `talaba`
+-- Database: `talaba`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `announcements`
+-- Table structure for table `announcements`
 --
 
 CREATE TABLE `announcements` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `start_date` varchar(200) NOT NULL,
   `tittle` varchar(255) NOT NULL,
   `body` text NOT NULL,
   `end_date` varchar(200) NOT NULL,
@@ -39,18 +38,21 @@ CREATE TABLE `announcements` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `announcements`
+-- Dumping data for table `announcements`
 --
 
-INSERT INTO `announcements` (`id`, `user_id`, `start_date`, `tittle`, `body`, `end_date`, `status`) VALUES
-(2, 14, '12.12', 'df', 'ijij', '121', 'inactive'),
-(3, 14, 'oko', 'pokp', 'sss', 'o', 'inactive'),
-(4, 14, 'ki', 'ki', 'ki', 'ki', 'inactive');
+INSERT INTO `announcements` (`id`, `user_id`, `tittle`, `body`, `end_date`, `status`) VALUES
+(2, 14, 'df', 'ijij', '121', 'inactive'),
+(3, 14, 'pokp', 'sss', 'o', 'inactive'),
+(4, 14, 'ki', 'ki', 'ki', 'inactive'),
+(5, 14, 'dfd', 'jjij', '12.12.12', 'inactive'),
+(6, 14, 'jkj', 'jkjkj', '12', 'inactive'),
+(7, 14, 'reference', '<h1 style=\"text-align: left;\">&nbsp; &nbsp;kdjfdkjfdf</h1>', '2019-05-10', 'active');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `announcement_student`
+-- Table structure for table `announcement_student`
 --
 
 CREATE TABLE `announcement_student` (
@@ -62,7 +64,7 @@ CREATE TABLE `announcement_student` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `appeals`
+-- Table structure for table `appeals`
 --
 
 CREATE TABLE `appeals` (
@@ -80,7 +82,7 @@ CREATE TABLE `appeals` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `building`
+-- Table structure for table `building`
 --
 
 CREATE TABLE `building` (
@@ -89,7 +91,7 @@ CREATE TABLE `building` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `building`
+-- Dumping data for table `building`
 --
 
 INSERT INTO `building` (`id`, `name`) VALUES
@@ -98,7 +100,7 @@ INSERT INTO `building` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `contract_amounts`
+-- Table structure for table `contract_amounts`
 --
 
 CREATE TABLE `contract_amounts` (
@@ -110,41 +112,60 @@ CREATE TABLE `contract_amounts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `contract_amounts`
+-- Dumping data for table `contract_amounts`
 --
 
 INSERT INTO `contract_amounts` (`id`, `total_amount`, `term_id`, `direction_id`, `deadline`) VALUES
 (1, 8900000, 1, 1, '22.04.2019'),
 (2, 1000000, 1, 2, '10.20.2020'),
-(3, 12000000, 5, 1, '10.20.2020'),
+(3, 12000000, 2, 1, '10.20.2020'),
 (4, 13000000, 6, 2, '10.20.2020');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `contract_payments`
+-- Table structure for table `contract_payments`
 --
 
 CREATE TABLE `contract_payments` (
   `id` int(11) NOT NULL,
   `student_id` int(10) NOT NULL COMMENT 'Talaba',
+  `group_id` int(10) NOT NULL,
   `term_id` int(10) NOT NULL COMMENT 'Semestr',
   `payment_date` varchar(20) NOT NULL COMMENT 'To''langan vaqti',
   `payment_amount` int(100) NOT NULL COMMENT 'To''langan summa'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `contract_payments`
+-- Dumping data for table `contract_payments`
 --
 
-INSERT INTO `contract_payments` (`id`, `student_id`, `term_id`, `payment_date`, `payment_amount`) VALUES
-(3, 21, 1, '03-03-2019', 1000000),
-(4, 21, 5, '12-03-2019', 1000000);
+INSERT INTO `contract_payments` (`id`, `student_id`, `group_id`, `term_id`, `payment_date`, `payment_amount`) VALUES
+(6, 21, 1, 1, '27-03-2019', 500000),
+(7, 21, 2, 1, '27-03-2019', 2000000);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `department`
+-- Table structure for table `current_term`
+--
+
+CREATE TABLE `current_term` (
+  `id` int(11) NOT NULL,
+  `current_term_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `current_term`
+--
+
+INSERT INTO `current_term` (`id`, `current_term_id`) VALUES
+(1, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `department`
 --
 
 CREATE TABLE `department` (
@@ -156,7 +177,7 @@ CREATE TABLE `department` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `department`
+-- Dumping data for table `department`
 --
 
 INSERT INTO `department` (`id`, `name`, `faculty_id`, `building_id`, `room_id`) VALUES
@@ -165,7 +186,7 @@ INSERT INTO `department` (`id`, `name`, `faculty_id`, `building_id`, `room_id`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `direction`
+-- Table structure for table `direction`
 --
 
 CREATE TABLE `direction` (
@@ -175,7 +196,7 @@ CREATE TABLE `direction` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `direction`
+-- Dumping data for table `direction`
 --
 
 INSERT INTO `direction` (`id`, `code`, `name`) VALUES
@@ -185,7 +206,47 @@ INSERT INTO `direction` (`id`, `code`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `faculty`
+-- Table structure for table `events`
+--
+
+CREATE TABLE `events` (
+  `event_id` int(11) NOT NULL,
+  `event_title` varchar(80) NOT NULL,
+  `event_detail` varchar(255) NOT NULL,
+  `event_start_date` datetime NOT NULL,
+  `event_end_date` datetime NOT NULL,
+  `event_type` int(11) NOT NULL,
+  `event_url` varchar(255) DEFAULT NULL,
+  `event_all_day` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `is_status` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`event_id`, `event_title`, `event_detail`, `event_start_date`, `event_end_date`, `event_type`, `event_url`, `event_all_day`, `created_at`, `created_by`, `updated_at`, `updated_by`, `is_status`) VALUES
+(1, 'tyty', 'tyty', '2018-12-21 01:00:00', '2018-12-21 01:00:00', 1, NULL, 0, '2018-12-21 22:44:52', 1, NULL, NULL, 0),
+(2, 'namuna', 'fdkfdk', '2019-04-01 02:00:00', '2019-04-01 02:00:00', 3, NULL, 0, '2019-04-01 20:13:28', 1, '2019-04-02 15:13:42', 2, 2),
+(3, 'namuna2', 'djfdk', '2019-04-01 02:00:00', '2019-04-01 02:00:00', 2, NULL, 0, '2019-04-01 20:13:46', 1, '2019-04-02 15:13:47', 2, 2),
+(4, 'namuna', 'll,l', '2019-04-01 22:00:36', '2019-04-01 22:00:36', 1, ',', 2, '2019-04-02 10:00:36', 2, '0000-00-00 00:00:00', 3, 5),
+(5, 'namuna', 'll,l', '2019-04-01 02:00:00', '2019-04-01 02:00:00', 1, '1', 1, '2019-04-02 10:02:54', 1, '0000-00-00 00:00:00', 1, 1),
+(6, 'namuna', 'jjj', '2019-04-02 02:00:00', '2019-04-02 02:05:00', 1, NULL, 0, '2019-04-02 10:16:03', 2, '2019-04-26 20:33:55', 2, 2),
+(7, 'namuna2', 'lll', '2019-04-04 02:00:00', '2019-04-04 02:00:00', 1, NULL, 0, '2019-04-02 10:16:33', 2, NULL, NULL, 0),
+(8, 'mm', 'mmmm', '2019-04-02 02:00:00', '2019-04-02 02:00:00', 2, NULL, 0, '2019-04-02 10:39:30', 2, '2019-04-26 20:33:49', 2, 2),
+(9, 'jjj', 'j', '2019-04-02 02:00:00', '2019-05-22 02:00:00', 1, NULL, 0, '2019-04-02 11:03:22', 2, '2019-04-02 15:12:00', 2, 2),
+(10, 'kkk', 'mmm', '2019-04-02 02:00:00', '2019-04-02 02:00:00', 3, NULL, 0, '2019-04-02 12:00:57', 2, '2019-04-26 20:33:41', 2, 2),
+(11, 'namuna', 'gg', '2019-04-02 10:00:00', '2019-04-03 02:10:00', 2, NULL, 0, '2019-04-02 12:09:51', 2, '2019-04-26 20:34:01', 2, 2),
+(12, 'Stadion Ochililish marsosimi', 'Hamma soat 8 da yig\'ilishi kerak', '2019-04-01 03:00:00', '2019-04-01 04:00:00', 1, NULL, 0, '2019-04-02 15:14:43', 2, '2019-04-02 15:15:08', 2, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `faculty`
 --
 
 CREATE TABLE `faculty` (
@@ -195,7 +256,7 @@ CREATE TABLE `faculty` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `faculty`
+-- Dumping data for table `faculty`
 --
 
 INSERT INTO `faculty` (`id`, `name`, `building_id`) VALUES
@@ -204,7 +265,7 @@ INSERT INTO `faculty` (`id`, `name`, `building_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `groups`
+-- Table structure for table `groups`
 --
 
 CREATE TABLE `groups` (
@@ -217,17 +278,17 @@ CREATE TABLE `groups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `groups`
+-- Dumping data for table `groups`
 --
 
 INSERT INTO `groups` (`id`, `name`, `group_head_id`, `direction_id`, `course`, `faculty_id`) VALUES
-(1, '914-46', 5, 1, 3, 1),
+(1, '914-46', 5, 1, 2, 1),
 (2, '941-15', 5, 1, 2, 1);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `lesson`
+-- Table structure for table `lesson`
 --
 
 CREATE TABLE `lesson` (
@@ -244,7 +305,7 @@ CREATE TABLE `lesson` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `lesson_type`
+-- Table structure for table `lesson_type`
 --
 
 CREATE TABLE `lesson_type` (
@@ -256,7 +317,7 @@ CREATE TABLE `lesson_type` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `marks`
+-- Table structure for table `marks`
 --
 
 CREATE TABLE `marks` (
@@ -271,7 +332,7 @@ CREATE TABLE `marks` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `materials`
+-- Table structure for table `materials`
 --
 
 CREATE TABLE `materials` (
@@ -282,23 +343,10 @@ CREATE TABLE `materials` (
   `planned_hour` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Дамп данных таблицы `materials`
---
-
-INSERT INTO `materials` (`id`, `subject_id`, `studies_kind`, `topic`, `planned_hour`) VALUES
-(1, 1, 'lecture', 'Web ilovalarni yaratish faniga kirish', '2'),
-(2, 1, 'practice', 'HTML oddiy teglarini o\'rganish', '2'),
-(3, 2, 'laboratory', 'oiho', '12'),
-(4, 3, 'laboratory', 'Bir ish qilish', '2'),
-(6, 3, 'lecture', '2-maruza', '2'),
-(7, 3, 'laboratory', 'Bir ish qilish ikki', '2'),
-(8, 9, 'lecture', 'kldfkldkf', '45');
-
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `material_files`
+-- Table structure for table `material_files`
 --
 
 CREATE TABLE `material_files` (
@@ -307,25 +355,10 @@ CREATE TABLE `material_files` (
   `file_path` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Дамп данных таблицы `material_files`
---
-
-INSERT INTO `material_files` (`id`, `material_id`, `file_path`) VALUES
-(1, 4, 'uploads/materials/fizika/bir_ish_qilish.jpg'),
-(2, 4, 'uploads/materials/fizika/bir_ish_qilish.png'),
-(3, 4, 'uploads/materials/fizika/bir_ish_qilish.png'),
-(9, 6, 'uploads/materials/fizika/2-maruza_2018-01-03_at_13-03-16.png71.png'),
-(10, 7, 'uploads/materials/fizika/bir_ish_qilish_ikki_2017-12-11_at_13-25-34.png75.png'),
-(11, 7, 'uploads/materials/fizika/bir_ish_qilish_ikki_2017-12-11_at_13-25-41.png41.png'),
-(15, 6, 'uploads/materials/fizika/2-maruza_2017-11-03_at_20-17-12.png56.png'),
-(16, 3, 'uploads/materials/linux/oiho_user.sql56.sql'),
-(17, 6, 'uploads/materials/fizika/2-maruza_1.png23.png');
-
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `menu`
+-- Table structure for table `menu`
 --
 
 CREATE TABLE `menu` (
@@ -340,7 +373,7 @@ CREATE TABLE `menu` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `migration`
+-- Table structure for table `migration`
 --
 
 CREATE TABLE `migration` (
@@ -349,7 +382,7 @@ CREATE TABLE `migration` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `migration`
+-- Dumping data for table `migration`
 --
 
 INSERT INTO `migration` (`version`, `apply_time`) VALUES
@@ -362,7 +395,7 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -373,34 +406,7 @@ CREATE TABLE `migrations` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `months`
---
-
-CREATE TABLE `months` (
-  `id` int(11) NOT NULL,
-  `id_cat` int(11) NOT NULL,
-  `month` enum('Yanvar','Fevral','Mart','Aprel','May','Iyun','Iyul','Avgust','Sentyabr','Oktyabr','Noyabr','Dekabr') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `months`
---
-
-INSERT INTO `months` (`id`, `id_cat`, `month`) VALUES
-(1, 2, 'Yanvar'),
-(2, 1, 'Sentyabr'),
-(3, 1, 'Oktyabr'),
-(4, 1, 'Noyabr'),
-(5, 2, 'Dekabr'),
-(6, 2, 'Fevral'),
-(7, 2, 'Mart'),
-(8, 3, 'Aprel'),
-(9, 3, 'May');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `payments`
+-- Table structure for table `payments`
 --
 
 CREATE TABLE `payments` (
@@ -414,7 +420,65 @@ CREATE TABLE `payments` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `protocol`
+-- Table structure for table `plan_subject_teacher`
+--
+
+CREATE TABLE `plan_subject_teacher` (
+  `id` int(11) NOT NULL,
+  `teacher_id` int(10) NOT NULL,
+  `subject_id` int(10) NOT NULL,
+  `subject_type_id` int(10) NOT NULL,
+  `term_id` int(10) NOT NULL,
+  `potok_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `plan_subject_type`
+--
+
+CREATE TABLE `plan_subject_type` (
+  `id` int(10) NOT NULL,
+  `subject_id` int(10) NOT NULL,
+  `subject_type_id` int(10) NOT NULL,
+  `hour` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `plan_subject_type`
+--
+
+INSERT INTO `plan_subject_type` (`id`, `subject_id`, `subject_type_id`, `hour`) VALUES
+(17, 38, 1, 90);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `potok`
+--
+
+CREATE TABLE `potok` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `potok_group`
+--
+
+CREATE TABLE `potok_group` (
+  `id` int(11) NOT NULL,
+  `potok_id` int(10) NOT NULL,
+  `group_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `protocol`
 --
 
 CREATE TABLE `protocol` (
@@ -427,16 +491,16 @@ CREATE TABLE `protocol` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `protocol`
+-- Dumping data for table `protocol`
 --
 
 INSERT INTO `protocol` (`id`, `participants`, `department_id`, `schedule`, `statement`, `decision`) VALUES
-(2, '<p style=\"text-align: center;\">Bayonnoma&nbsp; N9&nbsp; &nbsp;&nbsp;</p>\r\n<p>22 yanvar 2018 yil&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Urganch shahri</p>\r\n<pre>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur eveniet excepturi facilis illo odit placeat quisquam ut voluptate, voluptatum. Aut debitis ducimus, excepturi hic mollitia qui quis repellendus voluptate.</pre>\r\n<pre><br /><br /></pre>', 1, '<pre>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur eveniet excepturi facilis illo odit placeat quisquam ut voluptate, voluptatum. Aut debitis ducimus, excepturi hic mollitia qui quis repellendus voluptate.</pre>\r\n<pre>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur eveniet excepturi facilis illo odit placeat quisquam ut voluptate, voluptatum. Aut debitis ducimus, excepturi hic mollitia qui quis repellendus voluptate.</pre>', '<pre>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur eveniet excepturi facilis illo odit placeat quisquam ut voluptate, voluptatum. Aut debitis ducimus, excepturi hic mollitia qui quis repellendus voluptate.</pre>\r\n<pre>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur eveniet excepturi facilis illo odit placeat quisquam ut voluptate, voluptatum. Aut debitis ducimus, excepturi hic mollitia qui quis repellendus voluptate.</pre>\r\n<pre>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur eveniet excepturi facilis illo odit placeat quisquam ut voluptate, voluptatum. Aut debitis ducimus, excepturi hic mollitia qui quis repellendus voluptate.</pre>\r\n<pre>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur eveniet excepturi facilis illo odit placeat quisquam ut voluptate, voluptatum. Aut debitis ducimus, excepturi hic mollitia qui quis repellendus voluptate.</pre>', '<pre>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur eveniet excepturi facilis illo odit placeat quisquam ut voluptate, voluptatum. Aut debitis ducimus, excepturi hic mollitia qui quis repellendus voluptate.</pre>\r\n<pre>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur eveniet excepturi facilis illo odit placeat quisquam ut voluptate, voluptatum. Aut debitis ducimus, excepturi hic mollitia qui quis repellendus voluptate.</pre>\r\n<pre>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur eveniet excepturi facilis illo odit placeat quisquam ut voluptate, voluptatum. Aut debitis ducimus, excepturi hic mollitia qui quis repellendus voluptate.</pre>');
+(2, '<h1 style=\"text-align: center;\">Bayonnoma&nbsp; N9</h1>\r\n<div style=\"text-align: left;\">2019-04-01 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;bir nasa&nbsp;</div>', 1, '<p>ggrrg re tr trt r</p>', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `room`
+-- Table structure for table `room`
 --
 
 CREATE TABLE `room` (
@@ -446,7 +510,7 @@ CREATE TABLE `room` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `room`
+-- Dumping data for table `room`
 --
 
 INSERT INTO `room` (`id`, `name`, `building_id`) VALUES
@@ -455,7 +519,7 @@ INSERT INTO `room` (`id`, `name`, `building_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `schedule_item`
+-- Table structure for table `schedule_item`
 --
 
 CREATE TABLE `schedule_item` (
@@ -472,21 +536,16 @@ CREATE TABLE `schedule_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `schedule_item`
+-- Dumping data for table `schedule_item`
 --
 
 INSERT INTO `schedule_item` (`id`, `subject_id`, `subject_type`, `teacher_id`, `room_id`, `group_id`, `day`, `pair`, `term_id`, `week_type`) VALUES
-(1, 7, 'practice', 5, 1, 1, '1-kun', '1', 2, 'odd'),
-(2, 8, 'lecture', 5, 1, 1, '1-kun', '4', 2, 'full'),
-(4, 7, 'lecture', 5, 1, 1, '4-kun', '6', 3, 'full'),
-(5, 8, 'lecture', 5, 1, 1, '1-kun', '3', 4, 'full'),
-(7, 8, 'lecture', 5, 1, 2, '3-kun', '1', 2, 'full'),
-(8, 8, 'lecture', 5, 1, 1, '1-kun', '5', 2, 'odd');
+(1, 38, 'lecture', 5, 1, 1, '1-kun', '3', 5, 'full');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `sections`
+-- Table structure for table `sections`
 --
 
 CREATE TABLE `sections` (
@@ -498,7 +557,7 @@ CREATE TABLE `sections` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `settings`
+-- Table structure for table `settings`
 --
 
 CREATE TABLE `settings` (
@@ -512,7 +571,7 @@ CREATE TABLE `settings` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `student`
+-- Table structure for table `student`
 --
 
 CREATE TABLE `student` (
@@ -548,16 +607,19 @@ CREATE TABLE `student` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `student`
+-- Dumping data for table `student`
 --
 
 INSERT INTO `student` (`id`, `reyting_no`, `direction_id`, `surname`, `name`, `patronymic`, `birthday`, `birthplace`, `education`, `workplace`, `father_name`, `father_workplace`, `father_phone`, `mother_name`, `mother_workplace`, `mother_phone`, `family_status`, `passport_serie`, `passport_number`, `passport_given`, `parents_address`, `address`, `living_type`, `created`, `updated`, `nationality`, `photo`, `user_id`, `group_id`) VALUES
-(21, 'AA4553543', 1, 'Kurbanov', 'Salim', 'Karimovich', '12.03.1997', 'Urganch', 'o\'rta maxsus', '', '', '', '', '', '', '', 'o\'rtacha', 'AA', '1245789', 'Urganch shahar IIB', '', '', 'Uy', NULL, NULL, 'o\'zbek', NULL, 14, 1);
+(21, 'AA4553543', 1, 'Kurbanov', 'Salim', 'Karimovich', '12.03.1997', 'Urganch', 'o\'rta maxsus', '', '', '', '', '', '', '', 'o\'rtacha', 'AA', '1245789', 'Urganch shahar IIB', '', '', 'Uy', NULL, NULL, 'o\'zbek', 'salim_kurbanov.jpg', 14, 1),
+(25, 'AA45535787', 1, 'Kurbanov', 'Salim', 'Karimovich', '12.03.1997', 'Urganch', 'o\'rta maxsus', '', '', '', '', '', '', '', 'o\'rtacha', 'AA', '1245786', 'Urganch shahar IIB', '', '', 'Uy', NULL, NULL, 'o\'zbek', NULL, 14, 1),
+(28, 'AA45534561', 1, 'Kurbanov', 'Salim', 'Karimovich', '12.03.1997', 'Urganch', 'o\'rta maxsus', '', '', '', '', '', '', '', 'o\'rtacha', 'AA', '1245789', 'Urganch shahar IIB', '', '', 'Uy', NULL, NULL, 'o\'zbek', NULL, 14, 1),
+(29, 'AA45535788', 1, 'Kurbanov', 'Salim', 'Karimovich', '12.03.1997', 'Urganch', 'o\'rta maxsus', '', '', '', '', '', '', '', 'o\'rtacha', 'AA', '1245786', 'Urganch shahar IIB', '', '', 'Uy', NULL, NULL, 'o\'zbek', NULL, 14, 2);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `student_mistakes`
+-- Table structure for table `student_mistakes`
 --
 
 CREATE TABLE `student_mistakes` (
@@ -570,60 +632,89 @@ CREATE TABLE `student_mistakes` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `subject`
+-- Table structure for table `subject`
 --
 
 CREATE TABLE `subject` (
   `id` int(11) NOT NULL,
-  `direction_id` int(11) NOT NULL COMMENT 'Йўналиш',
-  `semester_id` int(11) NOT NULL COMMENT 'Семестр',
-  `name` varchar(64) NOT NULL COMMENT 'Фан номи',
-  `lecturer_id` int(11) NOT NULL COMMENT 'Маърузачи',
-  `practice_id` int(11) NOT NULL COMMENT 'Амалиётчи',
-  `lab1_id` int(11) NOT NULL COMMENT '1-Лабораториячи',
-  `lab2_id` int(11) NOT NULL COMMENT '2-Лабораториячи',
-  `department_id` int(11) NOT NULL COMMENT 'Кафедра',
-  `lecture_hour` int(11) DEFAULT NULL COMMENT 'Маъруза соат',
-  `practice_hour` int(11) DEFAULT NULL COMMENT 'Амалиёт соат',
-  `lab_hour` int(11) DEFAULT NULL COMMENT 'Тажриба соат',
-  `seminar` int(11) DEFAULT NULL COMMENT 'Seminar soat',
-  `seminar_id` int(11) NOT NULL,
-  `independent_hour` int(11) DEFAULT NULL COMMENT 'Мустақил соат',
-  `s1` int(11) DEFAULT NULL,
-  `s2` int(11) DEFAULT NULL,
-  `s3` int(11) DEFAULT NULL,
-  `s4` int(11) DEFAULT NULL,
-  `s5` int(11) DEFAULT NULL,
-  `s6` int(11) DEFAULT NULL,
-  `s7` int(11) DEFAULT NULL,
-  `s8` int(11) DEFAULT NULL
+  `name` varchar(100) NOT NULL,
+  `department_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `subject`
+-- Dumping data for table `subject`
 --
 
-INSERT INTO `subject` (`id`, `direction_id`, `semester_id`, `name`, `lecturer_id`, `practice_id`, `lab1_id`, `lab2_id`, `department_id`, `lecture_hour`, `practice_hour`, `lab_hour`, `seminar`, `seminar_id`, `independent_hour`, `s1`, `s2`, `s3`, `s4`, `s5`, `s6`, `s7`, `s8`) VALUES
-(7, 1, 1, 'Fizika', 5, 5, 5, 5, 1, 36, 36, 45, 45, 5, 45, NULL, NULL, NULL, NULL, NULL, 5, NULL, NULL),
-(8, 1, 1, 'O\'zbekiston tarixi', 5, 5, 5, 5, 1, 26, NULL, NULL, 28, 5, 38, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, 1, 1, 'dd', 5, 5, 5, 5, 1, 12, 12, 21, 121, 5, 21, 41, -41, 0, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `subject` (`id`, `name`, `department_id`) VALUES
+(38, 'Fizika', 1);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `subject_direction`
+-- Table structure for table `subject_direction`
 --
 
 CREATE TABLE `subject_direction` (
-  `term_id` int(11) NOT NULL,
-  `direction_id` int(11) NOT NULL,
-  `subject_id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `subject_id` int(10) NOT NULL,
+  `direction_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `subject_direction`
+--
+
+INSERT INTO `subject_direction` (`id`, `subject_id`, `direction_id`) VALUES
+(13, 38, 1);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `teacher`
+-- Table structure for table `subject_term`
+--
+
+CREATE TABLE `subject_term` (
+  `id` int(11) NOT NULL,
+  `subject_id` int(10) NOT NULL,
+  `term_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `subject_term`
+--
+
+INSERT INTO `subject_term` (`id`, `subject_id`, `term_id`) VALUES
+(3, 38, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subject_type`
+--
+
+CREATE TABLE `subject_type` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL COMMENT 'Fan turi'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `subject_type`
+--
+
+INSERT INTO `subject_type` (`id`, `name`) VALUES
+(1, 'Leksiya'),
+(2, 'Laboratoriya'),
+(3, 'Konsultasiya'),
+(4, 'Amaliyot'),
+(5, 'O\'zlashtirish nazorati'),
+(6, 'Magistrantga rahbarlik'),
+(7, 'Kurs loyihasi'),
+(8, 'Bitiruv ishiga rahbarlik');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teacher`
 --
 
 CREATE TABLE `teacher` (
@@ -650,7 +741,7 @@ CREATE TABLE `teacher` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `teacher`
+-- Dumping data for table `teacher`
 --
 
 INSERT INTO `teacher` (`id`, `fio`, `user_id`, `department_id`, `img`, `post`, `type`, `birthday`, `birthplace`, `nationality`, `partiya`, `degree`, `ended`, `specialization`, `science_degree`, `science_title`, `foreign_langs`, `gov_awards`, `deputy`, `started_work`) VALUES
@@ -660,7 +751,7 @@ INSERT INTO `teacher` (`id`, `fio`, `user_id`, `department_id`, `img`, `post`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `term`
+-- Table structure for table `term`
 --
 
 CREATE TABLE `term` (
@@ -670,7 +761,7 @@ CREATE TABLE `term` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `term`
+-- Dumping data for table `term`
 --
 
 INSERT INTO `term` (`id`, `name`, `semester`) VALUES
@@ -684,7 +775,7 @@ INSERT INTO `term` (`id`, `name`, `semester`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `ttj_room`
+-- Table structure for table `ttj_room`
 --
 
 CREATE TABLE `ttj_room` (
@@ -696,7 +787,7 @@ CREATE TABLE `ttj_room` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `ttj_students`
+-- Table structure for table `ttj_students`
 --
 
 CREATE TABLE `ttj_students` (
@@ -711,7 +802,7 @@ CREATE TABLE `ttj_students` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -728,7 +819,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Дамп данных таблицы `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`, `role`) VALUES
@@ -745,22 +836,22 @@ INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_res
 (11, 'arslon8', '2m1a8iVU6LmQLx7TYajOFQqYueEsUxT7', '$2y$13$O53SsVJr2fs29FuTxYNBtubci58TNK7NfPugPPQyfiGqjsByzeMGi', NULL, 'arslon@uh.com', 0, 1552233828, 1552233828, 'student'),
 (12, 'arslon9', 'HTAaA5Q35qWQdvxV3mfVj4CElK1bo-_M', '$2y$13$leWBZJKK/kSfBd4MHl9lRONFuDXNjkYOP5kASMMYRuKZ54pylBH4W', NULL, 'jk', 10, 1552234349, 1552234349, 'student'),
 (13, 'arslon1', '2tY8y0865uPlLffW_yYb0oNmAFKXRBEJ', '$2y$13$r07PmxcZr1M7sRoLLPhQs.ahJGfUtBNNAmpDFycbRQwf/SXWUkAjO', NULL, 'arslonsaidov300@gmai.com', 10, 1552302919, 1552302919, 'student'),
-(14, 'salim_student', 'OzZqqoWyqjpvN3ZiB634dtwKKeOM7y2-', '$2y$13$flYyWOVgOvdqahxav124FupqdlCyF4g7/LOQUbsg5RXGHqOIhu8fy', NULL, 'salim@ubtuit.uz', 10, 1552305500, 1552305500, 'student'),
+(14, 'salim_student', 'OzZqqoWyqjpvN3ZiB634dtwKKeOM7y2-', '$2y$13$flYyWOVgOvdqahxav124FupqdlCyF4g7/LOQUbsg5RXGHqOIhu8fy', NULL, 'salim@ubtuit.uz', 10, 1552305500, 1557249219, 'student'),
 (15, 'bek_murod', 'qpqfkPJeKO1uk7IoxYx0xYhmXGB69Jdo', '$2y$13$k/MoT8KpCJefOdEZ/0HFRe6UslxjfYLzuyka7DqtTg1cmn/u7OSvS', NULL, 'bekmurod@mail.ru', 10, 1552697156, 1552697156, 'teacher');
 
 --
--- Индексы сохранённых таблиц
+-- Indexes for dumped tables
 --
 
 --
--- Индексы таблицы `announcements`
+-- Indexes for table `announcements`
 --
 ALTER TABLE `announcements`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Индексы таблицы `announcement_student`
+-- Indexes for table `announcement_student`
 --
 ALTER TABLE `announcement_student`
   ADD PRIMARY KEY (`id`),
@@ -768,7 +859,7 @@ ALTER TABLE `announcement_student`
   ADD KEY `student_id` (`student_id`);
 
 --
--- Индексы таблицы `appeals`
+-- Indexes for table `appeals`
 --
 ALTER TABLE `appeals`
   ADD PRIMARY KEY (`id`),
@@ -776,13 +867,13 @@ ALTER TABLE `appeals`
   ADD KEY `term_id` (`term_id`);
 
 --
--- Индексы таблицы `building`
+-- Indexes for table `building`
 --
 ALTER TABLE `building`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `contract_amounts`
+-- Indexes for table `contract_amounts`
 --
 ALTER TABLE `contract_amounts`
   ADD PRIMARY KEY (`id`),
@@ -790,15 +881,23 @@ ALTER TABLE `contract_amounts`
   ADD KEY `direction_id` (`direction_id`);
 
 --
--- Индексы таблицы `contract_payments`
+-- Indexes for table `contract_payments`
 --
 ALTER TABLE `contract_payments`
   ADD PRIMARY KEY (`id`),
   ADD KEY `student_id` (`student_id`),
-  ADD KEY `term_id` (`term_id`);
+  ADD KEY `term_id` (`term_id`),
+  ADD KEY `group_id` (`group_id`);
 
 --
--- Индексы таблицы `department`
+-- Indexes for table `current_term`
+--
+ALTER TABLE `current_term`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `current_term_id` (`current_term_id`);
+
+--
+-- Indexes for table `department`
 --
 ALTER TABLE `department`
   ADD PRIMARY KEY (`id`),
@@ -807,20 +906,26 @@ ALTER TABLE `department`
   ADD KEY `room_id` (`room_id`);
 
 --
--- Индексы таблицы `direction`
+-- Indexes for table `direction`
 --
 ALTER TABLE `direction`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `faculty`
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`event_id`);
+
+--
+-- Indexes for table `faculty`
 --
 ALTER TABLE `faculty`
   ADD PRIMARY KEY (`id`),
   ADD KEY `building_id` (`building_id`);
 
 --
--- Индексы таблицы `groups`
+-- Indexes for table `groups`
 --
 ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`),
@@ -830,7 +935,7 @@ ALTER TABLE `groups`
   ADD KEY `group_head_id_2` (`group_head_id`);
 
 --
--- Индексы таблицы `lesson`
+-- Indexes for table `lesson`
 --
 ALTER TABLE `lesson`
   ADD PRIMARY KEY (`id`),
@@ -840,14 +945,14 @@ ALTER TABLE `lesson`
   ADD KEY `teacher_id` (`teacher_id`);
 
 --
--- Индексы таблицы `lesson_type`
+-- Indexes for table `lesson_type`
 --
 ALTER TABLE `lesson_type`
   ADD PRIMARY KEY (`id`),
   ADD KEY `subject_id` (`subject_id`);
 
 --
--- Индексы таблицы `marks`
+-- Indexes for table `marks`
 --
 ALTER TABLE `marks`
   ADD PRIMARY KEY (`id`),
@@ -857,41 +962,34 @@ ALTER TABLE `marks`
   ADD KEY `subject_id` (`subject_id`);
 
 --
--- Индексы таблицы `materials`
+-- Indexes for table `materials`
 --
 ALTER TABLE `materials`
   ADD PRIMARY KEY (`id`),
   ADD KEY `subject_id` (`subject_id`);
 
 --
--- Индексы таблицы `material_files`
+-- Indexes for table `material_files`
 --
 ALTER TABLE `material_files`
   ADD PRIMARY KEY (`id`),
   ADD KEY `material_files_ibfk_1` (`material_id`);
 
 --
--- Индексы таблицы `menu`
+-- Indexes for table `menu`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id`),
   ADD KEY `parent` (`parent`);
 
 --
--- Индексы таблицы `migration`
+-- Indexes for table `migration`
 --
 ALTER TABLE `migration`
   ADD PRIMARY KEY (`version`);
 
 --
--- Индексы таблицы `months`
---
-ALTER TABLE `months`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_cat` (`id_cat`);
-
---
--- Индексы таблицы `payments`
+-- Indexes for table `payments`
 --
 ALTER TABLE `payments`
   ADD PRIMARY KEY (`id`),
@@ -899,21 +997,54 @@ ALTER TABLE `payments`
   ADD KEY `student_id_2` (`student_id`);
 
 --
--- Индексы таблицы `protocol`
+-- Indexes for table `plan_subject_teacher`
+--
+ALTER TABLE `plan_subject_teacher`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `teacher_id` (`teacher_id`),
+  ADD KEY `subject_id` (`subject_id`),
+  ADD KEY `subject_type_id` (`subject_type_id`),
+  ADD KEY `term_id` (`term_id`),
+  ADD KEY `potok_id` (`potok_id`);
+
+--
+-- Indexes for table `plan_subject_type`
+--
+ALTER TABLE `plan_subject_type`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `subject_id` (`subject_id`),
+  ADD KEY `subject_type_id` (`subject_type_id`);
+
+--
+-- Indexes for table `potok`
+--
+ALTER TABLE `potok`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `potok_group`
+--
+ALTER TABLE `potok_group`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `potok_id` (`potok_id`),
+  ADD KEY `group_id` (`group_id`);
+
+--
+-- Indexes for table `protocol`
 --
 ALTER TABLE `protocol`
   ADD PRIMARY KEY (`id`),
   ADD KEY `department_id` (`department_id`);
 
 --
--- Индексы таблицы `room`
+-- Indexes for table `room`
 --
 ALTER TABLE `room`
   ADD PRIMARY KEY (`id`),
   ADD KEY `building_id` (`building_id`);
 
 --
--- Индексы таблицы `schedule_item`
+-- Indexes for table `schedule_item`
 --
 ALTER TABLE `schedule_item`
   ADD PRIMARY KEY (`id`),
@@ -924,19 +1055,19 @@ ALTER TABLE `schedule_item`
   ADD KEY `subject_id` (`subject_id`);
 
 --
--- Индексы таблицы `sections`
+-- Indexes for table `sections`
 --
 ALTER TABLE `sections`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `settings`
+-- Indexes for table `settings`
 --
 ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `student`
+-- Indexes for table `student`
 --
 ALTER TABLE `student`
   ADD PRIMARY KEY (`id`),
@@ -946,36 +1077,43 @@ ALTER TABLE `student`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Индексы таблицы `student_mistakes`
+-- Indexes for table `student_mistakes`
 --
 ALTER TABLE `student_mistakes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `student_id` (`student_id`);
 
 --
--- Индексы таблицы `subject`
+-- Indexes for table `subject`
 --
 ALTER TABLE `subject`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `direction_id` (`direction_id`),
-  ADD KEY `semester_id` (`semester_id`),
-  ADD KEY `lecturer_id` (`lecturer_id`),
-  ADD KEY `practice_id` (`practice_id`),
-  ADD KEY `lab1_id` (`lab1_id`),
-  ADD KEY `lab2_id` (`lab2_id`),
-  ADD KEY `department_id` (`department_id`),
-  ADD KEY `seminar_id` (`seminar_id`);
+  ADD KEY `department_id` (`department_id`);
 
 --
--- Индексы таблицы `subject_direction`
+-- Indexes for table `subject_direction`
 --
 ALTER TABLE `subject_direction`
-  ADD KEY `term_id` (`term_id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `direction_id` (`direction_id`),
   ADD KEY `subject_id` (`subject_id`);
 
 --
--- Индексы таблицы `teacher`
+-- Indexes for table `subject_term`
+--
+ALTER TABLE `subject_term`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `subject_id` (`subject_id`),
+  ADD KEY `term_id` (`term_id`);
+
+--
+-- Indexes for table `subject_type`
+--
+ALTER TABLE `subject_type`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `teacher`
 --
 ALTER TABLE `teacher`
   ADD PRIMARY KEY (`id`),
@@ -983,20 +1121,20 @@ ALTER TABLE `teacher`
   ADD KEY `department_id` (`department_id`);
 
 --
--- Индексы таблицы `term`
+-- Indexes for table `term`
 --
 ALTER TABLE `term`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `ttj_room`
+-- Indexes for table `ttj_room`
 --
 ALTER TABLE `ttj_room`
   ADD PRIMARY KEY (`id`),
   ADD KEY `section_id` (`section_id`);
 
 --
--- Индексы таблицы `ttj_students`
+-- Indexes for table `ttj_students`
 --
 ALTER TABLE `ttj_students`
   ADD PRIMARY KEY (`id`),
@@ -1006,241 +1144,296 @@ ALTER TABLE `ttj_students`
   ADD KEY `student_id` (`student_id`);
 
 --
--- Индексы таблицы `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT для сохранённых таблиц
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT для таблицы `announcements`
+-- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT для таблицы `announcement_student`
+-- AUTO_INCREMENT for table `announcement_student`
 --
 ALTER TABLE `announcement_student`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `appeals`
+-- AUTO_INCREMENT for table `appeals`
 --
 ALTER TABLE `appeals`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `building`
+-- AUTO_INCREMENT for table `building`
 --
 ALTER TABLE `building`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT для таблицы `contract_amounts`
+-- AUTO_INCREMENT for table `contract_amounts`
 --
 ALTER TABLE `contract_amounts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT для таблицы `contract_payments`
+-- AUTO_INCREMENT for table `contract_payments`
 --
 ALTER TABLE `contract_payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT для таблицы `department`
+-- AUTO_INCREMENT for table `current_term`
+--
+ALTER TABLE `current_term`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT для таблицы `direction`
+-- AUTO_INCREMENT for table `direction`
 --
 ALTER TABLE `direction`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT для таблицы `faculty`
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `faculty`
 --
 ALTER TABLE `faculty`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT для таблицы `groups`
+-- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT для таблицы `lesson`
+-- AUTO_INCREMENT for table `lesson`
 --
 ALTER TABLE `lesson`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `lesson_type`
+-- AUTO_INCREMENT for table `lesson_type`
 --
 ALTER TABLE `lesson_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `marks`
+-- AUTO_INCREMENT for table `marks`
 --
 ALTER TABLE `marks`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `materials`
+-- AUTO_INCREMENT for table `materials`
 --
 ALTER TABLE `materials`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `material_files`
+-- AUTO_INCREMENT for table `material_files`
 --
 ALTER TABLE `material_files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `menu`
+-- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `months`
---
-ALTER TABLE `months`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT для таблицы `payments`
+-- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `protocol`
+-- AUTO_INCREMENT for table `plan_subject_teacher`
+--
+ALTER TABLE `plan_subject_teacher`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `plan_subject_type`
+--
+ALTER TABLE `plan_subject_type`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `potok`
+--
+ALTER TABLE `potok`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `potok_group`
+--
+ALTER TABLE `potok_group`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `protocol`
 --
 ALTER TABLE `protocol`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT для таблицы `room`
+-- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT для таблицы `schedule_item`
+-- AUTO_INCREMENT for table `schedule_item`
 --
 ALTER TABLE `schedule_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT для таблицы `sections`
+-- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `settings`
+-- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `student`
+-- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- AUTO_INCREMENT для таблицы `student_mistakes`
+-- AUTO_INCREMENT for table `student_mistakes`
 --
 ALTER TABLE `student_mistakes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `subject`
+-- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
--- AUTO_INCREMENT для таблицы `teacher`
+-- AUTO_INCREMENT for table `subject_direction`
+--
+ALTER TABLE `subject_direction`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `subject_term`
+--
+ALTER TABLE `subject_term`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `subject_type`
+--
+ALTER TABLE `subject_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT для таблицы `term`
+-- AUTO_INCREMENT for table `term`
 --
 ALTER TABLE `term`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT для таблицы `ttj_room`
+-- AUTO_INCREMENT for table `ttj_room`
 --
 ALTER TABLE `ttj_room`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `ttj_students`
+-- AUTO_INCREMENT for table `ttj_students`
 --
 ALTER TABLE `ttj_students`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT для таблицы `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- Ограничения внешнего ключа сохраненных таблиц
+-- Constraints for dumped tables
 --
 
 --
--- Ограничения внешнего ключа таблицы `announcements`
+-- Constraints for table `announcements`
 --
 ALTER TABLE `announcements`
   ADD CONSTRAINT `announcements_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `announcement_student`
+-- Constraints for table `announcement_student`
 --
 ALTER TABLE `announcement_student`
   ADD CONSTRAINT `announcement_student_ibfk_1` FOREIGN KEY (`announcement_id`) REFERENCES `announcements` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `announcement_student_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `appeals`
+-- Constraints for table `appeals`
 --
 ALTER TABLE `appeals`
   ADD CONSTRAINT `appeals_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `appeals_ibfk_2` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `contract_amounts`
+-- Constraints for table `contract_amounts`
 --
 ALTER TABLE `contract_amounts`
   ADD CONSTRAINT `contract_amounts_ibfk_1` FOREIGN KEY (`direction_id`) REFERENCES `direction` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `term_ifk` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `contract_payments`
+-- Constraints for table `contract_payments`
 --
 ALTER TABLE `contract_payments`
   ADD CONSTRAINT `contract_payments_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `contract_payments_ibfk_2` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `contract_payments_ibfk_2` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `contract_payments_ibfk_3` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `department`
+-- Constraints for table `current_term`
+--
+ALTER TABLE `current_term`
+  ADD CONSTRAINT `current_term_ibfk_1` FOREIGN KEY (`current_term_id`) REFERENCES `term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `department`
 --
 ALTER TABLE `department`
   ADD CONSTRAINT `department_ibfk_1` FOREIGN KEY (`faculty_id`) REFERENCES `faculty` (`id`) ON UPDATE CASCADE,
@@ -1248,20 +1441,20 @@ ALTER TABLE `department`
   ADD CONSTRAINT `department_ibfk_3` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`) ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `faculty`
+-- Constraints for table `faculty`
 --
 ALTER TABLE `faculty`
   ADD CONSTRAINT `faculty_ibfk_1` FOREIGN KEY (`building_id`) REFERENCES `building` (`id`) ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `groups`
+-- Constraints for table `groups`
 --
 ALTER TABLE `groups`
   ADD CONSTRAINT `groups_ibfk_2` FOREIGN KEY (`direction_id`) REFERENCES `direction` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `groups_ibfk_3` FOREIGN KEY (`faculty_id`) REFERENCES `faculty` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `lesson`
+-- Constraints for table `lesson`
 --
 ALTER TABLE `lesson`
   ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`),
@@ -1269,13 +1462,13 @@ ALTER TABLE `lesson`
   ADD CONSTRAINT `lesson_ibfk_3` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `lesson_type`
+-- Constraints for table `lesson_type`
 --
 ALTER TABLE `lesson_type`
   ADD CONSTRAINT `lesson_type_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`) ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `marks`
+-- Constraints for table `marks`
 --
 ALTER TABLE `marks`
   ADD CONSTRAINT `marks_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -1284,49 +1477,67 @@ ALTER TABLE `marks`
   ADD CONSTRAINT `marks_ibfk_4` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `materials`
+-- Constraints for table `materials`
 --
 ALTER TABLE `materials`
   ADD CONSTRAINT `materials_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`) ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `material_files`
+-- Constraints for table `material_files`
 --
 ALTER TABLE `material_files`
   ADD CONSTRAINT `material_files_ibfk_1` FOREIGN KEY (`material_id`) REFERENCES `materials` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `menu`
+-- Constraints for table `menu`
 --
 ALTER TABLE `menu`
   ADD CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `menu` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `months`
---
-ALTER TABLE `months`
-  ADD CONSTRAINT `months_ibfk_1` FOREIGN KEY (`id_cat`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ограничения внешнего ключа таблицы `payments`
+-- Constraints for table `payments`
 --
 ALTER TABLE `payments`
   ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `protocol`
+-- Constraints for table `plan_subject_teacher`
+--
+ALTER TABLE `plan_subject_teacher`
+  ADD CONSTRAINT `plan_subject_teacher_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `plan_subject_teacher_ibfk_2` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `plan_subject_teacher_ibfk_3` FOREIGN KEY (`subject_type_id`) REFERENCES `subject_type` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `plan_subject_teacher_ibfk_4` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `plan_subject_teacher_ibfk_5` FOREIGN KEY (`potok_id`) REFERENCES `potok` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `plan_subject_type`
+--
+ALTER TABLE `plan_subject_type`
+  ADD CONSTRAINT `plan_subject_type_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `plan_subject_type_ibfk_2` FOREIGN KEY (`subject_type_id`) REFERENCES `subject_type` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `potok_group`
+--
+ALTER TABLE `potok_group`
+  ADD CONSTRAINT `potok_group_ibfk_1` FOREIGN KEY (`potok_id`) REFERENCES `potok` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `potok_group_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `protocol`
 --
 ALTER TABLE `protocol`
   ADD CONSTRAINT `protocol_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `room`
+-- Constraints for table `room`
 --
 ALTER TABLE `room`
   ADD CONSTRAINT `room_ibfk_1` FOREIGN KEY (`building_id`) REFERENCES `building` (`id`) ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `schedule_item`
+-- Constraints for table `schedule_item`
 --
 ALTER TABLE `schedule_item`
   ADD CONSTRAINT `schedule_item_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -1336,50 +1547,53 @@ ALTER TABLE `schedule_item`
   ADD CONSTRAINT `schedule_item_ibfk_6` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `student`
+-- Constraints for table `student`
 --
 ALTER TABLE `student`
   ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`direction_id`) REFERENCES `direction` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `student_ibfk_3` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `student_mistakes`
+-- Constraints for table `student_mistakes`
 --
 ALTER TABLE `student_mistakes`
   ADD CONSTRAINT `student_mistakes_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `subject`
+-- Constraints for table `subject`
 --
 ALTER TABLE `subject`
-  ADD CONSTRAINT `subject_ibfk_1` FOREIGN KEY (`direction_id`) REFERENCES `direction` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `subject_ibfk_2` FOREIGN KEY (`semester_id`) REFERENCES `term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `subject_ibfk_7` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `subject_ibfk_8` FOREIGN KEY (`seminar_id`) REFERENCES `teacher` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `subject_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `subject_direction`
+-- Constraints for table `subject_direction`
 --
 ALTER TABLE `subject_direction`
-  ADD CONSTRAINT `subject_direction_ibfk_1` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `subject_direction_ibfk_2` FOREIGN KEY (`direction_id`) REFERENCES `direction` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `subject_direction_ibfk_3` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `subject_direction_ibfk_1` FOREIGN KEY (`direction_id`) REFERENCES `direction` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `subject_direction_ibfk_2` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `teacher`
+-- Constraints for table `subject_term`
+--
+ALTER TABLE `subject_term`
+  ADD CONSTRAINT `subject_term_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `subject_term_ibfk_2` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `teacher`
 --
 ALTER TABLE `teacher`
   ADD CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `teacher_ibfk_2` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `ttj_room`
+-- Constraints for table `ttj_room`
 --
 ALTER TABLE `ttj_room`
   ADD CONSTRAINT `ttj_room_ibfk_1` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ограничения внешнего ключа таблицы `ttj_students`
+-- Constraints for table `ttj_students`
 --
 ALTER TABLE `ttj_students`
   ADD CONSTRAINT `ttj_students_ibfk_1` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,

@@ -7,8 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Protocol */
 
 //$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Protocols', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="protocol-view">
 

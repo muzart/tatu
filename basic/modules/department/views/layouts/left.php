@@ -19,10 +19,10 @@
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget' => 'tree'],
                 'items' => [
-                    ['label' => 'Menu', 'options' => ['class' => 'header']],
-                    ['label' => 'O\'qituvchilar', 'url' => ['teacher/index']],
-                    ['label' => 'Fanlar', 'url' => ['subject/index']],
-                    ['label' => 'Protocollar', 'url' => ['protocol/index']],
+                    ['label' => 'Menu','icon'=>'dashboard', 'options' => ['class' => 'header']],
+                    ['label' => 'O\'qituvchilar','icon'=>'user', 'url' => ['teacher/index']],
+                    ['label' => 'Fanlar','icon'=>'book', 'url' => ['subject/index']],
+                    ['label' => 'Protocollar','icon'=>'file-text-o', 'url' => ['protocol/index']],
 
 
 

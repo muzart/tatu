@@ -20,11 +20,11 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
                     ['label' => 'Menu', 'options' => ['class' => 'header']],
-                    ['label' => 'Fakultetlar', 'url' => ['faculty/index']],
-                    ['label' => 'Yo\'nalishlar', 'url' => ['direction/index']],
-                    ['label' => 'Kafedralar', 'url' => ['department/index']],
-                    ['label' => 'Binolar', 'url' => ['building/index']],
-                    ['label' => 'Xonalar', 'url' => ['room/index']],
+                    ['label' => 'Fakultetlar','icon'=>'fast-forward', 'url' => ['faculty/index']],
+                    ['label' => 'Yo\'nalishlar', 'icon'=>'forward','url' => ['direction/index']],
+                    ['label' => 'Kafedralar','icon'=>'long-arrow-right', 'url' => ['department/index']],
+                    ['label' => 'Binolar','icon'=>'bank','url' => ['building/index']],
+                    ['label' => 'Xonalar','icon'=>'building', 'url' => ['room/index']],
                 ],
             ]
         ) ?>

@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\admin\controllers;
+namespace app\modules\student\controllers;
 
 use Yii;
-use app\modules\admin\models\Announcements;
-use app\modules\admin\models\AnnouncementsSearch;
+use app\modules\dekanat\models\Announcements;
+use app\modules\dekanat\models\AnnouncementsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -33,16 +33,7 @@ class AnnouncementsController extends Controller
      * Lists all Announcements models.
      * @return mixed
      */
-    public function actionIndex()
-    {
-        $searchModel = new AnnouncementsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
+//
 
     /**
      * Displays a single Announcements model.

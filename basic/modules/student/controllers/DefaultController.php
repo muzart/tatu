@@ -54,15 +54,6 @@ class DefaultController extends Controller
 
     }
 
-    public function actionMessage($id)
-    {
-        Announcements::updateAll(['status' => 'inactive'], ['id' => $id]);
-        $announcement = Announcements::findOne(['id' => $id]);
-        return $this->render('message',
-            [
-                'model' => $announcement,
-            ]);
-    }
 
     public function findGroupId()
     {
@@ -91,13 +82,5 @@ class DefaultController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-public static function getInfoStudent()
-{
-    $user_id = \Yii::$app->user->id;
-
-    $students = Student::find()->where(['user_id'=>$user_id])->all();
-
-    return $students;
-}
 
 }

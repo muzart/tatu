@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\admin\models;
+namespace app\modules\dekanat\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\admin\models\Announcements;
+use app\modules\dekanat\models\Announcements;
 
 /**
  * AnnouncementsSearch represents the model behind the search form of `app\modules\admin\models\Announcements`.
@@ -19,7 +19,7 @@ class AnnouncementsSearch extends Announcements
     {
         return [
             [['id', 'user_id'], 'integer'],
-            [['start_date', 'tittle', 'body', 'end_date', 'status'], 'safe'],
+            [['tittle', 'body', 'end_date', 'status'], 'safe'],
         ];
     }
 
@@ -63,8 +63,7 @@ class AnnouncementsSearch extends Announcements
             'user_id' => $this->user_id,
         ]);
 
-        $query->andFilterWhere(['like', 'start_date', $this->start_date])
-            ->andFilterWhere(['like', 'tittle', $this->tittle])
+        $query->andFilterWhere(['like', 'tittle', $this->tittle])
             ->andFilterWhere(['like', 'body', $this->body])
             ->andFilterWhere(['like', 'end_date', $this->end_date])
             ->andFilterWhere(['like', 'status', $this->status]);

@@ -13,7 +13,6 @@ use yii\web\UploadedFile;
  * @property string $studies_kind
  * @property string $topic
  * @property string $planned_hour
- *
  * @property Subject $subject
  */
 class Materials extends \yii\db\ActiveRecord

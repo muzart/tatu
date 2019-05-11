@@ -1,43 +1,42 @@
 <?php
 
-use yii\grid\GridView;
 use yii\helpers\Html;
+use yii\grid\GridView;
 use yii\widgets\Pjax;
-
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\search\SubjectSearch */
+/* @var $searchModel app\modules\dekanat\models\AnnouncementsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Subjects';
-$this->title = Yii::t('app', 'Create Subject');
+$this->title = Yii::t('app', 'Announcements');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="subject-index">
+<div class="announcements-index">
 
-    <!--   = Html::encode($this->title) -->
+    <h1><?= Html::encode($this->title) ?></h1>
+    <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Subject'), ['create'], ['class' => 'w3-btn w3-green']) ?>
-        <?= Html::a(Yii::t('app', 'O\'quv rejasi'), ['education_plan'], ['class' => 'w3-btn w3-blue']) ?>
+        <?= Html::a(Yii::t('app', 'Create Announcements'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?php Pjax::begin(); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'name',
-            [
-                'attribute' => 'department_id',
-                'value' => function ($model) {
-                    return $model->department->name;
-                },
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Department::find()->asArray()->all(), 'id', 'name'),
-            ],
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'user_id',
+
+            'tittle',
+            'body:ntext',
+            //'end_date',
+            //'status',
 
             [
                 'class' => 'yii\grid\ActionColumn',
+                'header' => 'Amallar',
                 'buttons' => [
                     'view' => function ($url, $model) {
                         return Html::a('<span class="w3-btn w3-green">Ko\'rish</span>', $url, [
@@ -63,8 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'style' => 'width: 250px',
                 ]
             ],
-
         ],
     ]); ?>
-
-    <?php Pjax::end(); ?></div>
+    <?php Pjax::end(); ?>
+</div>

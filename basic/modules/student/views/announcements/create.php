@@ -4,13 +4,11 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Protocol */
+/* @var $model app\modules\dekanat\models\Announcements */
 
-
-$this->params['breadcrumbs'][] = ['label' => 'Protocols', 'url' => ['index']];
 
 ?>
-<div class="protocol-create">
+<div class="announcements-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

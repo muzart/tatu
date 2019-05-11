@@ -1,7 +1,8 @@
 <?php
 
-namespace app\modules\admin\models;
+namespace app\modules\dekanat\models;
 
+use app\modules\dormitory\models\AnnouncementStudent;
 use Yii;
 use app\models\User;
 /**
@@ -9,7 +10,7 @@ use app\models\User;
  *
  * @property int $id
  * @property int $user_id
- * @property string $start_date
+
  * @property string $tittle
  * @property string $body
  * @property string $end_date
@@ -34,10 +35,10 @@ class Announcements extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'start_date', 'tittle', 'body', 'end_date', 'status'], 'required'],
+            [['user_id','tittle', 'body', 'end_date', 'status'], 'required'],
             [['user_id'], 'integer'],
             [['body', 'status'], 'string'],
-            [['start_date', 'end_date'], 'string', 'max' => 200],
+            [['end_date'], 'string', 'max' => 200],
             [['tittle'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -51,9 +52,9 @@ class Announcements extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'User ID'),
-            'start_date' => Yii::t('app', 'Start Date'),
-            'tittle' => Yii::t('app', 'Tittle'),
-            'body' => Yii::t('app', 'Body'),
+
+            'tittle' => Yii::t('app', 'Ariza turi'),
+            'body' => Yii::t('app', 'Ariza'),
             'end_date' => Yii::t('app', 'End Date'),
             'status' => Yii::t('app', 'Status'),
         ];
