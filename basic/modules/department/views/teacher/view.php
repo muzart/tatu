@@ -23,7 +23,7 @@ $baseUrl = Yii::$app->request->baseUrl;
         ])
         ?>
         <button class="btn btn-default" onclick="javascript: window.print()"><i class="fa fa-print"></i> Print</button>
-    <?= Html::a(Yii::t('app', 'Ko`rish'), ['yuklama', 'id' => $model->id], ['class' => 'btn btn-primary no-print']) ?>
+    <?= Html::a(Yii::t('app', 'Yuklama'), ['yuklama', 'id' => $model->id], ['class' => 'btn btn-primary no-print']) ?>
     </p>
     <div class="containter">
         <div class="row">
@@ -35,12 +35,11 @@ $baseUrl = Yii::$app->request->baseUrl;
                                 <tr>
                                     <td colspan="3">
                                         <h3 class="text-center text-bold" style="text-transform: capitalize">MA'LUMOTNOMA</h3>
-                                        <h4 style="text-align: center"><?= $model->fio ?></h4>
-                                        <h5 style="text-align: left"><?= $model->started_work ?></h5>
-                                        <h5 style="text-align: left">
-                                            Toshkent axborot texnologiyalari universiteti Urganch filiali<br>
+                                        <h4 style="text-align: center"><b><?= $model->fio ?></b></h4>
+                                        <p><?= $model->started_work ?>dan
+                                            Toshkent axborot texnologiyalari universiteti Urganch filiali
                                             <?= $model->department->name ?> kafedrasida o'qituvchi lavozimida ishlaydi.
-                                        </h5>
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -53,31 +52,31 @@ $baseUrl = Yii::$app->request->baseUrl;
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><b>Millati:</b> <?= $model->nationality ?></td>
-                                    <td colspan="2"><b>Partiyaviyligi:</b><?= $model->deputy ?></td>
+                                    <td><b>Millati: </b><?= $model->nationality ?></td>
+                                    <td colspan="2"><b>Partiyaviyligi:</b> <?= $model->deputy ?></td>
                                 </tr>
                                 <tr>
                                     <td><b>Ma'lumoti: </b><?= $model->degree ?></td>
-                                    <td colspan="2"><b>Tamomlagan:</b><?= $model->ended ?></td>
+                                    <td colspan="2"><b>Tamomlagan:</b> <?= $model->ended ?></td>
                                 </tr>
                                 <tr>
-                                    <td><b>Ma'lumoti bo'yicha mutahasisligi: </b><?= $model->specialization ?></td>
+                                    <td><b>Ma'lumoti bo'yicha mutaxassisligi: </b><?= $model->specialization ?></td>
                                     <td colspan="2"><b>Ilmiy unvoni:</b> <?= $model->science_title ?></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <b> Qaysi chet tillarni biladi:</b> <?= $model->foreign_langs ?>
                                     </td>
-                                    <td colspan="2"><b>Davlat mukofotlari bilan tagdirlanganmi:</b><?= $model->gov_awards ?></td>
+                                    <td colspan="2"><b>Davlat mukofotlari bilan tagdirlanganmi:</b> <?= $model->gov_awards ?></td>
                                 </tr>
                                 <tr>
                                     <td colspan="3"><b>Xalq deputatlari,respuplika,viloyat,shahar va tuman Kengashi deputatimi yoki boshqa saylanadigan
-                                            organlarning a'zosimi(to'liq korsatilishi lozim):</b><?= $model->deputy ?>
+                                            organlarning a'zosimi(to'liq korsatilishi lozim):</b> <?= $model->deputy ?>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">
-                                        <h3 style="text-align: center"><b>Mexnat faoliyati</b></h3>
+                                        <h3 style="text-align: center"><b>Mehnat faoliyati</b></h3>
                                     </td>
                                 </tr>
                             </table>
