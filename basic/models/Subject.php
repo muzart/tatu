@@ -153,8 +153,7 @@ class Subject extends \yii\db\ActiveRecord
                         $plan->hour = $hour;
                         $plan->subject_type_id = $id;
                         $plan->subject_id = $this->id;
-                        $plan->save();
-                        $plan->validate(false);
+                        $plan->save(false);
                     }
                 }
             }

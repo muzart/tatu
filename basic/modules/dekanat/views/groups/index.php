@@ -13,9 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="groups-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
         <?= Html::a(Yii::t('app', 'Create Groups'), ['create'], ['class' => 'w3-btn w3-green']) ?>
     </p>
@@ -47,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'faculty_id',
 
             [
-                    'header' => 'Amallar',
+                'header' => 'Amallar',
                 'class' => 'yii\grid\ActionColumn',
                 'buttons' => [
                     'view' => function ($url, $model) {

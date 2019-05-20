@@ -66,6 +66,13 @@ return [
     'Event Title'=>'Hodisa sarlavhasi',
     'Event Start Date'=>'Boshlanish vaqti',
     'Event End Date'=>'Tugash vaqti',
-    'Manage Event Schedule'=>'Hodisalar taqvimini boshqarish'
+    'Manage Event Schedule'=>'Hodisalar taqvimini boshqarish',
 
+    'Participants' => 'Ishtirokchilar',
+    'Department ID' => 'Kafedra',
+    'Schedule' => 'Kun tartibi',
+    'Statement' => 'Bayon',
+    'Decision' => 'Qaror',
+    'Protocols' => 'Bayonnomalar',
+    'Create Protocol' => 'Yangi Bayonnoma',
 ];

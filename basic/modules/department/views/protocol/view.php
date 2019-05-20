@@ -13,51 +13,54 @@ use yii\widgets\DetailView;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary no-print']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger no-print',
+    <p class="no-print">
+        <?= Html::a('Tahrirlash', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('O\'chirish', ['delete', 'id' => $model->id], [
+            'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Haqiqatda o\'chirishni xohlaysizmi?',
                 'method' => 'post',
             ],
         ]) ?>
-        <button class="btn btn-default no-print" onclick="printDiv('printableArea')"<i class="fa fa-print" aria-hidden="true" style="font-size: 17px;"></i>Chop qilish</button>
+        <span class="btn btn-default" onclick="javascript: window.print();"
+        <i class="fa fa-print" aria-hidden="true" style="font-size: 17px;"></i> Chop qilish</span>
     </p>
-<center style="font-size: 20px ">
-    Muhammad al-Xorazmiy nomidagi <br>
-    Toshkent axborot texnologiyalari universiteti <br>
-    Urganch filiali <br>
-    "Kompyuter injineringi fakulteti" <br>
-    "Dasturiy injiniring" kafedra yig'ilishi
-    <br>
-    BAYONNOMASI №
-</center>
-
-
-<?= $model->participants; ?>
-<?= $model->schedule;?>
-<?= $model->statement;?>
-<?= $model->decision;?>
-
-
-
-
-
-<h4 style="text-align: left">
-Dasturiy injiniring <br>
-kafedrasi mudiri :<br>
-Kotib:
-</h4>
-    <h4 style="text-align: right;margin-top: -70px">
-t.f.n F.Yusupov <br>
-Xo'jamuratov B.
-    </h4>
+    <p style="font-size: 20px; text-align: center">
+        Muhammad al-Xorazmiy nomidagi <br>
+        Toshkent axborot texnologiyalari universiteti <br>
+        Urganch filiali <br>
+        "Kompyuter injineringi fakulteti" <br>
+        "Dasturiy injiniring" kafedra yig'ilishi
+        <br>
+        BAYONNOMASI №____
+    </p>
+    <table width="100%">
+        <tr>
+            <td style="vertical-align: top">
+                <p><strong>Qatnashishdi:</strong>
+                    <?= $model->participants; ?>
+                </p>
+            </td>
+            <td style="vertical-align: top">
+                <p class="text-right"><strong>Urganch,</strong>
+                    <?= date('d.m.Y') ?>
+                </p>
+            </td>
+        </tr>
+    </table>
+    <h3 class="text-center">Kun tartibidagi masalalar</h3>
+    <?= $model->schedule; ?>
+    <?= $model->statement; ?>
+    <h3 class="text-center">Qabul qilingan qaror</h3>
+    <?= $model->decision; ?>
+    <table width="100%">
+        <tr>
+            <th>Dasturiy injiniring kafedrasi mudiri:</th>
+            <td>___________________________</td>
+        </tr>
+        <tr>
+            <th>Kotib:</th>
+            <td>___________________________</td>
+        </tr>
+    </table>
 </div>
-<script>
-    function printDiv(divName) {
-
-        window.print();
-
-    }
-</script>

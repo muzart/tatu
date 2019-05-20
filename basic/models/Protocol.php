@@ -45,11 +45,11 @@ class Protocol extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'participants' => 'Participants',
-            'department_id' => 'Department ID',
-            'schedule' => 'Schedule',
-            'statement' => 'Statement',
-            'decision' => 'Decision',
+            'participants' => Yii::t('app','Participants'),
+            'department_id' => Yii::t('app','Department ID'),
+            'schedule' => Yii::t('app','Schedule'),
+            'statement' => Yii::t('app','Statement'),
+            'decision' => Yii::t('app','Decision'),
         ];
     }
 

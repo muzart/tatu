@@ -109,24 +109,13 @@ class SubjectController extends Controller
     public function actionCreate()
     {
         $model = new Subject();
-        if ($model->load(Yii::$app->request->post())) {
-          //echo "<pre>";
-          //var_dump($_POST["Subject"]["terms"]);
-            $model->save();
-            //$id = $model->id;
-//            foreach ($model->terms as $term)
-//            {
-//                $SubjectModel= new SubjectTerm();
-//                $SubjectModel->term_id = $term;
-//                $SubjectModel->subject_id = $id;
-//                $SubjectModel->save();
-//            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
         }
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+
     }
 
     /**
