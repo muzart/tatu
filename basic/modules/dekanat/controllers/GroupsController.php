@@ -2,14 +2,14 @@
 
 namespace app\modules\dekanat\controllers;
 
+use app\models\Groups;
+use app\models\ScheduleItem;
+use app\models\search\GroupsSearch;
 use app\models\Student;
 use Yii;
-use app\models\Groups;
-use app\models\search\GroupsSearch;
-use yii\web\Controller;
-use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 /**
  * GroupsController implements the CRUD actions for Groups model.
@@ -57,10 +57,11 @@ class GroupsController extends Controller
     public function actionView($id)
     {
         $student = Student::find()->where(['group_id' => $id])->all();
+
+
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'student' => $student
-
+            'student' => $student,
 
 
         ]);
@@ -68,6 +69,29 @@ class GroupsController extends Controller
 
     }
 
+    /**
+     * Finds the Groups model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Groups the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Groups::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    protected function findModel2($id)
+    {
+        if (($model = ScheduleItem::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
 
     /**
      * Creates a new Groups model.
@@ -123,28 +147,25 @@ class GroupsController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionSchedule($id){
-            $model = $this->findModel($id);
-            $schedule = $model->getSchedule();
-            return $this->render('schedule',[
-                'schedule' => $schedule
-            ]);
-    }
-
-
-    /**
-     * Finds the Groups model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Groups the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
+    public function actionSchedule($id)
     {
-        if (($model = Groups::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
+        $model = $this->findModel($id);
+        $group_id = ScheduleItem::find()->where(['group_id' => $id])->one();
+        $schedule_item = new ScheduleItem();
+        $schedule = $model->getSchedule();
+        if ($schedule_item->load(Yii::$app->request->post()) && $schedule_item->save())
+            return $this->refresh() and $this->getIndex();
+        return $this->render('schedule', [
+            'schedule' => $schedule,
+            'group' => $group_id,
+            'model2' => $schedule_item
+
+        ]);
     }
+
+    public function getIndex()
+    {
+        header('location: ../schedule-item');
+    }
+
 }

@@ -23,7 +23,7 @@ class ScheduleItemController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['GET'],
                 ],
             ],
         ];
@@ -106,7 +106,7 @@ class ScheduleItemController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect($_SERVER["HTTP_REFERER"]);
     }
 
     /**
@@ -141,5 +141,6 @@ class ScheduleItemController extends Controller
             return 'Seminar';
         } elseif ($type == 'discussion'){return 'Munozara';}
     }
+
 
 }

@@ -26,6 +26,22 @@ class ScheduleHelper
         foreach ($days as $day){
             $result[$day] = \app\models\ScheduleItem::find()->where(['group_id'=>$group_id,'day'=>$day,'term_id'=>$current_term])->orderBy('pair')->all();       }
         return $result;
+
+    }
+    public static function getCurrentTerm()
+    {
+        $current_term=CurrentTerm::findOne(['id'=>1])->current_term_id;
+        return $current_term;
+    }
+
+    public static function deleteSchedule($id)
+    {
+        $schedule_item=ScheduleItem::findOne($id);
+        if($schedule_item){
+            $schedule_item->delete();
+            return true;
+        }
+        return false;
     }
 
 
