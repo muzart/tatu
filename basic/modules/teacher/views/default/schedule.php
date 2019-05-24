@@ -10,167 +10,230 @@
 /* @var  $third_day  app\modules\teacher\controllers\DefaultController */
 /* @var  $forth_day  app\modules\teacher\controllers\DefaultController */
 /* @var  $fifth_day  app\modules\teacher\controllers\DefaultController */
+
 /* @var  $sixth_day  app\modules\teacher\controllers\DefaultController */
+
 use app\modules\dekanat\controllers\ScheduleItemController;
+
 ?>
-<ul class="nav  nav-pills">
-    <li class="active"><a data-toggle="tab" href="#1-kun">Dushanba</a></li>
-    <li><a data-toggle="tab" href="#2-kun">Seshanba</a></li>
-    <li><a data-toggle="tab" href="#3-kun">Chorshanba</a></li>
-    <li><a data-toggle="tab" href="#4-kun">Payshanba</a></li>
-    <li><a data-toggle="tab" href="#5-kun">Juma</a></li>
-    <li><a data-toggle="tab" href="#6-kun">Shanba</a></li>
-</ul>
-<div class="tab-content">
-    <div id="1-kun" class="tab-pane fade active in">
-        <div class="container">
-            <div class="row">
-                <table class="w3-table-all w3-card-4 w3-hoverable">
-                    <tr class="w3-green">
-                        <th>Juftlik</th>
+<div class="well">
+<div class="row">
+    <div class="col-md-4">
+        <div class="box">
+            <div class="box-header with-border text-center">
+                <h3 class="box-title">Dushanba</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-bordered text-center">
+                    <tbody>
+                    <tr>
+                        <th style="width: 1%">#</th>
                         <th>Fanlar</th>
-                                              <th>Xona</th>
+                        <th>Guruh</th>
+                        <th style="width: 40px">Xona</th>
                     </tr>
+
                     <?php
                     foreach ($first_day as $item):?>
                         <tr>
-                            <th><?= $item->pair ?></th>
-                            <th><?= $item->subject->name . '' . ' (' .ScheduleItemController::findLessonType($item->subject_type) . ')' ?></th>
-                                                        <th><?= $item->room->name ?></th>
+                            <td><?= $item->pair ?></td>
+                            <td><?= $item->subject->name . '' . ' (' . ScheduleItemController::findLessonType($item->subject_type) . ')' ?></td>
+                            <td><?= $item->group->name ?></td>
+                            <td><?= $item->room->name ?></td>
                         </tr>
                     <?php
                     endforeach;
                     ?>
+
+
+                    </tbody>
                 </table>
             </div>
-        </div>
-    </div>
-    <div id="2-kun" class="tab-pane fade ">
-        <div class="container">
-            <div class="row">
-                <table class="w3-table-all w3-card-3">
-                    <tr class="w3-green">
-                        <th>Juftlik</th>
-                        <th>Fanlar</th>
 
-                        <th>Xona</th>
+        </div>
+        <!-- /.box -->
+
+    </div>
+    <div class="col-md-4">
+        <div class="box">
+            <div class="box-header with-border text-center">
+                <h3 class="box-title">Seshanba</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-bordered text-center">
+                    <tbody>
+                    <tr>
+                        <th style="width: 1%">#</th>
+                        <th>Fanlar</th>
+                        <th>Guruh</th>
+                        <th style="width: 40px">Xona</th>
                     </tr>
+
                     <?php
                     foreach ($second_day as $item):?>
                         <tr>
-                            <th><?= $item->pair ?></th>
-                        <th><?= $item->subject->name . '' . ' (' . ScheduleItemController::findLessonType($item->subject_type) . ')' ?></th>
-
-                            <th><?= $item->room->name ?></th>
+                            <td><?= $item->pair ?></td>
+                            <td><?= $item->subject->name . '' . ' (' . ScheduleItemController::findLessonType($item->subject_type) . ')' ?></td>
+                            <td><?= $item->group->name ?></td>
+                            <td><?= $item->room->name ?></td>
                         </tr>
                     <?php
                     endforeach;
                     ?>
+
+
+                    </tbody>
                 </table>
             </div>
-        </div>
-    </div>
-    <div id="3-kun" class="tab-pane fade ">
-        <div class="container">
-            <div class="row">
-                <table class="w3-table-all w3-card-3">
-                    <tr class="w3-green">
-                        <th>Juftlik</th>
-                        <th>Fanlar</th>
 
-                        <th>Xona</th>
+        </div>
+        <!-- /.box -->
+
+    </div>
+    <div class="col-md-4">
+        <div class="box">
+            <div class="box-header with-border text-center">
+                <h3 class="box-title">Chorshanba</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-bordered text-center">
+                    <tbody>
+                    <tr>
+                        <th style="width: 1%">#</th>
+                        <th>Fanlar</th>
+                        <th>Guruh</th>
+                        <th style="width: 40px">Xona</th>
                     </tr>
+
                     <?php
                     foreach ($third_day as $item):?>
                         <tr>
-                            <th><?= $item->pair ?></th>
-                            <th><?= $item->subject->name . '' . ' (' . ScheduleItemController::findLessonType($item->subject_type) . ')' ?></th>
+                            <td><?= $item->pair ?></td>
+                            <td><?= $item->subject->name . '' . ' (' . ScheduleItemController::findLessonType($item->subject_type) . ')' ?></td>
 
-                            <th><?= $item->room->name ?></th>
+                            <td><?= $item->room->name ?></td>
                         </tr>
                     <?php
                     endforeach;
                     ?>
+                    </tbody>
                 </table>
             </div>
-        </div>
-    </div>
-    <div id="4-kun" class="tab-pane fade ">
-        <div class="container">
-            <div class="row">
-                <table class="w3-table-all w3-card-3">
-                    <tr class="w3-green">
-                        <th>Juftlik</th>
-                        <th>Fanlar</th>
 
-                        <th>Xona</th>
+        </div>
+        <!-- /.box -->
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="box">
+            <div class="box-header with-border text-center">
+                <h3 class="box-title">Payshanba</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-bordered text-center">
+                    <tbody>
+                    <tr>
+                        <th style="width: 1%">#</th>
+                        <th>Fanlar</th>
+                        <th>Guruh</th>
+                        <th style="width: 40px">Xona</th>
                     </tr>
+
                     <?php
                     foreach ($forth_day as $item):?>
                         <tr>
-                            <th><?= $item->pair ?></th>
-                            <th><?= $item->subject->name . '' . ' (' . ScheduleItemController::findLessonType($item->subject_type) . ')' ?></th>
-
-                            <th><?= $item->room->name ?></th>
+                            <td><?= $item->pair ?></td>
+                            <td><?= $item->subject->name . '' . ' (' . ScheduleItemController::findLessonType($item->subject_type) . ')' ?></td>
+                            <td><?= $item->group->name ?></td>
+                            <td><?= $item->room->name ?></td>
                         </tr>
                     <?php
                     endforeach;
                     ?>
+                    </tbody>
                 </table>
             </div>
+
         </div>
+        <!-- /.box -->
 
     </div>
-    <div id="5-kun" class="tab-pane fade ">
-        <div class="container">
-            <div class="row">
-                <table class="w3-table-all w3-card-3">
-                    <tr class="w3-green">
-                        <th>Juftlik</th>
+    <div class="col-md-4">
+        <div class="box">
+            <div class="box-header with-border text-center">
+                <h3 class="box-title">Juma</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-bordered text-center">
+                    <tbody>
+                    <tr>
+                        <th style="width: 1%">#</th>
                         <th>Fanlar</th>
-
-                        <th>Xona</th>
+                        <th>Guruh</th>
+                        <th style="width: 40px">Xona</th>
                     </tr>
+
                     <?php
                     foreach ($fifth_day as $item):?>
                         <tr>
-                            <th><?= $item->pair ?></th>
-                            <th><?= $item->subject->name . '' . ' (' . ScheduleItemController::findLessonType($item->subject_type) . ')' ?></th>
-
-                            <th><?= $item->room->name ?></th>
+                            <td><?= $item->pair ?></td>
+                            <td><?= $item->subject->name . '' . ' (' . ScheduleItemController::findLessonType($item->subject_type) . ')' ?></td>
+                            <td><?= $item->group->name ?></td>
+                            <td><?= $item->room->name ?></td>
                         </tr>
                     <?php
                     endforeach;
                     ?>
+                    </tbody>
                 </table>
             </div>
+
         </div>
+        <!-- /.box -->
+
     </div>
-
-    <div id="6-kun" class="tab-pane fade ">
-        <div class="container">
-            <div class="row">
-                <table class="w3-table-all w3-card-3">
-                    <tr class="w3-green">
-                        <th>Juftlik</th>
+    <div class="col-md-4">
+        <div class="box">
+            <div class="box-header with-border text-center">
+                <h3 class="box-title">Shanba</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-bordered text-center">
+                    <tbody>
+                    <tr>
+                        <th style="width: 1%">#</th>
                         <th>Fanlar</th>
-
-                        <th>Xona</th>
+                        <th>Guruh</th>
+                        <th style="width: 40px">Xona</th>
                     </tr>
+
                     <?php
                     foreach ($sixth_day as $item):?>
                         <tr>
-                            <th><?= $item->pair ?></th>
-                            <th><?= $item->subject->name . '' . ' (' . ScheduleItemController::findLessonType($item->subject_type) . ')' ?></th>
-
-                            <th><?= $item->room->name ?></th>
+                            <td><?= $item->pair ?></td>
+                            <td><?= $item->subject->name . '' . ' (' . ScheduleItemController::findLessonType($item->subject_type) . ')' ?></td>
+                            <td><?= $item->group->name ?></td>
+                            <td><?= $item->room->name ?></td>
                         </tr>
                     <?php
                     endforeach;
                     ?>
+                    </tbody>
                 </table>
             </div>
+
         </div>
+        <!-- /.box -->
+
     </div>
 
+</div>
 </div>
