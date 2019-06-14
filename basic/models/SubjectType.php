@@ -60,4 +60,13 @@ class SubjectType extends \yii\db\ActiveRecord
     {
         return $this->hasMany(PlanSubjectType::className(), ['subject_type_id' => 'id']);
     }
-}
+    public static function getIdSubjectType()
+    {
+        $massiv = [];
+        $types = SubjectType::find()->all();
+        foreach ($types as $type) {
+            $massiv[] = $type->id;
+
+        }
+        return $massiv;
+}}

@@ -40,13 +40,13 @@ CREATE TABLE `department` (
 -- Дамп данных таблицы `department`
 --
 
-INSERT INTO `department` (`id`, `name`, `faculty_id`, `building_id`, `room_id`) VALUES
-(1, 'Axborot texnologiyalari', 1, 1, 44),
-(2, 'Axborot-ta\'lim texnologiyalari', 2, 1, 40),
-(3, 'Gumanitar va ijtimoiy fanlar', 1, 1, 26),
-(4, 'Tabiiy va umumkasbiy fanlar', 1, 1, 20),
-(5, 'Telekommunikatsiya injiniringi', 2, 1, 24),
-(6, 'Dasturiy injiniring', 2, 1, 61);
+  INSERT INTO `department` (`id`, `name`, `faculty_id`, `building_id`, `room_id`) VALUES
+  (1, 'Axborot texnologiyalari', 1, 1, 44),
+  (2, 'Axborot-ta\'lim texnologiyalari', 2, 1, 40),
+  (3, 'Gumanitar va ijtimoiy fanlar', 1, 1, 26),
+  (4, 'Tabiiy va umumkasbiy fanlar', 1, 1, 20),
+  (5, 'Telekommunikatsiya injiniringi', 2, 1, 24),
+  (6, 'Dasturiy injiniring', 2, 1, 61);
 
 --
 -- Индексы сохранённых таблиц

@@ -7,9 +7,9 @@ use yii\helpers\Html;
 $unread_cnt = \app\modules\dekanat\models\Announcements::find()->where(['status' => 'active'])->count();
 $unread_messages = \app\modules\dekanat\models\Announcements::find()->where(['status' => 'active'])->all();
 
-$annoouncement_user=\app\modules\dekanat\models\Announcements::find()->all();
-//$group_sentder = \app\models\Student::findOne(['user_id' => $annoouncement_user->user_id])->group->name;
-//$photo_sentder = \app\models\Student::findOne(['user_id' => $annoouncement_user->user_id])->photo;
+$annoouncement_user = \app\modules\dekanat\models\Announcements::find()->select(['user_id'])->one();
+$group_sentder = \app\models\Student::findOne(['user_id' => $annoouncement_user->user_id])->group->name;
+$photo_sentder = \app\models\Student::findOne(['user_id' => $annoouncement_user->user_id])->photo;
 ?>
 
 <header class="main-header">
@@ -42,9 +42,8 @@ $annoouncement_user=\app\modules\dekanat\models\Announcements::find()->all();
                                     <li><!-- start message -->
                                         <a href=<?php echo Yii::getAlias('@web/dekanat/default/message?id=' . $message->id) ?>>
                                             <div class="pull-left">
-<!--                                                <img src="--><?//= Yii::getAlias('@web/uploads/' . $group_sentder . '/' . $photo_sentder) ?><!--/"-->
-                                                     class="img-circle"
-                                                     alt="User Image"/>
+                                                <img src="<?= Yii::getAlias('@web/uploads/groups/' . $group_sentder . '/') ?><?= $photo_sentder ?>"
+                                                     class="img-circle" alt="User Image"/>
                                             </div>
                                             <h4>
                                                 <?php

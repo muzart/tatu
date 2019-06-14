@@ -40,5 +40,5 @@ use dmstr\widgets\Alert;
     <div class="pull-right hidden-xs ">
         <b class="no-print">Version</b> 1.0
     </div>
-    <strong class="no-print">Copyright &copy; 2018 <a class="no-print" href="https://ubtuit.uz">TUIT UB</a>.</strong>
+    <strong class="no-print">Copyright &copy; <?= date('Y')?> <a class="no-print" href="https://ubtuit.uz">TUIT UB</a>.</strong>
 </footer>

@@ -10,7 +10,7 @@ use yii\web\UploadedFile;
  *
  * @property integer $id
  * @property integer $subject_id
- * @property string $studies_kind
+ * @property integer $studies_kind
  * @property string $topic
  * @property string $planned_hour
  * @property Subject $subject
@@ -35,7 +35,7 @@ class Materials extends \yii\db\ActiveRecord
         return [
             [['subject_id', 'studies_kind', 'topic', 'planned_hour'], 'required'],
             [['subject_id'], 'integer'],
-            [['studies_kind'], 'string'],
+            [['studies_kind'], 'integer'],
             [['topic'], 'string', 'max' => 255],
             [['planned_hour'], 'string', 'max' => 10],
             //[['file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 4],

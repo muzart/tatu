@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Create Subject'), ['create'], ['class' => 'w3-btn w3-green']) ?>
-        <?= Html::a(Yii::t('app', 'O\'quv rejasi'), ['education_plan'], ['class' => 'w3-btn w3-blue']) ?>
+
     </p>
     <?php Pjax::begin(); ?>
 

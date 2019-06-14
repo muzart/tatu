@@ -21,7 +21,7 @@ use yii\web\IdentityInterface;
  * @property integer $updated_at
  *
  * @property Student[] $students
- * @property Teacher[] $teachers
+ * @property Teacher $teacher
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -101,9 +101,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTeachers()
+    public function getTeacher()
     {
-        return $this->hasMany(Teacher::className(), ['user_id' => 'id']);
+        return $this->hasOne(Teacher::className(), ['user_id' => 'id']);
     }
 
     /**

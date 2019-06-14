@@ -8,7 +8,7 @@ use app\modules\dekanat\controllers\ScheduleItemController;
 
 ?>
 <?= \yii\helpers\Html::button('Dars jadvali yaratish', ['value' => \yii\helpers\Url::to('schedule-item/create'), 'class' => 'w3-btn w3-black', 'id' => 'modalButton']) ?>
-<h1 class="text-center">GURUH :<?=$group->group->name;
+<h1 class="text-center">GURUH :<?=$group->group->id;
 
     ?></h1>
 <div class="well">

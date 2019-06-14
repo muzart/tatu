@@ -18,8 +18,8 @@ class MaterialsSearch extends Materials
     public function rules()
     {
         return [
-            [['id', 'subject_id'], 'integer'],
-            [['studies_kind', 'topic', 'planned_hour'], 'safe'],
+            [['id', 'subject_id','studies_kind'], 'integer'],
+            [[ 'topic', 'planned_hour'], 'safe'],
         ];
     }
 

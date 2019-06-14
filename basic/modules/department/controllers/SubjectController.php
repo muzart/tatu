@@ -5,7 +5,7 @@ namespace app\modules\department\controllers;
 use app\models\Materials;
 use app\models\search\SubjectSearch;
 use app\models\Subject;
-use app\models\SubjectTerm;
+use app\models\SubjectType;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -49,23 +49,18 @@ class SubjectController extends Controller
 
     public function actionView($id)
     {
-        $lectures = Materials::find()->where(['subject_id' => $id, 'studies_kind' => 'lecture'])->all();
-        $laboratorys = Materials::find()->where(['subject_id' => $id, 'studies_kind' => 'laboratory'])->all();
-        $practices = Materials::find()->where(['subject_id' => $id, 'studies_kind' => 'practice'])->all();
+        $model = $this->findModel($id);
+        $materials = $model->getAllMaterials();
         $material = new Materials;
         $material->subject_id = $id;
 
         if ($material->load(Yii::$app->request->post()) && $material->save())
             return $this->refresh() and $this->getIndex();
         return $this->render('view', [
-                'model' => $this->findModel($id),
+                'model' => $model,
                 'material' => $material,
-                'lectures' => $lectures,
-                'laboratorys' => $laboratorys,
-                'practices' => $practices,
-
+                'materials' => $materials,
             ]
-
         );
     }
 
@@ -110,6 +105,7 @@ class SubjectController extends Controller
     {
         $model = new Subject();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
         return $this->render('create', [

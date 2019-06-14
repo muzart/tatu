@@ -5,12 +5,12 @@ namespace app\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\PlanSubjectType;
+use app\models\Absence;
 
 /**
- * PlanSubjectTypesearch represents the model behind the search form of `app\models\PlanSubjectType`.
+ * AbsenceSearch represents the model behind the search form of `app\models\Absence`.
  */
-class PlanSubjectTypesearch extends PlanSubjectType
+class AbsenceSearch extends Absence
 {
     /**
      * {@inheritdoc}
@@ -18,8 +18,8 @@ class PlanSubjectTypesearch extends PlanSubjectType
     public function rules()
     {
         return [
-            [['id', 'subject_id', 'subject_type_id'], 'integer'],
-
+            [['id', 'student_id', 'subject_id', 'teacher_id'], 'integer'],
+            [['day','subject_type_id'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class PlanSubjectTypesearch extends PlanSubjectType
      */
     public function search($params)
     {
-        $query = PlanSubjectType::find();
+        $query = Absence::find();
 
         // add conditions that should always apply here
 
@@ -60,10 +60,13 @@ class PlanSubjectTypesearch extends PlanSubjectType
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'student_id' => $this->student_id,
             'subject_id' => $this->subject_id,
             'subject_type_id' => $this->subject_type_id,
-
+            'teacher_id' => $this->teacher_id,
         ]);
+
+        $query->andFilterWhere(['like', 'day', $this->day]);
 
         return $dataProvider;
     }

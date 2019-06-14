@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property int $subject_id
  * @property int $subject_type_id
- * @property double $hour
+
  *
  * @property Subject $subject
  * @property SubjectType $subjectType
@@ -25,15 +25,19 @@ class PlanSubjectType extends \yii\db\ActiveRecord
         return 'plan_subject_type';
     }
 
+
+
+
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['subject_id', 'subject_type_id', 'hour'], 'required'],
+            [['subject_id', 'subject_type_id'], 'required'],
             [['subject_id', 'subject_type_id'], 'integer'],
-            [['hour'], 'number'],
+
             [['subject_id'], 'exist', 'skipOnError' => true, 'targetClass' => Subject::className(), 'targetAttribute' => ['subject_id' => 'id']],
             [['subject_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => SubjectType::className(), 'targetAttribute' => ['subject_type_id' => 'id']],
         ];
@@ -48,7 +52,7 @@ class PlanSubjectType extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'subject_id' => Yii::t('app', 'Subject ID'),
             'subject_type_id' => Yii::t('app', 'Subject Type ID'),
-            'hour' => Yii::t('app', 'Hour'),
+
         ];
     }
 
@@ -67,4 +71,7 @@ class PlanSubjectType extends \yii\db\ActiveRecord
     {
         return $this->hasOne(SubjectType::className(), ['id' => 'subject_type_id']);
     }
+
+
 }
+

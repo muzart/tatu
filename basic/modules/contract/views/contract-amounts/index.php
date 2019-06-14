@@ -13,12 +13,12 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="contract-amounts-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::button(Yii::t('app', 'Create Contract Amount' ),['class' => 'w3-btn w3-green']) ?>
+        <?= Html::a('Umumiy shartnoma miqdorini qo\'shish', ['create'], ['class' => 'w3-btn w3-green']) ?>
+
     </p>
 
     <?= GridView::widget([

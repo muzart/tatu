@@ -21,7 +21,13 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
                     ['label' => 'Menu', 'options' => ['class' => 'header']],
-//                    ['label' => 'Semestrlar', 'url' => ['term/index']],
+                    ['label' => 'Honalar', 'url' => ['../dormitory/ttj-room']],
+                    ['label' => 'Talabalar', 'url' => ['../dormitory/ttj-students']],
+                    ['label' => 'Talaba hatolari', 'url' => ['../dormitory/student-mistakes']],
+                    ['label' => 'Seksiyalar', 'url' => ['../dormitory/sections']],
+                    ['label' => 'So\'rovlar', 'url' => ['../dormitory/appeals']],
+
+
                 ],
             ]
         ) ?>

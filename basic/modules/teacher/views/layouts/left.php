@@ -22,6 +22,7 @@
                 'items' => [
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
                     ['label' => 'Dars jadvali', 'url' => ['default/schedule']],
+                    ['label' => 'Yo\'qlama', 'url' => ['absence/subjects']],
 
                 ],
             ]
